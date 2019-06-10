@@ -1,9 +1,7 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "welldone-gatsby",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
     "gatsby": "^2.5.4",
@@ -26,12 +24,11 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-syntax-export-default-from": "^7.2.0",
+    "babel-preset-gatsby": "^0.1.11",
     "prettier": "^1.17.1"
   },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",

@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useCallback } from "react"
 import lottie from "lottie-web"
 import styled from "styled-components"
 import Lottie from "react-lottie"
-import animationData from "../../static/lottie/bottle-start.json"
+import animationData from "../../../static/lottie/bottle-start.json"
 
 // const Root = styled.div`
 //   margin-top: 200px;
