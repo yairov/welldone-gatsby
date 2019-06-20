@@ -1,6 +1,5 @@
-import React, { useRef, useEffect, useCallback } from "react"
-import lottie from "lottie-web"
-import styled from "styled-components"
+import React, { useRef } from "react"
+
 import Lottie from "react-lottie"
 import animationData from "../../../static/lottie/bottle-start.json"
 
@@ -23,18 +22,18 @@ const eventListeners = [
   "destroy",
 ].map(eventName => ({
   eventName,
-  callback: e => console.log({ eventName, e }),
+  callback: e => console.log(),
 }))
 
 export default function Bottle({}) {
   const ref = useRef()
   return (
     <div>
-      xxx
+
       <Lottie
         onClick={() => console.log(ref.current)}
         ref={ref}
-        width="30%"
+        width="100%"
         eventListeners={eventListeners}
         options={{ animationData }}
         segments={[1, 2]}

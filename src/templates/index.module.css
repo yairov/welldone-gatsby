@@ -1,0 +1,14 @@
+
+
+@media (max-width: 1354px) {
+    .Block {
+        padding-top: 0px;
+        margin-bottom: 20px;
+    }
+
+}
+@media (max-width: 750px) {
+    .Block {
+        padding-top: 0px;
+    }
+}

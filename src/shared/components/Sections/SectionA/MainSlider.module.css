@@ -1,0 +1,9 @@
+.A {
+    height: 45rem;
+    text-align: center;
+}
+@media (max-width: 900px) {
+    .A {
+        height: 60rem;
+    }
+}
