@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import classes from './OurCustomers.module.css'
+
 
 import styled from 'styled-components';
 import {media} from '../../../theme';
@@ -125,6 +125,15 @@ const Phone = styled.div`
   display: none;
   `}
 `;
+const Line = styled.div`
+  width: 1px;;
+  height: 3.5rem;
+  align-items: center;
+  background: #979797;
+  margin: 2rem;
+`;
+
+
 
 class OurCustomers extends Component {
 
@@ -198,7 +207,7 @@ class OurCustomers extends Component {
   render () {
     return (
       
-        <Root className= {classes.coreValues} id="C">
+        <Root  id="C">
             <BG src={Background} />
            <Title>{RichText.asText(this.props.text.primary.title)}</Title> 
             <Computer>
@@ -206,15 +215,15 @@ class OurCustomers extends Component {
                 <A  title={this.customers0[this.state.backgroundIndex].data.title} href={this.customers0[this.state.backgroundIndex].data.website.url}>
                    <Icon src={ this.customers0[this.state.backgroundIndex].data.white_logo.url } />
                 </A>
-                <div className={classes.Line}/>
+                <Line />
                 <A  title={this.customers1[this.state.backgroundIndex].data.title} href={this.customers1[this.state.backgroundIndex].data.website.url}>
                    <Icon src={ this.customers1[this.state.backgroundIndex].data.white_logo.url } />
                 </A>
-                <div className={classes.Line}/>
+                <Line />
                 <A  title={this.customers2[this.state.backgroundIndex].data.title} href={this.customers2[this.state.backgroundIndex].data.website.url}>
                    <Icon src={ this.customers2[this.state.backgroundIndex].data.white_logo.url } />
                 </A>
-                <div className={classes.Line}/>
+                <Line />
                 <A  title={this.customers3[this.state.backgroundIndex].data.title} href={this.customers3[this.state.backgroundIndex].data.website.url}>
                    <Icon src={ this.customers3[this.state.backgroundIndex].data.white_logo.url } />
                 </A>

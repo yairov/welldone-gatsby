@@ -1,5 +1,4 @@
 import React from 'react';
-//import classes from './Text.css';
 import styled  from "styled-components"
 import {media} from '../../../theme/media';
 
@@ -8,7 +7,7 @@ import {Header as BaseHeader} from '../../UI/Typography';
 import BaseButton from '../../UI/Button/Button2';
 import {Element} from 'react-scroll';
 
-import classes from "./JoinUs.module.css";
+
 
 const Wrapper = styled(Element)`
   background-image: linear-gradient(257deg, #d9f1f5, #347cac);
@@ -108,8 +107,8 @@ console.log(props.joinUs.primary.content);
         <Wrapper id='Join' >
             <Header>{RichText.render(props.joinUs.primary.title)}</Header>
             <ContentWrapper>
-                <Content className={classes.P}>{RichText.render(props.joinUs.primary.content)}</Content>
-                <Content className={classes.P}>{RichText.render(props.joinUs.primary.content2)}</Content>
+                <Content >{RichText.render(props.joinUs.primary.content)}</Content>
+                <Content >{RichText.render(props.joinUs.primary.content2)}</Content>
                 <Button>{RichText.asText(props.joinUs.primary.button)}</Button>
             </ContentWrapper>
             <Image src={props.joinUs.primary.img.url} />

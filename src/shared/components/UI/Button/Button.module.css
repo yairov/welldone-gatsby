@@ -4,7 +4,6 @@
     color: white;
     outline: none;
     cursor: pointer;
-    font-weight: bold;
     text-align: center;
 }
 
@@ -23,7 +22,7 @@
     width:  100%;
     font-size: 90%;
     cursor: pointer;
-    height: 30px;
+    height: 100%;
     text-align: center;
     
 }

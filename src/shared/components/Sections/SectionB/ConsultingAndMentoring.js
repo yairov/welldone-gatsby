@@ -1,15 +1,21 @@
 
 import React from 'react';
-//import classes from './ConsultingAndMentoring.module.css'
 import styled from 'styled-components';
-//import photo from '../../../assets/icons/SecB/computer.png';
+
 import {media} from '../../../theme/media';
 import InfoBox from './InfoBox/InfoBox';
 import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
 import { Header2 as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 const Root = styled(Element)`
-  margin-bottom:5rem;
+  padding: 0 1rem;
+
+  ${media.minSmallDesktop`
+    margin-bottom:5rem;
+    padding: 0 20rem;
+    text-align: left;
+  `}
+
 `;
 const Wrapper = styled.div`
   display: flex;

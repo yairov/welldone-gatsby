@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './MainSlider.module.css'
+
 
 
 import GlobalStyle from '../../../theme/globalStyle';
@@ -59,6 +59,13 @@ padding-top: 0rem;
 }
 `;
 
+const Size = styled.div`
+    height: 60rem;
+    ${media.minSmallDesktop`
+        height: 45rem;
+        text-align: center;
+    `}
+`;
 
 
 const a = (props) => {
@@ -70,9 +77,9 @@ const a = (props) => {
             <BackgroundTriangle />
             <LeftTopTriangle />
             <LeftBottomTriangle />
-            <div className= {classes.A} id="A">
+            <Size >
                <SlideView items = {props.items}/>
-            </div>    
+            </Size>    
         </Content>
 
     )
