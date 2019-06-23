@@ -109,7 +109,6 @@ console.log(props.joinUs.primary.content);
             <ContentWrapper>
                 <Content >{RichText.render(props.joinUs.primary.content)}</Content>
                 <Content >{RichText.render(props.joinUs.primary.content2)}</Content>
-                <Button>{RichText.asText(props.joinUs.primary.button)}</Button>
             </ContentWrapper>
             <Image src={props.joinUs.primary.img.url} />
          </Wrapper>

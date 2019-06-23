@@ -12,6 +12,8 @@
 
 .Button:first-of-type {
     margin-left: 0;
+    font-size: 1rem;
+    padding: 0.5rem;
 }
 
 .Success {

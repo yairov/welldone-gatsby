@@ -10,15 +10,16 @@ const Root = styled.div`
   padding: 1rem 0;
   margin: 0 0.5rem;
   transition: all 150ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  &:hover {
-    box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.15), 0 7px 20px 0 rgba(0, 0, 0, 0.1);
-  }
+
 `;
 
 const Thumbnail = styled.img`
   width: 100%;
   height: 20rem;
   cursor: pointer;
+  &:hover {
+
+  }
   
 `;
 
@@ -56,7 +57,7 @@ class ProjectItem extends Component {
     height:'20rem',
     open: false,
     close: true,
-    style: { }
+    style: {display:'none' }
 
   }
   
@@ -67,7 +68,14 @@ class ProjectItem extends Component {
           width: '500px',
           height:'500px', 
           open: true,
-          style: {zIndex: 200, position: 'absolute', left: '50%',transform: 'translate(-50%, -50%)',transition: '1s'} });
+          playing: true,
+          style: {display:'block', zIndex: 200, position: 'absolute', left: '50%',transform: 'translate(-50%, -50%)'} });
+      } else {
+        this.setState({ 
+          width: '100%',
+          open: true,
+          playing: true,
+          style: {display:'block', zIndex: 200, position: 'absolute', left: '50%',transform: 'translate(-50%, -50%)'} });
       }
     }
 
@@ -76,9 +84,8 @@ class ProjectItem extends Component {
   ClosedHandler = ( ) => {
     this.setState({
       open: false,
-      width: '100%',
-      height:'20rem', 
-      style: {transition: '1s'}
+      playing: false,
+      style: {transition: '1s',display: 'none'}
     });
   }      
 
@@ -91,9 +98,20 @@ class ProjectItem extends Component {
 
     return (
       <Root >
-      <Player>
-        <ReactPlayer  style={ this.state.style} url='https://www.youtube.com/watch?v=PIEN5Ix8gqQ&list=RDPIEN5Ix8gqQ&start_radio=1' onPlay={this.playingHandler} onPause={this.ClosedHandler} playing={true} light={this.props.thumbnail } width={this.state.width} height={this.state.height}/>
-      </Player> 
+      <Thumbnail 
+        onMouseOver={e => (e.currentTarget.src = this.props.mainImg )} 
+        onMouseOut={e => (e.currentTarget.src = this.props.thumbnail )} 
+        src={this.props.thumbnail } 
+        onClick={this.playingHandler}/>
+      <ReactPlayer  
+        style={ this.state.style} 
+        url='https://www.youtube.com/watch?v=PIEN5Ix8gqQ&list=RDPIEN5Ix8gqQ&start_radio=1' 
+        onPlay={this.playingHandler} 
+        onPause={this.ClosedHandler} 
+        playing={this.state.playing} 
+        width={this.state.width} 
+        height={this.state.height}/>
+
       <Backdrop show={this.state.open} clicked={this.ClosedHandler}/>
       <Title>{this.props.title}</Title>  
       <Icons>

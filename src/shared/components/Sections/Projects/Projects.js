@@ -12,12 +12,14 @@ const Thumbnail = styled.img`
   width: 7.5rem;
   height: 7.5rem;
   margin-bottom: 4rem;
+  
 `;
 
 const ProjectWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3rem 0;
+  
   ${media.minSmallDesktop`
     flex-direction: row;
   `}
@@ -100,6 +102,8 @@ return  (
                 title={RichText.asText(item.title)}
                 subtitle={RichText.asText(item.subtitle)}
                 thumbnail={item.thumbnail.url}
+                mainImg={item.mainimage.url}
+
                 desktop={item.desktop.url}
                 mobile={item.mobile.url}
                 cloud={item.cloud.url}
