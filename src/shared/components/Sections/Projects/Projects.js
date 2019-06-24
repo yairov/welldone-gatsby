@@ -5,7 +5,7 @@ import {RichText} from 'prismic-reactjs';
 import {media} from '../../../theme';
 import ProjectItem from './ProjectItem';
 import {Element} from 'react-scroll';
-import ReactPlayer from 'react-player';
+
 
 
 const Thumbnail = styled.img`
