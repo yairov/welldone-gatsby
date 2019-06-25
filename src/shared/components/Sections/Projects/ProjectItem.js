@@ -4,24 +4,17 @@ import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typogra
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import React, {Component} from 'react';
 import ReactPlayer from 'react-player';
+
 const Root = styled.div`
 
   flex: 1;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   margin: 0 0.5rem;
   transition: all 150ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
 
 `;
 
-const Thumbnail = styled.img`
-  width: 100%;
-  height: 20rem;
-  cursor: pointer;
-  &:hover {
 
-  }
-  
-`;
 
 const Icon = styled.img`
   width: 2rem;
@@ -36,18 +29,42 @@ const Title = styled(BaseHeader)``;
 
 const SubTitle = styled(BaseSubHeader)`
 font-weight: 400;
-
 `;
 
-const Video = styled.video`
+const Img = styled.div`
+  position: relative;
   width: 100%;
-  height: 10rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+`;
+
+const IconImg = styled.img`
+  height: 5rem;
+  width: 5rem;
+  z-index: 1;
+  opacity: 0;
+  padding:10rem;
   cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
 `;
-const Player = styled.div`
 
 
+const BackgroundImg = styled.img`
+  z-index: 0;
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  cursor: pointer;
+
 `;
+
+
+
 
 
 class ProjectItem extends Component {
@@ -98,11 +115,15 @@ class ProjectItem extends Component {
 
     return (
       <Root >
-      <Thumbnail 
-        onMouseOver={e => (e.currentTarget.src = this.props.mainImg )} 
-        onMouseOut={e => (e.currentTarget.src = this.props.thumbnail )} 
-        src={this.props.thumbnail } 
-        onClick={this.playingHandler}/>
+
+      <Img>
+          <IconImg src={this.props.mainImg }
+               onClick={this.playingHandler} />
+           <BackgroundImg 
+                 src={this.props.thumbnail } 
+                 onClick={this.playingHandler}/>
+      </Img>
+
       <ReactPlayer  
         style={ this.state.style} 
         url='https://www.youtube.com/watch?v=PIEN5Ix8gqQ&list=RDPIEN5Ix8gqQ&start_radio=1' 

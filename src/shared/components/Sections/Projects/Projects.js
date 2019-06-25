@@ -5,7 +5,7 @@ import {RichText} from 'prismic-reactjs';
 import {media} from '../../../theme';
 import ProjectItem from './ProjectItem';
 import {Element} from 'react-scroll';
-import ReactPlayer from 'react-player';
+
 
 
 const Thumbnail = styled.img`
@@ -85,7 +85,7 @@ const Projects = (props) => {
   console.log(props.projects.items);
 
 return  (
-  <Root id="Projects">
+  <Root name="Projects" id="Projects">
     <MainHeader>
       <LatestWorkWrapper>
         <TitleWrapper>

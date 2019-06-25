@@ -4,7 +4,7 @@ import {media} from '../../../theme/media';
 
 import {RichText} from 'prismic-reactjs';
 import {Header as BaseHeader} from '../../UI/Typography';
-import BaseButton from '../../UI/Button/Button2';
+
 import {Element} from 'react-scroll';
 
 
@@ -78,16 +78,7 @@ const Image = styled.img`
 `;
 
 
-const Button = styled(BaseButton)`
-  color: #1FABF3;
-  background-color: white;
-  margin-top: 2rem;
-  height: 3rem;
-  z-index: 2;
-  ${media.minSmallDesktop`
-    margin-left: -4rem;
-  `}
-`;
+
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
