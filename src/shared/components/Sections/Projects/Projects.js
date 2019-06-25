@@ -85,7 +85,7 @@ const Projects = (props) => {
   console.log(props.projects.items);
 
 return  (
-  <Root id="Projects">
+  <Root name="Projects" id="Projects">
     <MainHeader>
       <LatestWorkWrapper>
         <TitleWrapper>
