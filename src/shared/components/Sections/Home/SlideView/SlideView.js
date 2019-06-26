@@ -7,7 +7,7 @@ import styled from "styled-components"
 
 import {media} from '../../../../theme/media';
 import Text from '../Text/Text';
-import Bottle from '../../../../../components/HeroSection/Bottle';
+import Bottle from '../Bottle.js';
 const Root = styled.div`
   display: flex;
   align-items: center;

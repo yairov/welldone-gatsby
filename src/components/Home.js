@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components';
-import {media} from '../../shared/theme';
+import {media} from '../shared/theme';
 
 
-import MainSlider from '../../shared/components/Sections/SectionA/MainSlider';
-import ConsultingAndMentoring from '../../shared/components/Sections/ConsultingAndMentoring/ConsultingAndMentoring';
-import OurCustomers from '../../shared/components/Sections/OurCustomers/OurCustomers';
-import Technologies from '../../shared/components/Sections/Technologies/Technologies';
-import CustomersSays from '../../shared/components/Sections/CustomersSays/CustomersSays';
-import JoinUs from '../../shared/components/Sections/JoinUs/JoinUs';
-import LetsTalk from '../../shared/components/Sections/LetsTalk/LetsTalk';
-import CoreValues from '../../shared/components/Sections/CoreValues/CoreValues';
-import Projects from '../../shared/components/Sections/Projects/Projects';
+import MainSlider from '../shared/components/Sections/Home/MainSlider';
+import ConsultingAndMentoring from '../shared/components/Sections/ConsultingAndMentoring/ConsultingAndMentoring';
+import OurCustomers from '../shared/components/Sections/OurCustomers/OurCustomers';
+import Technologies from '../shared/components/Sections/Technologies/Technologies';
+import CustomersSays from '../shared/components/Sections/CustomersSays/CustomersSays';
+import JoinUs from '../shared/components/Sections/JoinUs/JoinUs';
+import LetsTalk from '../shared/components/Sections/LetsTalk/LetsTalk';
+import CoreValues from '../shared/components/Sections/CoreValues/CoreValues';
+import Projects from '../shared/components/Sections/Projects/Projects';
 
 const Content = styled.div`
   position: relative;
@@ -19,7 +19,7 @@ const Content = styled.div`
   & > div {
     ${media.minSmallDesktop`
       padding: 0 10rem;
-
+      
     `}
   }
 `;
