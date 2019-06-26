@@ -28,13 +28,14 @@ background: none;
 font-size: 1.2rem;
 color: #51718C;
 ${media.minSmallDesktop`
-height: 90px;
+height: 7rem;
 &.scrolled {
   margin-top:0;
   padding:0;
-  height: 3rem;
+  height: 2.5rem;
   font-size: 0.9rem;
   align-items: baseline;
+  background:white;
 }
 `}
 `
@@ -45,7 +46,7 @@ const Items = styled.div`
   width: 100%;
   height: 100%;
   margin-top:0; 
-  background:white;
+  background:none;
 `
 
 const LogoSize = styled.div`

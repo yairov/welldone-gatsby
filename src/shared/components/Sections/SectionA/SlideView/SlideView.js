@@ -27,6 +27,7 @@ const Root = styled.div`
 const BottleSize = styled.div`
   height: 38rem;
   width: 38rem;
+  padding-top: 6rem;
 `;
 
 

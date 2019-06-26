@@ -48,6 +48,7 @@ const IconImg = styled.img`
   opacity: 0;
   padding:10rem;
   cursor: pointer;
+  transition: 0.5s;
   &:hover {
     opacity: 1;
   }

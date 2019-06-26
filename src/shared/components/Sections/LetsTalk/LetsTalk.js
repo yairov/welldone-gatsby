@@ -94,6 +94,7 @@ const FormWrapper = styled.div`
 
 const inputCss = css`
   padding: 0.5rem 1rem;
+  height: 2rem;
   border: 2px solid rgba(31, 171, 243, 0.4);
   margin-bottom: 0.5rem;
   border-radius: 5px;

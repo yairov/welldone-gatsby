@@ -16,7 +16,6 @@ import Projects from '../../shared/components/Sections/Projects/Projects';
 const Content = styled.div`
   position: relative;
   overflow-x: hidden;
-  padding-top: 9rem;
   & > div {
     ${media.minSmallDesktop`
       padding: 0 10rem;
