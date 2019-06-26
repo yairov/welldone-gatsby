@@ -117,6 +117,7 @@ class ProjectItem extends Component {
       hover: false
     });
   }  
+
   render () {
 
     const mcloud =  this.props.cloud ? <Icon src={this.props.cloud} />: null;
@@ -138,7 +139,7 @@ class ProjectItem extends Component {
 
       <ReactPlayer  
         style={ this.state.style} 
-        url='https://www.youtube.com/watch?v=PIEN5Ix8gqQ&list=RDPIEN5Ix8gqQ&start_radio=1' 
+        url={this.props.movie}
         onPlay={this.playingHandler} 
         onPause={this.ClosedHandler} 
         playing={this.state.playing} 
