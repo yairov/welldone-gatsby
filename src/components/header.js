@@ -1,8 +1,10 @@
 import React, {Component} from "react";
-import Aux from "../shared/components/UI/Auxiliary";
 import Toolbar from '../shared/components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../shared/components/Navigation/SideDrawer/SideDrawer';
 //import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
+import styled  from "styled-components"
+
+const Root = styled.div``;
 
 class Header extends Component {
   state = {
@@ -27,12 +29,12 @@ class Header extends Component {
 } 
   render() {
     return (
-    <Aux>
+    <Root>
         <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} btnType={this.state.btnType} btnTypeSuccessHandler={this.btnTypeSuccessHandler} btnTypeDangerHandler={this.btnTypeDangerHandler} />
         <SideDrawer 
           open={this.state.showSideDrawer} 
           closed={this.sideDrawerClosedHandler}/>
-    </Aux>
+    </Root>
     )
   }
 }

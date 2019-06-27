@@ -48,6 +48,7 @@ const Content = styled.div`
 
 
     ${media.minSmallDesktop`
+    
       max-height: 34rem;
       align-items: flex-start;
       flex-wrap: wrap;

@@ -8,7 +8,7 @@ import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
 import { Header2 as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 const Root = styled(Element)`
-  padding: 0 1rem;
+  padding: 3rem 1rem;
 
   ${media.minSmallDesktop`
     margin-bottom:5rem;

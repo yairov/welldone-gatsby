@@ -9,8 +9,12 @@ const Logo = styled.div`
     height: 100%;
     box-sizing: border-box;
     border-radius: 5px;
-    margin: 0 16px;
-    padding: 4px;
+    padding: 1.5rem 0;
+    ${media.minSmallDesktop`
+        margin: 0 16px;
+        padding: 4px;
+`}
+
 `;
 const LogoImg = styled.img`
     margin: 2px;
