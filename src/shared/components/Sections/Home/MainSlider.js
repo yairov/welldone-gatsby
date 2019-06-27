@@ -49,7 +49,10 @@ height: 24rem;
 const Content = styled.div`
 position: relative;
 overflow-x: hidden;
-padding-top: 0rem;
+padding-top: 7rem;
+${media.minSmallDesktop`
+padding-top: 0;
+`}
 
 
 & > div {
