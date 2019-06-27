@@ -35,8 +35,8 @@ const BlogIndexPage = (props) => {
               <OurCustomers  customers={props.customers.customer} text={props.customers.homepage[0].data.body[2]}/>  
               <Projects projects={props.customers.homepage[0].data.body[10]}/>    
               <CustomersSays customerSays={props.customers.customerfeedbacks} title={props.customers.homepage[0].data.body[6]}/>  
-              <CoreValues coreValues={props.customers.homepage[0].data.body[5]} projects={props.customers.homepage[0].data.body[10]}/>
               <ConsultingAndMentoring ingredients={props.customers.homepage[0].data.body[4]}/> 
+              <CoreValues coreValues={props.customers.homepage[0].data.body[5]} projects={props.customers.homepage[0].data.body[10]}/>
               <JoinUs joinUs={props.customers.homepage[0].data.body[9]}/>  
               <LetsTalk letsTalk={props.customers.homepage[0].data.body[7]} contactItems={props.customers.homepage[0].data.body[7].items}/>  
       </Content>

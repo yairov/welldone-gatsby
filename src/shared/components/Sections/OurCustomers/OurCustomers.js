@@ -5,7 +5,7 @@ import { media } from "../../../theme";
 import Background from "../../../assets/icons/OurCustomers/purp-bg.png";
 import { RichText } from "prismic-reactjs";
 import { Header as BaseHeader } from "../../UI/Typography.js";
-
+import CustomerIcons from './CustomerIcons';
 const A = styled.a`
   height:15rem;
   width:100%;
@@ -25,11 +25,12 @@ const Text = styled.div`
 `;
 
 const SeeMore = styled.div`
+  color: #6bdfff;
+  margin-top: 2rem;
+  cursor: pointer;
   ${media.minSmallDesktop`
      margin-top: 2rem;
      font-size: 1.7rem;
-     color: #6bdfff;
-     cursor: pointer;
   `}
 `;
 
@@ -53,9 +54,6 @@ const Root = styled.div`
       padding: 0 10rem;
     `}
   }
-  ${media.minSmallDesktop`
-
-  `}
   ${media.maxSmallDesktop`
   padding: 4rem 2rem;
 `}
@@ -85,13 +83,7 @@ const Title = styled(BaseHeader)`
 const Icon = styled.img`
   height: 100%;
   width: 100%;
-
   z-index: 1;
-
-  ${media.minSmallDesktop`
-
-
-  `}
 `;
 
 const Computer = styled.div`
@@ -137,7 +129,6 @@ class OurCustomers extends Component {
       }
     }
     numOfPromoted = parseInt(numOfPromoted / 4);
-    console.log(numOfPromoted);
     this.customers0 = [];
     this.customers1 = [];
     this.customers2 = [];
@@ -156,7 +147,11 @@ class OurCustomers extends Component {
         this.customers3.push(promotedArray[index]);
       }
     }
-    this.state = { backgroundIndex: 0, backgroundIndexPhone: 0 };
+    this.state = { 
+         backgroundIndex: 0,
+         backgroundIndexPhone: 0 ,
+         seeMore: false
+        };
     this.changeImg = this.changeImg.bind(this);
   }
 
@@ -185,76 +180,53 @@ class OurCustomers extends Component {
     );
   }
 
+
+  seeMoreHandler = ( ) => {
+    this.setState( prevState => {
+      console.log(this.state.seeMore);
+      return { seeMore: !prevState.seeMore };
+  } );
+  } 
+
+
   render() {
+    const text =  this.state.seeMore ? 'See Less' : RichText.asText(this.props.text.primary.see_more);
     return (
       <Root id="C">
         <BG src={Background} />
         <Title>{RichText.asText(this.props.text.primary.title)}</Title>
         <Computer>
-          <A
-            title={this.customers0[this.state.backgroundIndex].data.title}
-            href={this.customers0[this.state.backgroundIndex].data.website.url}
-          >
-            <Icon
-              src={
-                this.customers0[this.state.backgroundIndex].data.white_logo.url
-              }
-            />
+          <A title={this.customers0[this.state.backgroundIndex].data.title}
+             href={this.customers0[this.state.backgroundIndex].data.website.url}>
+            <Icon src={this.customers0[this.state.backgroundIndex].data.white_logo.url}/>
           </A>
           <Line />
-          <A
-            title={this.customers1[this.state.backgroundIndex].data.title}
-            href={this.customers1[this.state.backgroundIndex].data.website.url}
-          >
-            <Icon
-              src={
-                this.customers1[this.state.backgroundIndex].data.white_logo.url
-              }
-            />
+          <A title={this.customers1[this.state.backgroundIndex].data.title}
+             href={this.customers1[this.state.backgroundIndex].data.website.url}>
+            <Icon src={this.customers1[this.state.backgroundIndex].data.white_logo.url}/>
           </A>
           <Line />
-          <A
-            title={this.customers2[this.state.backgroundIndex].data.title}
-            href={this.customers2[this.state.backgroundIndex].data.website.url}
-          >
-            <Icon
-              src={
-                this.customers2[this.state.backgroundIndex].data.white_logo.url
-              }
-            />
+          <A title={this.customers2[this.state.backgroundIndex].data.title}
+             href={this.customers2[this.state.backgroundIndex].data.website.url} >
+            <Icon src={this.customers2[this.state.backgroundIndex].data.white_logo.url} />
           </A>
           <Line />
-          <A
-            title={this.customers3[this.state.backgroundIndex].data.title}
-            href={this.customers3[this.state.backgroundIndex].data.website.url}
-          >
-            <Icon
-              src={
-                this.customers3[this.state.backgroundIndex].data.white_logo.url
-              }
-            />
+          <A title={this.customers3[this.state.backgroundIndex].data.title}
+             href={this.customers3[this.state.backgroundIndex].data.website.url}>
+            <Icon src={this.customers3[this.state.backgroundIndex].data.white_logo.url }/>
           </A>
         </Computer>
         <Phone>
-          <A
-            title={
-              this.customersPhone[this.state.backgroundIndexPhone].data.title
-            }
-            href={
-              this.customersPhone[this.state.backgroundIndexPhone].data.website
-                .url
-            }
-          >
-            <Icon
-              src={
-                this.customersPhone[this.state.backgroundIndexPhone].data
-                  .white_logo.url
-              }
-            />
+          <A title={this.customersPhone[this.state.backgroundIndexPhone].data.title}
+            href={this.customersPhone[this.state.backgroundIndexPhone].data.website.url}>
+            <Icon src={this.customersPhone[this.state.backgroundIndexPhone].data.white_logo.url}/>
           </A>
         </Phone>
+
         <Text>{RichText.asText(this.props.text.primary.subtitle)}</Text>
-        <SeeMore>{RichText.asText(this.props.text.primary.see_more)}</SeeMore>
+        <CustomerIcons seeMore={this.state.seeMore} items={this.props.customers} />   
+        <SeeMore onClick={this.seeMoreHandler}>{text}</SeeMore>
+
       </Root>
     );
   }

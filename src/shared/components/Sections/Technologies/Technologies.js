@@ -78,9 +78,11 @@ const Title = styled(BaseHeader)`
 
 
 const RenderItems = ({items}) => {
+  console.log('technologyyyyyyy');
+  console.log(items);
   let hrefLink = '#'
   return items
-    .sort((l, r) => l.order - r.order)
+    .sort((l, r) => l.data.order - r.data.order)
     .map((items, idx) => (
       <a key={idx} title={items.data.title} href={hrefLink}>
         <CustomerIcon src={items.data.icon.url} />

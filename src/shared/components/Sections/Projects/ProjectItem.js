@@ -44,7 +44,7 @@ const Img = styled.div`
 const IconImg = styled.img`
   height: 5rem;
   width: 5rem;
-  z-index: 1;
+  z-index: 200;
   opacity: 0;
   padding:10rem;
   cursor: pointer;
@@ -61,7 +61,7 @@ const BackgroundImg = styled.img`
   width: 25rem;
   height: 25rem;
   cursor: pointer;
-
+  background-color: rgba(0,0,0,0.5);
 `;
 
 
@@ -75,7 +75,8 @@ class ProjectItem extends Component {
     height:'20rem',
     open: false,
     close: true,
-    style: {display:'none' }
+    style: {display:'none' },
+    hover: false
 
   }
   
@@ -83,11 +84,11 @@ class ProjectItem extends Component {
       const scrWidth = window.innerWidth;
       if (scrWidth >= 1024) {
         this.setState({ 
-          width: '500px',
-          height:'500px', 
+          width: '70%',
+          height:'45rem', 
           open: true,
           playing: true,
-          style: {display:'block', zIndex: 200, position: 'absolute', left: '50%',transform: 'translate(-50%, -50%)'} });
+          style: {display:'block', zIndex: 200, position: 'fixed', top:'50%', left: '50%',transform: 'translate(-50%, -50%)'} });
       } else {
         this.setState({ 
           width: '100%',
@@ -106,7 +107,16 @@ class ProjectItem extends Component {
       style: {transition: '1s',display: 'none'}
     });
   }      
-
+  mouseEnter = ( ) => {
+    this.setState({
+      hover: true
+    });
+  }  
+  mouseLeave = ( ) => {
+    this.setState({
+      hover: false
+    });
+  }  
   render () {
 
     const mcloud =  this.props.cloud ? <Icon src={this.props.cloud} />: null;
@@ -118,7 +128,8 @@ class ProjectItem extends Component {
       <Root >
 
       <Img>
-          <IconImg src={this.props.mainImg }
+          <Backdrop show={this.state.hover} clicked={this.ClosedHandler}/>
+          <IconImg onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} src={this.props.mainImg }
                onClick={this.playingHandler} />
            <BackgroundImg 
                  src={this.props.thumbnail } 

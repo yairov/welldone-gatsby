@@ -43,13 +43,13 @@ const Icon = styled.img`
 `;
 
 const FooterFollowIcon = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
   ${media.minSmallDesktop`
     margin-right: 1rem;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
   `}
 `;
 
@@ -104,7 +104,6 @@ const Footer = (props) => {
       </LinksWrapper>
 
       <Follow>
-        <Header>Follow</Header>
         <FollowsWrapper>
           {follow.map(({follow_image, follow_link}, idx) => (
             <a href={follow_link.url} key={idx} >
