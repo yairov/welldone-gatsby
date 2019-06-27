@@ -22,7 +22,6 @@ left: 0;
 top: 0;
 z-index: 200;
 background-color: white;
-padding: 32px 16px;
 box-sizing: border-box;
 transition: transform 0.3s ease-out;
 transform: ${props => props.open ? "translateX(0)" : "translateX(-100%)"};

@@ -57,13 +57,16 @@ const IconImg = styled.img`
 
 const BackgroundImg = styled.img`
   z-index: 0;
-  position: absolute;
-  width: 25rem;
-  height: 25rem;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
   background-color: rgba(0,0,0,0.5);
 `;
-
+const Wrapper = styled.div`
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+`;
 
 
 
@@ -88,13 +91,13 @@ class ProjectItem extends Component {
           height:'45rem', 
           open: true,
           playing: true,
-          style: {display:'block', zIndex: 200, position: 'fixed', top:'50%', left: '50%',transform: 'translate(-50%, -50%)'} });
+          style: {display:'block', zIndex: 300, position: 'fixed', top:'50%', left: '50%',transform: 'translate(-50%, -50%)'} });
       } else {
         this.setState({ 
           width: '100%',
           open: true,
           playing: true,
-          style: {display:'block', zIndex: 200, position: 'absolute', left: '50%',transform: 'translate(-50%, -50%)'} });
+          style: {display:'block', zIndex: 300, position: 'fixed',top:'50%', left: '50%',transform: 'translate(-50%, -50%)'} });
       }
     }
 
@@ -129,15 +132,20 @@ class ProjectItem extends Component {
       <Root >
 
       <Img>
-          <Backdrop show={this.state.hover} clicked={this.ClosedHandler}/>
+
           <IconImg onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} src={this.props.mainImg }
                onClick={this.playingHandler} />
-           <BackgroundImg 
-                 src={this.props.thumbnail } 
-                 onClick={this.playingHandler}/>
+          <Wrapper>
+          <Backdrop show={this.state.hover} clicked={this.ClosedHandler}/>
+            <BackgroundImg 
+                  src={this.props.thumbnail } 
+                  onClick={this.playingHandler}/>
+          </Wrapper>
+
       </Img>
 
-      <ReactPlayer  
+      <ReactPlayer 
+        onClick={this.ClosedHandler} 
         style={ this.state.style} 
         url={this.props.movie}
         onPlay={this.playingHandler} 

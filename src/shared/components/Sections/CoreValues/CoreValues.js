@@ -130,12 +130,12 @@ justify-content: center;
 `;
 
 const TitleWrapper = styled.div`
-  display: block;
+  display: flex;
   align-items: center;
   justify-content: left;
   margin-left: 3rem;
   ${media.minSmallDesktop`
-  display: flex;
+
 `}
 `;
 

@@ -12,7 +12,7 @@ import Button from '../../UI/Button/Button';
 
 const Toolbar = styled.div`
 transition: 0.5s; /* Add a transition effect (when scrolling - and font size is decreased) */
-height: 60px;
+height: 5.5rem;
 width: 100%;
 position: fixed;
 top: 0;
@@ -27,6 +27,10 @@ z-index: 90;
 background: none;
 font-size: 1.2rem;
 color: #51718C;
+&.scrolled {
+  background:white;
+  z-index:1000;
+}
 ${media.minSmallDesktop`
 height: 7rem;
 &.scrolled {
@@ -36,6 +40,7 @@ height: 7rem;
   font-size: 0.9rem;
   align-items: baseline;
   background:white;
+  z-index:1000;
 }
 `}
 `
