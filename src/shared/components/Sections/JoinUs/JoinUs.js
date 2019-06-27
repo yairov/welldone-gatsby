@@ -67,11 +67,11 @@ const Content = styled.div`
 
 const Image = styled.img`
   position: absolute;
-  right: 25rem;
-  max-height: 100%;
-  top: 0;
+  right: 15rem;
+  height: 113%;
   bottom: 0;
   display: none;
+  top: -4rem;
   ${media.minSmallDesktop`
     display: flex;
   `}
