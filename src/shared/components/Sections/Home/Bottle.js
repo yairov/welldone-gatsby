@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 
 import Lottie from "react-lottie"
-import animationData from "../../../static/lottie/bottle-start.json"
+import animationData from "../../../../../static/lottie/bottle-start.json"
 
 // const Root = styled.div`
 //   margin-top: 200px;

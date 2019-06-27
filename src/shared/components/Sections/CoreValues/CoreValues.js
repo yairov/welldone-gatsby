@@ -10,10 +10,17 @@ import {Element} from 'react-scroll';
 const MainDiv = styled(Element)`
 
     margin-top: 6rem;
-    margin-bottom:5rem;
+
     background-color: #F4F9FE; 
     height: 100%;
     font-weight: 400;
+    ${media.minSmallDesktop`
+    &&& {
+      padding-bottom: 5rem;
+    }
+
+  `}
+
 `;
 
 

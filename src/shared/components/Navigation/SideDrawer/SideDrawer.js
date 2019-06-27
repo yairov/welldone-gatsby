@@ -2,7 +2,7 @@ import React from 'react';
 //import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import Backdrop from "../../UI/Backdrop/Backdrop";
-import Aux from '../../../../Auxiliary/Auxiliary';
+import Aux from '../../UI/Auxiliary';
 import Button from '../../UI/Button/Button';
 import Logo from '../Logo/Logo';
 

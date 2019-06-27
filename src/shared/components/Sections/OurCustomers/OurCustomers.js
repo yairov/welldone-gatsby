@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import styled from "styled-components";
 import { media } from "../../../theme";
-import Background from "../../../assets/icons/OurCustomers/purp-bg.png";
+import Background from "../../../assets/icons/purp-bg.png";
 import { RichText } from "prismic-reactjs";
 import { Header as BaseHeader } from "../../UI/Typography.js";
 import CustomerIcons from './CustomerIcons';
