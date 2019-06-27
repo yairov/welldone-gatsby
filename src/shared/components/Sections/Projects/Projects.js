@@ -103,7 +103,7 @@ return  (
                 subtitle={RichText.asText(item.subtitle)}
                 thumbnail={item.thumbnail.url}
                 mainImg={item.mainimage.url}
-
+                movie={item.movie.url}
                 desktop={item.desktop.url}
                 mobile={item.mobile.url}
                 cloud={item.cloud.url}

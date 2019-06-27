@@ -28,6 +28,7 @@ const Wrapper = styled.div`
     ${media.minSmallDesktop`
       width: 15%;
       height: 7rem;
+      margin-bottom: 3rem;
     `}
     &:nth-child(4) {
       margin-right: 0;
@@ -62,7 +63,7 @@ const RenderItems = ({items}) => {
     .sort((l, r) => l.order - r.order)
     .map(({data}, idx) => (
       <a key={idx} title={data.title} href={data.website.url} target="_blank">
-        <CustomerIcon src={data.logo.url} />
+        <CustomerIcon src={data.white_logo.url} />
       </a>
     ));
 };
