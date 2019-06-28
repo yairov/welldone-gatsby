@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {RichText} from 'prismic-reactjs';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
+import React, { Component } from "react";
+import { RichText } from "prismic-reactjs";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
-import styled from "styled-components"
+import styled from "styled-components";
 
-import {media} from '../../../../theme/media';
-import Text from '../Text/Text';
-import Bottle from '../Bottle.js';
+import { media } from "../../../../theme/media";
+import Text from "../Text/Text";
+import Bottle from "../Bottle.js";
 const Root = styled.div`
   display: flex;
   align-items: center;
@@ -23,13 +23,11 @@ const Root = styled.div`
   `}
 `;
 
-
 const BottleSize = styled.div`
-  height: 38rem;
-  width: 38rem;
+  height: auto;
+  width: 52rem;
   padding-top: 6rem;
 `;
-
 
 const Flex = styled.div`
   display: flex;
@@ -47,19 +45,24 @@ const Flex = styled.div`
 
 class SlideView extends Component {
   render() {
-
     return (
-   
-        <Root>
-          <Flex>
-            <Text header={RichText.asText(this.props.items.header)} subText={RichText.asText(this.props.items.content)} button={RichText.asText(this.props.items.button)} spice_up_project={RichText.asText(this.props.items.spice_up_project)}/>
-            
-           <BottleSize><Bottle/></BottleSize> 
-          </Flex>
-        </Root>
+      <Root>
+        <Flex>
+          <Text
+            header={RichText.asText(this.props.items.header)}
+            subText={RichText.asText(this.props.items.content)}
+            button={RichText.asText(this.props.items.button)}
+            spice_up_project={RichText.asText(
+              this.props.items.spice_up_project
+            )}
+          />
 
-
+          <BottleSize>
+            <Bottle />
+          </BottleSize>
+        </Flex>
+      </Root>
     );
   }
-  }
-  export default SlideView;
+}
+export default SlideView;

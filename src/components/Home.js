@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import {media} from '../shared/theme';
-
 
 import MainSlider from '../shared/components/Sections/Home/MainSlider';
 import ConsultingAndMentoring from '../shared/components/Sections/ConsultingAndMentoring/ConsultingAndMentoring';
@@ -23,24 +22,20 @@ const Content = styled.div`
     `}
   }
 `;
-const BlogIndexPage = (props) => {
-   console.log('rops.customers');
-   console.log(props.customers.homepage[0].data.body[2]);
-  
-    return (
-      <Content>
-          
-              <MainSlider items = {props.customers.homepage[0].data.body[0].items[0]}/> 
-              <Technologies  items={props.customers.technology}/>      
-              <OurCustomers  customers={props.customers.customer} text={props.customers.homepage[0].data.body[2]}/>  
-              <Projects projects={props.customers.homepage[0].data.body[10]}/>    
-              <CustomersSays customerSays={props.customers.customerfeedbacks} title={props.customers.homepage[0].data.body[6]}/>  
-              <ConsultingAndMentoring ingredients={props.customers.homepage[0].data.body[4]}/> 
-              <CoreValues coreValues={props.customers.homepage[0].data.body[5]} projects={props.customers.homepage[0].data.body[10]}/>
-              <JoinUs joinUs={props.customers.homepage[0].data.body[9]}/>  
-              <LetsTalk letsTalk={props.customers.homepage[0].data.body[7]} contactItems={props.customers.homepage[0].data.body[7].items}/>  
-      </Content>
-    )
+const BlogIndexPage = ({allContent: {customer, technology, homepage, customerfeedbacks}}) => {
+  const {body: homepageBody} = homepage[0].data;
+  return (
+    <Content>
+      <MainSlider items={homepageBody[0].items[0]} />
+      <Technologies items={technology} />
+      <OurCustomers customers={customer} text={homepageBody[2]} />
+      <Projects projects={homepageBody[10]} />
+      <CustomersSays customerSays={customerfeedbacks} title={homepageBody[6]} />
+      <ConsultingAndMentoring ingredients={homepageBody[4]} />
+      <CoreValues coreValues={homepageBody[5]} projects={homepageBody[10]} />
+      <JoinUs joinUs={homepageBody[9]} />
+      <LetsTalk letsTalk={homepageBody[7]} contactItems={homepageBody[7].items} />
+    </Content>
+  );
 };
 export default BlogIndexPage;
-

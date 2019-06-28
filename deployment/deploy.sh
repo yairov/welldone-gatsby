@@ -1,5 +1,8 @@
 
 pushd ..
+yarn 
+
+rm -fr public
 
 yarn build
 
