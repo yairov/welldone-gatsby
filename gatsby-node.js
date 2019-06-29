@@ -1,8 +1,8 @@
 /**
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-const path = require("path")
-const Prismic = require("prismic-javascript")
+const path = require('path');
+const Prismic = require('prismic-javascript');
 
 // const handleExceptions = pages => ); // eslint-disable-line
 
@@ -24,51 +24,50 @@ const Prismic = require("prismic-javascript")
 // };
 
 const config = {
-  apiEndpoint:
-    process.env.API_END_POINT || "https://welldone.cdn.prismic.io/api/v2",
+  apiEndpoint: process.env.API_END_POINT || 'https://welldone.cdn.prismic.io/api/v2',
   previewTokenMaxAge: process.env.PREVIEW_EXPIRES || 1800000,
   accessToken:
     process.env.ACCESS_TOKEN ||
-    "MC5YRkE2N0JVQUFDWUFqal9v.77-977-977-9BwPvv71wS0hpCe-_vTkSKFI077-9KEzvv73vv71Hfu-_vS_vv73vv710Iu-_ve-_vQ",
-}
+    'MC5YRkE2N0JVQUFDWUFqal9v.77-977-977-9BwPvv71wS0hpCe-_vTkSKFI077-9KEzvv73vv71Hfu-_vS_vv73vv710Iu-_ve-_vQ',
+};
 
 async function loadContent() {
   const api = await Prismic.api(config.apiEndpoint, {
     accessToken: config.accessToken,
-  })
-  const allDocs = []
-  let page = 1
-  let totalPages
+  });
+  const allDocs = [];
+  let page = 1;
+  let totalPages;
   do {
-    const res = await api.query("", { pageSize: 100, page })
-    allDocs.push(...res.results)
-    totalPages = res.totalPages
-    page = page + 1
-  } while (page < totalPages)
+    const res = await api.query('', {pageSize: 100, page});
+    allDocs.push(...res.results);
+    totalPages = res.totalPages;
+    page += 1;
+  } while (page < totalPages);
 
   const content = allDocs.reduce((result, doc) => {
     if (!result[doc.type]) {
-      result[doc.type] = []
+      result[doc.type] = [];
     }
-    result[doc.type].push(doc)
-    return result
-  }, {})
+    result[doc.type].push(doc);
+    return result;
+  }, {});
 
-  return content
+  return content;
   // console.log(content)
 }
 
 exports.createPages = async props => {
-  const allContent = await loadContent()
+  const allContent = await loadContent();
+  console.log(Object.keys(allContent));
   const {
-    graphql,
-    actions: { createPage },
-  } = props
+    actions: {createPage},
+  } = props;
   createPage({
-    path: "/",
-    component: path.resolve("./src/templates/index.js"),
+    path: '/',
+    component: path.resolve('./src/templates/index.js'),
     context: {
       allContent,
     },
-  })
-}
+  });
+};

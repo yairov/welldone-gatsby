@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
 import {RichText} from 'prismic-reactjs';
@@ -5,7 +6,7 @@ import {SubText, FooterHeader} from '../UI/Typography';
 import {media} from '../../theme/media';
 
 const Root = styled.div`
-  background: #ECF4F9;
+  background: #ecf4f9;
   display: flex;
   padding: 4rem 0rem;
   justify-content: center;
@@ -18,7 +19,7 @@ const Root = styled.div`
 `;
 
 const Header = styled(FooterHeader)`
-  color: #1FABF3;
+  color: #1fabf3;
   margin-bottom: 1rem;
   font-size: 1.5rem;
   display: none;
@@ -42,15 +43,17 @@ const Icon = styled.img`
   `}
 `;
 
-const FooterFollowIcon = styled.img`
-  width: 2rem;
-  height: 2rem;
+const FooterFollowIcon = styled.a`
+  display: block;
   cursor: pointer;
-  ${media.minSmallDesktop`
-    margin-right: 1rem;
+  margin-right: 1rem;
+  img {
     width: 2.5rem;
     height: 2.5rem;
-  `}
+    ${media.minSmallDesktop`
+    
+  `};
+  }
 `;
 
 const LinksWrapper = styled.div`
@@ -68,13 +71,9 @@ const Section = styled.div`
   flex-direction: column;
 `;
 
-const Follow = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const FollowsWrapper = styled.div`
-  display: flex;
+
+  /* display: flex;
   ${media.maxSmallDesktop`
     a {
       margin-right: 2rem;
@@ -82,41 +81,34 @@ const FollowsWrapper = styled.div`
         margin-right:0;
       }
     }
-  `}
+  `} */
 `;
 
-
-
-
-const Footer = (props) => {
-    const follow = props.follow;
-  //  console.log('follow')
-  //  console.log(follow)
-
+const Footer = ({footer: {logo, footer_trademark}, follow}) => {
   return (
     <Root>
       <LinksWrapper>
         <Section>
-            <Icon src={props.footer.logo.url} />
-            <SubHeader>{RichText.asText(props.footer.footer_trademark)}</SubHeader>
+          <Icon src={logo.url} />
+          {/* <SubHeader>{RichText.asText(footer_trademark)}</SubHeader> */}
         </Section>
-
       </LinksWrapper>
 
-      <Follow>
-        <FollowsWrapper>
-          {follow.map(({follow_image, follow_link}, idx) => (
-            <a href={follow_link.url} key={idx} >
-              <FooterFollowIcon src={follow_image.url} />
-            </a>
+      <FollowsWrapper>
+        {follow
+          .sort((l, r) => l.order - r.order)
+          .map(({follow_image, follow_link}) => (
+            <FooterFollowIcon
+              target="_blank"
+              rel="noopener noreferrer"
+              href={follow_link.url}
+              key={follow_link.url}
+            >
+              <img alt={follow_image.url} src={follow_image.url} />
+            </FooterFollowIcon>
           ))}
-        </FollowsWrapper>
-      </Follow>
-
-
-
+      </FollowsWrapper>
     </Root>
-    
   );
 };
 

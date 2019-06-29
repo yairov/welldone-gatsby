@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { RichText } from "prismic-reactjs";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
+import React from 'react';
+import {RichText} from 'prismic-reactjs';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { media } from "../../../../theme/media";
-import Text from "../Text/Text";
-import Bottle from "../Bottle.js";
+import {media} from '../../../../theme/media';
+import Text from './Text';
+import Bottle from './Bottle';
+
 const Root = styled.div`
   display: flex;
   align-items: center;
@@ -43,26 +44,20 @@ const Flex = styled.div`
   `}
 `;
 
-class SlideView extends Component {
-  render() {
-    return (
-      <Root>
-        <Flex>
-          <Text
-            header={RichText.asText(this.props.items.header)}
-            subText={RichText.asText(this.props.items.content)}
-            button={RichText.asText(this.props.items.button)}
-            spice_up_project={RichText.asText(
-              this.props.items.spice_up_project
-            )}
-          />
+const SlideView = () => (
+  <Root>
+    <Flex>
+      <Text
+        header="Your Full-Stack Secret Sauce"
+        subText="Supreme architectural and technical expertise provided by experienced full-stack polyglots with a holistic approach"
+        button="CONTACT US"
+        spice_up_project="Spice up your project"
+      />
+      <BottleSize>
+        <Bottle />
+      </BottleSize>
+    </Flex>
+  </Root>
+);
 
-          <BottleSize>
-            <Bottle />
-          </BottleSize>
-        </Flex>
-      </Root>
-    );
-  }
-}
 export default SlideView;

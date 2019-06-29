@@ -1,5 +1,5 @@
 import React from 'react';
-import styled  from "styled-components"
+import styled from 'styled-components';
 import {media} from '../../../theme/media';
 
 import {RichText} from 'prismic-reactjs';
@@ -7,14 +7,12 @@ import {Header as BaseHeader} from '../../UI/Typography';
 
 import {Element} from 'react-scroll';
 
-
-
 const Wrapper = styled(Element)`
   background-image: linear-gradient(257deg, #d9f1f5, #347cac);
   position: relative;
   padding-left: 2rem;
   padding-right: 2rem;
-  
+
   &&& {
     ${media.minSmallDesktop`
     padding-left: 20rem;
@@ -28,8 +26,7 @@ const Wrapper = styled(Element)`
 const Header = styled(BaseHeader)`
   color: white;
 
-  
-    ${media.minSmallDesktop`
+  ${media.minSmallDesktop`
     font-size:2rem;
   `}
 `;
@@ -39,13 +36,12 @@ const Content = styled.div`
   color: white;
   max-width: 29rem;
   text-align: center;
-  
+
   flex: 1;
   div {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-
 
     ${media.minSmallDesktop`
     
@@ -65,7 +61,6 @@ const Content = styled.div`
   }
 `;
 
-
 const Image = styled.img`
   position: absolute;
   right: 15rem;
@@ -78,8 +73,6 @@ const Image = styled.img`
   `}
 `;
 
-
-
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,25 +83,16 @@ const ContentWrapper = styled.div`
   `}
 `;
 
-const text = (props) => {
-  console.log('props.joinUs.primary.content');
-console.log(props.joinUs.primary.content);
- //   console.log('join')
-  //  console.log(props.joinUs.primary)
-    return (
-        <Wrapper id='Join' >
-            <Header>{RichText.render(props.joinUs.primary.title)}</Header>
-            <ContentWrapper>
-                <Content >{RichText.render(props.joinUs.primary.content)}</Content>
-                <Content >{RichText.render(props.joinUs.primary.content2)}</Content>
-            </ContentWrapper>
-            <Image src={props.joinUs.primary.img.url} />
-         </Wrapper>
-         
-    );
+const JoinUs = ({joinUs: {primary}}) => {
+  return (
+    <Wrapper id="Join">
+      <Header>{RichText.render(primary.title)}</Header>
+      <ContentWrapper>
+        <Content>{RichText.render(primary.content)}</Content>
+        <Content>{RichText.render(primary.content2)}</Content>
+      </ContentWrapper>
+      <Image src={primary.img.url} />
+    </Wrapper>
+  );
 };
-export default text;
-
-
-
-
+export default JoinUs;

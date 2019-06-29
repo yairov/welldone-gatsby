@@ -1,4 +1,3 @@
-
 import React from 'react';
 import styled from 'styled-components';
 
@@ -6,21 +5,20 @@ import {media} from '../../../theme/media';
 import InfoBox from './InfoBox/InfoBox';
 import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
-import { Header2 as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
+import {Header2 as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 const Root = styled(Element)`
   padding: 3rem 1rem;
-
+  margin-top: 2rem;
   ${media.minSmallDesktop`
     margin-bottom:5rem;
     padding: 0 20rem;
     text-align: left;
   `}
-
 `;
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  background-color: #F4F9FE;
+  background-color: #f4f9fe;
   padding: 3rem 4rem;
   overflow: auto;
   flex-direction: row;
@@ -40,14 +38,11 @@ const SubText = styled(BaseSubHeader)`
   `}
 `;
 
-
-
 const InfoBoxSubText = styled(SubText)`
   text-align: start;
-    font-weight: 400;
-    color: #51718C;
+  font-weight: 400;
+  color: #51718c;
 `;
-
 
 const Header = styled(BaseHeader)`
   color: #4b4b4b;
@@ -57,8 +52,6 @@ const Header = styled(BaseHeader)`
   justify-content: center;
 `;
 
-
-
 const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -67,7 +60,7 @@ const TitleWrapper = styled.div`
 `;
 
 const HeaderContent = styled.div`
-    margin: auto 1rem;
+  margin: auto 1rem;
 `;
 const Thumbnail = styled.img`
   width: 7.5rem;
@@ -75,25 +68,16 @@ const Thumbnail = styled.img`
   margin-bottom: 4rem;
 `;
 
-
-
-
-const ConsultingAndMentoring = (props) => {
-
-//  console.log('props.tech');
- // console.log(props.technology);
- //console.log('props.ingredients.header[0].text');
- // console.log(props.ingredients.primary.header[0].text);
-    return (
-      
-      <Root id="WhatWeDo">
-         <TitleWrapper>
-            <Thumbnail src={props.ingredients.primary.topimage.url} />
-            <HeaderContent>
-                <Header>{RichText.asText(props.ingredients.primary.header)}</Header>
-            </HeaderContent>
-        </TitleWrapper>
-        <Wrapper>
+const ConsultingAndMentoring = props => {
+  return (
+    <Root id="WhatWeDo">
+      <TitleWrapper>
+        <Thumbnail src={props.ingredients.primary.topimage.url} />
+        <HeaderContent>
+          <Header>{RichText.asText(props.ingredients.primary.header)}</Header>
+        </HeaderContent>
+      </TitleWrapper>
+      <Wrapper>
         {props.ingredients.items.map((item, idx) => (
           <InfoBox
             key={idx}
@@ -105,14 +89,7 @@ const ConsultingAndMentoring = (props) => {
           </InfoBox>
         ))}
       </Wrapper>
-
-
-      </Root>
-
-    )
+    </Root>
+  );
 };
 export default ConsultingAndMentoring;
-
-
-
-

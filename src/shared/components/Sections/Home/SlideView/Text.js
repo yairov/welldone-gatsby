@@ -1,10 +1,10 @@
 import React from 'react';
 //import classes from './Text.css';
-import styled, {css} from "styled-components"
+import styled, {css} from 'styled-components';
 import {media} from '../../../../theme/media';
 import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../../UI/Typography';
 import Button from '../../../UI/Button/Button';
-import { Link } from "react-scroll";
+import {Link} from 'react-scroll';
 const applyRenderCss = css`
   div {
     padding: 0 2rem;
@@ -36,14 +36,12 @@ const applyRenderCss = css`
   }
 `;
 
-
-
 const Wrapper = styled.div`
   margin-left: 10px;
   display: flex;
   flex-direction: column;
   ${media.minSmallDesktop`
-    margin-right: 8rem;
+    margin-right: 2rem;
     width:80%;
   `}
 `;
@@ -77,7 +75,7 @@ const Text = styled.div`
 `;
 
 const Header = styled(BaseHeader)`
-  color: #1FABF3;
+  color: #1fabf3;
   padding: 0 6rem;
   margin-bottom: 1.5rem;
   ${media.minSmallDesktop`
@@ -97,29 +95,28 @@ const SubTextWrapper = styled(BaseSubHeader)`
   margin-bottom:5rem;
 `}
 `;
-const text = (props) => {
-    return (
-        <Wrapper>
-            <Header>{props.header}</Header>
-            <SubTextWrapper>{props.subText}</SubTextWrapper>
-            <ButtonAndText>
-                 <Text> {props.spice_up_project}</Text>
-                 <ButtonSize>             
-                  <Link onClick={props.closed}  
-                        activeClass="NavigationItem-module--active--3NifW"
-                        to={"LetsTalk"}
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration= {500}>         
-                            <Button btnType = {'Success'} >{props.button}</Button>
-                    </Link>
-                 </ButtonSize>
-
-
-            </ButtonAndText>
-
-        </Wrapper>
-    );
+const text = props => {
+  return (
+    <Wrapper>
+      <Header>{props.header}</Header>
+      <SubTextWrapper>{props.subText}</SubTextWrapper>
+      <ButtonAndText>
+        <Text> {props.spice_up_project}</Text>
+        <ButtonSize>
+          <Link
+            onClick={props.closed}
+            activeClass="NavigationItem-module--active--3NifW"
+            to={'LetsTalk'}
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+          >
+            <Button btnType={'Success'}>{props.button}</Button>
+          </Link>
+        </ButtonSize>
+      </ButtonAndText>
+    </Wrapper>
+  );
 };
 export default text;

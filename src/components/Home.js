@@ -22,19 +22,28 @@ const Content = styled.div`
     `}
   }
 `;
-const BlogIndexPage = ({allContent: {customer, technology, homepage, customerfeedbacks}}) => {
-  const {body: homepageBody} = homepage[0].data;
+
+const BlogIndexPage = ({
+  allContent,
+  allContent: {project, customer, technology, homepage, customerfeedbacks, layer},
+}) => {
+  const homepageBody = homepage[0].data.body.reduce((result, slice) => {
+    // eslint-disable-next-line no-param-reassign
+    result[slice.slice_type] = slice;
+    return result;
+  }, {});
+  console.log({allContent});
   return (
     <Content>
-      <MainSlider items={homepageBody[0].items[0]} />
-      <Technologies items={technology} />
-      <OurCustomers customers={customer} text={homepageBody[2]} />
-      <Projects projects={homepageBody[10]} />
-      <CustomersSays customerSays={customerfeedbacks} title={homepageBody[6]} />
-      <ConsultingAndMentoring ingredients={homepageBody[4]} />
-      <CoreValues coreValues={homepageBody[5]} projects={homepageBody[10]} />
-      <JoinUs joinUs={homepageBody[9]} />
-      <LetsTalk letsTalk={homepageBody[7]} contactItems={homepageBody[7].items} />
+      <MainSlider />
+      <Technologies items={technology} text={homepageBody.technology} />
+      <OurCustomers customers={customer} text={homepageBody.top_customers} />
+      <Projects projectsBlock={homepageBody.projects.primary} projects={project} layers={layer} />
+      <CustomersSays customerSays={customerfeedbacks} title={homepageBody.what_customer_say} />
+      <ConsultingAndMentoring ingredients={homepageBody.consulting_and_mentoring} />
+      <CoreValues coreValues={homepageBody.core_values} />
+      <JoinUs joinUs={homepageBody.joinus} />
+      <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
     </Content>
   );
 };

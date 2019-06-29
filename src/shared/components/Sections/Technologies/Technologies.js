@@ -1,27 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import {media} from '../../../theme'
+import {media} from '../../../theme';
 import Slider from '../../UI/Slider/Slider';
-import {
-    Header as BaseHeader,
-  } from '../../UI/Typography.js';
+import {Header as BaseHeader} from '../../UI/Typography';
 
-
-
-  const Root = styled.div`
-    margin-bottom: 2rem;
-    & > div {
-      ${media.minSmallDesktop`
+const Root = styled.div`
+  margin-bottom: 2rem;
+  & > div {
+    ${media.minSmallDesktop`
         padding: 0 10rem;
       `}
-    }
+  }
 `;
-
 
 const Wrapper = styled.div`
   display: none;
   flex-wrap: wrap;
-  
+
   padding-top: 3rem;
   padding-bottom: 1rem;
   justify-content: space-between;
@@ -66,59 +61,32 @@ const IconsSliderWrapper = styled(Wrapper)`
   `}
 `;
 const Title = styled(BaseHeader)`
-    padding: 1rem 0rem;
-    font-weight: bold;
-    color: #3a3b3b;
-    text-align: center;
-    font-size: 2.3rem;
-    ${media.minSmallDesktop`
+  padding: 1rem 0rem;
+  font-weight: bold;
+  color: #3a3b3b;
+  text-align: center;
+  font-size: 2.3rem;
+  ${media.minSmallDesktop`
   `}
-
 `;
 
-
 const RenderItems = ({items}) => {
-  console.log('technologyyyyyyy');
-  console.log(items);
-  let hrefLink = '#'
   return items
     .sort((l, r) => l.data.order - r.data.order)
-    .map((items, idx) => (
-      <a key={idx} title={items.data.title} href={hrefLink}>
-        <CustomerIcon src={items.data.icon.url} />
+    .map(item => (
+      <a key={item.data.icon.url} title={item.data.title} href="#">
+        <CustomerIcon src={item.data.icon.url} />
       </a>
     ));
 };
 
-const CustomerIcons = (props) => {
+const Technologies = ({items}) => (
+  <Root id="Technologies">
+    <Title>LEADERS IN TOP TECHNOLOGIES</Title>
+    <Wrapper>
+      <RenderItems items={items} />
+    </Wrapper>
+  </Root>
+);
 
-  const sliders = props.items.reduce(
-    (icons, icon, idx) =>
-      idx % MAX_ICONS === 0
-        ? [...icons, [icon]]
-        : icons.map((innerIcons, innerIdx) =>
-            innerIdx === Math.floor(idx / MAX_ICONS) ? [...innerIcons, icon] : innerIcons
-          ),
-    []
-  );
-
-  return (
-    <Root id="Technologies">
-    <Title>LEADERS IN TOP TECHNOLOGIES</Title> 
-      <SliderWrapper>    
-        <Slider>
-          {sliders.map((sliderItems, idx) => (
-            <IconsSliderWrapper key={idx}>
-              <RenderItems items={sliderItems} />
-            </IconsSliderWrapper>
-          ))}
-        </Slider>
-      </SliderWrapper>
-      <Wrapper>
-        <RenderItems items={props.items} />
-      </Wrapper>
-    </Root>
-  );
-};
-
-export default CustomerIcons;
+export default Technologies;

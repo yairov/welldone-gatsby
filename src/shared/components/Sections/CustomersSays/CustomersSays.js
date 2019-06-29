@@ -6,15 +6,11 @@ import Slider from '../../UI/Slider/Slider';
 import whiteTriangle from '../../../assets/icons/whiteTriangle.svg';
 import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
-import {
-    Header as BaseHeader,
-    SubHeader as BaseSubHeader,
-    QuoteText,
-  } from '../../UI/Typography.js';
+import {Header as BaseHeader, SubHeader as BaseSubHeader, QuoteText} from '../../UI/Typography.js';
 
-  import LinesEllipsis from 'react-lines-ellipsis';
+import LinesEllipsis from 'react-lines-ellipsis';
 
-  const WhiteTriangle = styled.img.attrs({src: whiteTriangle})`
+const WhiteTriangle = styled.img.attrs({src: whiteTriangle})`
   display: none;
   ${media.minSmallDesktop`
     display:flex;
@@ -58,13 +54,13 @@ const Wrapper = styled(Element)`
 `;
 
 const Title = styled(BaseHeader)`
-  color: #1FABF3;
+  color: #1fabf3;
   margin-bottom: 1rem;
   font-weight: 600;
 `;
 
 const SubTitle = styled(BaseSubHeader)`
-  color: #51718C;
+  color: #51718c;
   margin-bottom: 2.5rem;
   font-size: 2rem;
   ${media.minSmallDesktop`
@@ -113,7 +109,6 @@ const ContentWrapper = styled.div`
   `}
 `;
 
-
 const SliderWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -144,7 +139,7 @@ const CustomerWrapper = styled.div`
   align-items: center;
   margin-bottom: 2rem;
   flex: 1;
-  color: #51718C;
+  color: #51718c;
   font-weight: 400;
   ${media.minSmallDesktop`
     flex-direction: row;
@@ -182,54 +177,46 @@ const NameTitle = styled(Name)`
   `}
 `;
 
-const customersSays = (props) => {
-
+const customersSays = props => {
   //  console.log('feedback');
   //  console.log(props.customerSays);
 
+  return (
+    <Wrapper id="CustomersSays">
+      <WhiteTriangle />
+      <Title>{RichText.asText(props.title.primary.title)}</Title>
+      <SubTitle>{RichText.asText(props.title.primary.sub_title)}</SubTitle>
 
-    return (
-        
-        <Wrapper id="CustomersSays">
-            <WhiteTriangle />
-            <Title>{RichText.asText(props.title.primary.title)}</Title>
-            <SubTitle>{RichText.asText(props.title.primary.sub_title)}</SubTitle>
+      <Slider>
+        {props.customerSays.map((item, idx) => {
+          return (
+            <Slide key={idx}>
+              <ContentWrapper>
+                <SliderWrapper>
+                  <Content>
+                    <LinesEllipsis
+                      text={item.data.feedback[0].text}
+                      maxLine="6"
+                      ellipsis="..."
+                      trimRight
+                      basedOn="letters"
+                    />
+                  </Content>
+                </SliderWrapper>
 
-
-            <Slider>
-            {props.customerSays.map((item, idx) => {
-              return (
-                  <Slide key={idx}>
-                    <ContentWrapper>
-                      <SliderWrapper>
-                        <Content>
-                          <LinesEllipsis
-                            text={item.data.feedback[0].text}
-                            maxLine="6"
-                            ellipsis="..."
-                            trimRight
-                            basedOn="letters"
-                          />
-                        </Content>
-                      </SliderWrapper>
-
-                      <CustomerWrapper>
-                        <CustomerIcon src={item.data.image.url} />
-                        <NameWrapper>
-                          <Name>{item.data.name[0].text}</Name>
-                          <NameTitle>{item.data.work_title[0].text}</NameTitle>
-                        </NameWrapper>
-                      </CustomerWrapper>
-
-                    </ContentWrapper>
-                  </Slide>
-            )} )
-            } 
-            </Slider>
-        </Wrapper>
-
-
-
-    )
+                <CustomerWrapper>
+                  <CustomerIcon src={item.data.image.url} />
+                  <NameWrapper>
+                    <Name>{item.data.name[0].text}</Name>
+                    <NameTitle>{item.data.work_title[0].text}</NameTitle>
+                  </NameWrapper>
+                </CustomerWrapper>
+              </ContentWrapper>
+            </Slide>
+          );
+        })}
+      </Slider>
+    </Wrapper>
+  );
 };
 export default customersSays;
