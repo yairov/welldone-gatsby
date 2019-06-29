@@ -1,7 +1,7 @@
 import React from 'react';
-import {RichText} from 'prismic-reactjs';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
+
+// import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
 
 import styled from 'styled-components';
 
@@ -27,7 +27,7 @@ const Root = styled.div`
 const BottleSize = styled.div`
   height: auto;
   width: 52rem;
-  padding-top: 6rem;
+  padding-top: 2rem;
 `;
 
 const Flex = styled.div`

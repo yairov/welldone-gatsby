@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 
 import Lottie from 'react-lottie';
 import animationData from '../../../../../../static/lottie/bottle-start.json';
@@ -22,5 +22,11 @@ import animationData from '../../../../../../static/lottie/bottle-start.json';
 
 export default function Bottle() {
   const ref = useRef();
+  useEffect(() => {
+    const interval = setInterval(() => ref.current.anim.goToAndPlay(900), 10000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   return <Lottie ref={ref} width="100%" options={{animationData}} segments={[1, 2]} speed={0} />;
 }
