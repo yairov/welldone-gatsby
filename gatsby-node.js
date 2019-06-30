@@ -59,7 +59,7 @@ async function loadContent() {
 
 exports.createPages = async props => {
   const allContent = await loadContent();
-  console.log(Object.keys(allContent));
+  console.log(Object.keys(allContent), JSON.stringify(allContent.project, null, 2));
   const {
     actions: {createPage},
   } = props;

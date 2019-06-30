@@ -89,7 +89,11 @@ const Projects = ({projectsBlock, projects, layers}) => {
         {projects
           .map(({data}) => data)
           .filter(p => p.promoted === 'yes')
-          .sort((l, r) => l.order || 0 - r.order || 0)
+          .sort((l, r) => (l.order || Number.MAX_VALUE) - (r.order || Number.MAX_VALUE))
+          .map(d => {
+            console.log({d});
+            return d;
+          })
           .map(data => (
             <ProjectItem key={data.thumbnail.url} project={data} layers={layers} />
           ))}

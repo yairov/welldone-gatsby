@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import ReactPlayer from 'react-player';
+// import ReactPlayer from 'react-player';
 import {RichText} from 'prismic-reactjs';
 import styled from 'styled-components';
 import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
-
-//import {withState} from 'recompose';
-import Backdrop from '../../UI/Backdrop/Backdrop';
+// import Backdrop from '../../UI/Backdrop/Backdrop';
+import {media} from '../../../theme';
 
 const Root = styled.div`
   flex: 1;
@@ -21,18 +20,31 @@ const MyImageWrap = styled.div`
    */
   height: 25rem;
   flex: 1;
+
+  ${media.maxSmallDesktop`
+   height: 35rem;
+    height: 35rem;
+  `}
 `;
 
 const MyImage = styled.img`
   width: 100%;
   height: 25rem;
   position: absolute;
+  ${media.maxSmallDesktop`
+   height: 35rem;
+    height: 35rem;
+  `}
 `;
 
 const MyPlayIndicator = styled.img`
   width: 100%;
   height: 25rem;
   position: absolute;
+  ${media.maxSmallDesktop`
+   height: 35rem;
+    height: 35rem;
+  `}
   background-color: transparent;
   &:hover {
     transition: background-color 300ms linear;
@@ -56,6 +68,10 @@ const Icon = styled.img`
   width: 2rem;
   height: 2rem;
   padding: 0.5rem;
+
+  ${media.maxSmallDesktop`
+    padding: 0 25rem;
+  `}
 `;
 
 const Icons = styled.div`
@@ -227,6 +243,7 @@ export default function ProjectItem({
   layers: layersMeta,
   project: {title, description, thumbnail, video, customer, technologies, layers},
 }) {
+  console.log(title[0].text, thumbnail.url);
   return (
     <Root>
       <MyImageWrap>

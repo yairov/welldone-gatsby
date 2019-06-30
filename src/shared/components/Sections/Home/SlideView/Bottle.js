@@ -23,7 +23,7 @@ import animationData from '../../../../../../static/lottie/bottle-start.json';
 export default function Bottle() {
   const ref = useRef();
   useEffect(() => {
-    const interval = setInterval(() => ref.current.anim.goToAndPlay(900), 10000);
+    const interval = setInterval(() => ref.current.anim.goToAndPlay(800), 7000);
     return () => {
       clearInterval(interval);
     };
