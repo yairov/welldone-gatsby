@@ -38,21 +38,18 @@ const SubHeader = styled(SubText)`
 const Icon = styled.img`
   width: 17rem;
   margin-bottom: 1rem;
-  ${media.minSmallDesktop`
+  /* ${media.minSmallDesktop`
     width: 14rem;
-  `}
+  `} */
 `;
 
 const FooterFollowIcon = styled.a`
   display: block;
   cursor: pointer;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
   img {
-    width: 2.5rem;
+    width: auto;
     height: 2.5rem;
-    ${media.minSmallDesktop`
-    
-  `};
   }
 `;
 
@@ -72,7 +69,9 @@ const Section = styled.div`
 `;
 
 const FollowsWrapper = styled.div`
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   /* display: flex;
   ${media.maxSmallDesktop`
     a {

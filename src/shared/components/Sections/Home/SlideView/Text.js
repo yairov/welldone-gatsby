@@ -40,7 +40,10 @@ const Wrapper = styled.div`
   margin-left: 10px;
   display: flex;
   flex-direction: column;
-  ${media.minSmallDesktop`
+  align-items: center;
+  width: 90%;
+  ${media.minSmallTablet`
+    align-items: stretch;
     margin-right: 2rem;
     width:80%;
   `}
@@ -78,10 +81,10 @@ const Header = styled(BaseHeader)`
   color: #1fabf3;
   padding: 0 6rem;
   margin-bottom: 1.5rem;
-  ${media.minSmallDesktop`
+  ${media.minSmallTablet`
     padding: 0;
     font-size: 3.5rem;
-    padding: 0 ;
+    text-align: start;
   `}
 `;
 const SubTextWrapper = styled(BaseSubHeader)`
@@ -90,9 +93,11 @@ const SubTextWrapper = styled(BaseSubHeader)`
   margin-bottom: 1.5rem;
   flex-direction: column;
   font-weight: 400;
-  ${media.minSmallDesktop`
+  width: 80%;
+  ${media.minSmallTablet`
   font-size: 2.1rem;
   margin-bottom:5rem;
+  text-align: start;
 `}
 `;
 const text = props => {

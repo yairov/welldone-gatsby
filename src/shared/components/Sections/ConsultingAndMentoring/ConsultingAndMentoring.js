@@ -7,8 +7,8 @@ import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
 import {Header2 as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 const Root = styled(Element)`
-  padding: 3rem 1rem;
-  margin-top: 2rem;
+  padding: 2rem 1rem;
+  margin-top: 0;
   ${media.minSmallDesktop`
     margin-bottom:5rem;
     padding: 0 20rem;
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
   background-color: #f4f9fe;
-  padding: 3rem 4rem;
+  padding: 1rem 2rem;
   overflow: auto;
   flex-direction: row;
   ${media.minSmallDesktop`
@@ -57,6 +57,11 @@ const TitleWrapper = styled.div`
   align-items: center;
   justify-content: left;
   margin-left: 3rem;
+
+  ${media.maxSmallDesktop`
+    flex-direction: column;
+    /* justify-content: center; */
+  `}
 `;
 
 const HeaderContent = styled.div`
@@ -66,6 +71,10 @@ const Thumbnail = styled.img`
   width: 7.5rem;
   height: 7.5rem;
   margin-bottom: 4rem;
+
+  ${media.maxSmallDesktop`
+    margin-bottom: 0;
+  `}
 `;
 
 const ConsultingAndMentoring = props => {

@@ -42,7 +42,7 @@ const LeftBottomTriangle = styled.img.attrs({src: leftbottombg})`
 
 const Content = styled.div`
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   padding-top: 7rem;
   ${media.minSmallDesktop`
     padding-top: 0;
@@ -57,11 +57,15 @@ const Content = styled.div`
 `;
 
 const Size = styled.div`
-  height: 65rem;
-  ${media.minSmallDesktop`
-        height: 50rem;
-        text-align: center;
-    `}
+  /* height: 65rem; */
+  /* height: 50rem; */
+  ${media.minSmallTablet`
+    text-align: center;
+  `}
+
+  ${media.maxSmallDesktop`
+    padding-bottom: 3rem;
+  `}
 `;
 
 const MainSlider = ({items}) => {

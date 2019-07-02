@@ -5,7 +5,7 @@ import {Element} from 'react-scroll';
 
 import {Header2 as BaseHeader, SubHeader} from '../../UI/Typography';
 import {media} from '../../../theme';
-import ProjectItem from './ProjectItem';
+import ProjectItem from './NewProjectItem';
 
 const Root = styled(Element)`
   padding-top: 5rem;
@@ -17,6 +17,10 @@ const Root = styled(Element)`
 const Header = styled(BaseHeader)`
   display: flex;
   align-items: center;
+
+  ${media.maxSmallDesktop`
+    flex-direction: column;
+  `}
 `;
 
 const HeaderImage = styled.img`
@@ -28,12 +32,22 @@ const HeaderImage = styled.img`
 
 const ProjectWrapper = styled.div`
   display: flex;
+  /* flex-wrap: wrap; */
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 3rem 0;
 
   ${media.minSmallDesktop`
     flex-direction: row;
+    align-items: start;
+
+    /* flex-direction: row; */
   `}
+`;
+
+const SubHeaderWrapper = styled.div`
+  max-width: 80%;
 `;
 
 // const MainHeader = styled(BaseHeader)`
@@ -80,10 +94,10 @@ const Projects = ({projectsBlock, projects, layers}) => {
     <Root name="Projects" id="Projects">
       <Header>
         <HeaderImage src={projectsBlock.img.url} />
-        <div>
+        <SubHeaderWrapper>
           {RichText.asText(projectsBlock.title)}
           <SubHeader>{RichText.asText(projectsBlock.subtitle)}</SubHeader>
-        </div>
+        </SubHeaderWrapper>
       </Header>
       <ProjectWrapper>
         {projects

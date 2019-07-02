@@ -6,17 +6,11 @@ import Background from '../../../assets/icons/purp-bg.png';
 import {RichText} from 'prismic-reactjs';
 import {Header as BaseHeader} from '../../UI/Typography.js';
 import CustomerIcons from './CustomerIcons';
-const A = styled.a`
-  height: 15rem;
-  width: 100%;
-  padding: 1rem 8rem;
 
-  ${media.minSmallDesktop`
-      padding 1rem;
-      width:15%;
-      height:5rem;
-  `}
+const A = styled.a`
+  padding: 1rem;
 `;
+
 const Text = styled.div`
   ${media.minSmallDesktop`
      margin-top: 2.5rem;
@@ -80,8 +74,20 @@ const Title = styled(BaseHeader)`
 `;
 
 const Icon = styled.img`
-  height: 100%;
-  width: 100%;
+  max-width: 20rem;
+  max-height: 3.5rem;
+  height: ${props => (
+    (props.src.endsWith(".svg")) ? "100%" : "auto"
+  )};
+  width: ${props => (
+    (props.src.endsWith(".svg")) ? "100%" : "auto"
+  )};
+
+  ${media.maxMobile`
+    max-width: 20rem;
+    max-height: 5rem;
+
+  `};
   z-index: 1;
 `;
 
@@ -97,15 +103,22 @@ const Computer = styled.div`
   display: flex;
   `}
 `;
-const Phone = styled.div`
+const CostumerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  justify-content: center;
+  height: 8rem;
+  margin: auto;
 
-  ${media.minSmallDesktop`
-  display: none;
+  ${media.maxSmallDesktop`
+    height: 5rem;
+  `}
+
+  ${media.maxMobile`
+    flex-direction: column;
+    height: 30rem;
+    margin-top: 5rem;
   `}
 `;
 const Line = styled.div`
@@ -114,6 +127,10 @@ const Line = styled.div`
   align-items: center;
   background: #979797;
   margin: 2rem;
+
+  ${media.maxMobile`
+    display: none;
+  `};
 `;
 
 // class OurCustomers extends Component {
@@ -242,7 +259,7 @@ const Line = styled.div`
 function Customer({title, website, white_logo, isLast}) {
   return (
     <>
-      <A title={title} href={website?.url} target="_blank">
+      <A key={white_logo?.url} title={title} href={website?.url} target="_blank">
         <Icon src={white_logo?.url} />
       </A>
       {!isLast && <Line />}
@@ -276,11 +293,16 @@ function XOurCustomers({customers, text}) {
     <Root id="C">
       <BG src={Background} />
       <Title>{RichText.asText(text.primary.title)}</Title>
-      <Computer>
+      {/* <Computer>
         {visibleCustomers.map((c, i, all) => (
           <Customer {...c} isLast={i === all.length - 1} />
         ))}
-      </Computer>
+      </Computer> */}
+      <CostumerWrapper>
+        {visibleCustomers.map((c, i, all) => (
+          <Customer {...c} key={i} isLast={i === all.length - 1} />
+        ))}
+      </CostumerWrapper>
     </Root>
   );
 }

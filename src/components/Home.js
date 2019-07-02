@@ -29,6 +29,7 @@ const BlogIndexPage = ({
 }) => {
   const homepageBody = homepage[0].data.body.reduce((result, slice) => {
     // eslint-disable-next-line no-param-reassign
+    console.log("customers:", customer);
     result[slice.slice_type] = slice;
     return result;
   }, {});

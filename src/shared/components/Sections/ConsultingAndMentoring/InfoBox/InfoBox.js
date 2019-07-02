@@ -14,7 +14,7 @@ const Root = styled.div`
   padding: 3rem;
   height: 22rem;
   background-color: white;
-  margin-right: 2rem;
+  margin-right: 1rem;
   ${media.minSmallDesktop`
     margin-right: 0;
     width:25%;

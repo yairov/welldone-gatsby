@@ -14,34 +14,45 @@ const Root = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display: none;
+  /* display: none; */
+  display: flex;
   flex-wrap: wrap;
-
+  justify-content: center;
   padding-top: 3rem;
   padding-bottom: 1rem;
-  justify-content: space-between;
   & > a {
-    width: 32%;
+    /* width: 32%; */
+    width: 9%;
     max-height: 33%;
-    margin-right: 1%;
+    /* margin-right: 1%; */
+
+    ${media.maxMobile`
+      padding: 0 2rem;
+    `}
     & > img {
       width: 100%;
+      height: auto;
     }
     ${media.minSmallDesktop`
-      width: 9%;
+      /* width: 9%; */
       height: 10rem;
       padding: 0 1rem;
       padding-bottom: 5rem;
       padding-top: 2.5rem;
 
     `}
+
+    ${media.maxMobile`
+      width: 15%;
+    `}
+
     &:nth-child(4) {
       margin-right: 0;
     }
   }
-  ${media.minSmallDesktop`
+  /* ${media.minSmallDesktop`
     display: flex;
-  `}
+  `} */
 `;
 
 const CustomerIcon = styled.img``;

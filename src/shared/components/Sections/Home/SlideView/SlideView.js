@@ -28,6 +28,10 @@ const BottleSize = styled.div`
   height: auto;
   width: 52rem;
   padding-top: 2rem;
+
+  ${media.maxSmallDesktop`
+    width: 30rem;
+  `}
 `;
 
 const Flex = styled.div`
