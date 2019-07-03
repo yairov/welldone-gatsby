@@ -4,7 +4,7 @@ import {media} from '../shared/theme';
 
 import MainSlider from '../shared/components/Sections/Home/MainSlider';
 import ConsultingAndMentoring from '../shared/components/Sections/ConsultingAndMentoring/ConsultingAndMentoring';
-import OurCustomers from '../shared/components/Sections/OurCustomers/AnimatedCustomers';
+import OurCustomers from '../shared/components/Sections/OurCustomers/OurCustomers';
 import Technologies from '../shared/components/Sections/Technologies/Technologies';
 import CustomersSays from '../shared/components/Sections/CustomersSays/CustomersSays';
 import JoinUs from '../shared/components/Sections/JoinUs/JoinUs';
