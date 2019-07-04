@@ -17,7 +17,7 @@ const Root = styled.div`
   `}
 `;
 
-const Image = styled.div`
+const Image = styled.a`
   display: block;
   width: 25rem;
   height: 25rem;
@@ -25,6 +25,7 @@ const Image = styled.div`
   background-image: url(${props => props.src});
   background-repeat: no-repeat;
   background-size: 100%;
+  cursor: pointer;
 
   :after {
     content: "";
@@ -35,7 +36,6 @@ const Image = styled.div`
     background-color: rgba(0.5, 0.5, 0.5, 0.5);
     font-size: 2rem;
     display: block;
-    /* z-index: 20; */
     width: 100%;
     height: 100%;
     opacity: 0;
@@ -94,14 +94,16 @@ function Layers({layers, layersMeta}) {
 export default function ProjectItem({
   layers: layersMeta,
   project: {title, description, thumbnail, video, customer, technologies, layers},
+  onVideoPlay
 }) {
   console.log(title[0].text, thumbnail.url);
+  // console.log('onVideoPlay:', onVideoPlay);
   return (
     <Root>
       <Image
         src={thumbnail.url}
         alt={RichText.asText(title)}
-        sss="../../../assets/icons/test.jpg"
+        onClick={() => {onVideoPlay(video.url)}}
       />
       <Title>{RichText.asText(title)}</Title>
       <Layers {...{layers, layersMeta}} />

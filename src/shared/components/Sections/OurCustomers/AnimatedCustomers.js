@@ -10,6 +10,8 @@ import {Header as BaseHeader} from '../../UI/Typography.js';
 
 const A = styled.a`
   padding: 1rem;
+  padding-bottom: 0;
+
 `;
 
 const Root = styled.div`
@@ -32,9 +34,9 @@ const Root = styled.div`
       padding: 0 10rem;
     `}
   }
-  ${media.maxSmallDesktop`
-  padding: 4rem 2rem;
-`}
+    ${media.maxSmallDesktop`
+    padding: 4rem 2rem;
+  `}
 `;
 
 const BG = styled.img`
@@ -61,11 +63,12 @@ const Title = styled(BaseHeader)`
 const Icon = styled.img`
   height: 3.5rem;
   width: auto;
+  max-width: 17rem;
 
 ${media.maxMobile`
-  max-width: 20rem;
-  height: 5rem;
-
+  /* max-width: 20rem; */
+  height: 6rem;
+  max-width: 25rem;
 `};
   z-index: 1;
   `;
@@ -93,10 +96,13 @@ const CustomerAnim = posed.div({
 
 const AnimatedCustomer = styled(CustomerAnim)`
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   align-items: 'center';
   justify-content: 'center';
-`;
+  width: 19rem;
+  height: 6rem;
+
+  `;
 
 const CustomerWrapper = styled.div`
   display: flex;
@@ -105,14 +111,15 @@ const CustomerWrapper = styled.div`
   justify-content: center;
   height: 8rem;
   margin: auto;
-
+  
   ${media.maxSmallDesktop`
-    height: 5rem;
+  height: 5rem;
   `}
-
+  
   ${media.maxMobile`
     flex-direction: column;
-    height: 30rem;
+    justify-content: space-between;
+    height: 37rem;
     margin-top: 5rem;
   `}
 `;
@@ -194,7 +201,7 @@ export default class TestCustomers2 extends Component {
         this.loadCustomers(promoted);
         this.showCustomers();
       }, 1000);
-    }, 4000);
+    }, 10000);
 
   }
 
@@ -212,11 +219,13 @@ export default class TestCustomers2 extends Component {
                 <AnimatedCustomer
                   i={i}
                   pose={this.state.customerPose}
+                  style={{justifyContent: 'center', alignItems: 'center'}}
                 >
                   <A
                     title={itemProps.title}
                     href={itemProps.website?.url}
                     target="_blank"
+                    // style={{justifyContent: 'center', alignItems: 'center'}}
                   >
                     <Icon src={itemProps.white_logo?.url} />
                   </A>

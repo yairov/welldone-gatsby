@@ -89,7 +89,8 @@ const SubHeaderWrapper = styled.div`
 //   margin: auto 1rem;
 // `;
 
-const Projects = ({projectsBlock, projects, layers}) => {
+const Projects = ({projectsBlock, projects, layers, onVideoPlay}) => {
+  console.log('onVideoPlay:', onVideoPlay);
   return (
     <Root name="Projects" id="Projects">
       <Header>
@@ -109,7 +110,7 @@ const Projects = ({projectsBlock, projects, layers}) => {
             return d;
           })
           .map(data => (
-            <ProjectItem key={data.thumbnail.url} project={data} layers={layers} />
+            <ProjectItem key={data.thumbnail.url} project={data} layers={layers} onVideoPlay={onVideoPlay}/>
           ))}
       </ProjectWrapper>
     </Root>

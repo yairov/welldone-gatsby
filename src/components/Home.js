@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import styled from 'styled-components';
 import {media} from '../shared/theme';
 
@@ -11,6 +11,7 @@ import JoinUs from '../shared/components/Sections/JoinUs/JoinUs';
 import LetsTalk from '../shared/components/Sections/LetsTalk/LetsTalk';
 import CoreValues from '../shared/components/Sections/CoreValues/CoreValues';
 import Projects from '../shared/components/Sections/Projects/Projects';
+import VideoModal from '../shared/components/VideoModal/VideoModal';
 
 const Content = styled.div`
   position: relative;
@@ -33,18 +34,27 @@ const BlogIndexPage = ({
     result[slice.slice_type] = slice;
     return result;
   }, {});
-  console.log({allContent});
+
+  const {videoModalState, setVideoModalState} = useState({videoModalState: {open: false, videoID: ''}});
+  const playVideo = videoID => {setVideoModalState({videoModalState: {open: true, videoID: videoID}});};
+  console.log("videoModalState:", videoModalState);
   return (
     <Content>
       <MainSlider />
       <Technologies items={technology} text={homepageBody.technology} />
       <OurCustomers customers={customer} text={homepageBody.top_customers} />
-      <Projects projectsBlock={homepageBody.projects.primary} projects={project} layers={layer} />
+      <Projects 
+        projectsBlock={homepageBody.projects.primary}
+        projects={project}
+        layers={layer}
+        onVideoPlay={(videoID) => {playVideo}}
+      />
       <CustomersSays customerSays={customerfeedbacks} title={homepageBody.what_customer_say} />
       <ConsultingAndMentoring ingredients={homepageBody.consulting_and_mentoring} />
       <CoreValues coreValues={homepageBody.core_values} />
       <JoinUs joinUs={homepageBody.joinus} />
       <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
+      <VideoModal open={videoModalState}/>
     </Content>
   );
 };
