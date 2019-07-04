@@ -1,5 +1,4 @@
 import React, {Component, useMemo, useState, useEffect} from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import posed, { PoseGroup } from 'react-pose';
 
 import styled from 'styled-components';
@@ -7,7 +6,7 @@ import {media} from '../../../theme';
 import Background from '../../../assets/icons/purp-bg.png';
 import {RichText} from 'prismic-reactjs';
 import {Header as BaseHeader} from '../../UI/Typography.js';
-import CustomerIcons from './CustomerIcons';
+// import CustomerIcons from './CustomerIcons';
 
 const A = styled.a`
   padding: 1rem;
@@ -60,40 +59,46 @@ const Title = styled(BaseHeader)`
 `;
 
 const Icon = styled.img`
-  max-width: 20rem;
-  max-height: 3.5rem;
-  height: ${props => (
-    (props.src.endsWith(".svg")) ? "100%" : "auto"
-  )};
-  width: ${props => (
-    (props.src.endsWith(".svg")) ? "100%" : "auto"
-  )};
+  height: 3.5rem;
+  width: auto;
 
 ${media.maxMobile`
-max-width: 20rem;
-max-height: 5rem;
+  max-width: 20rem;
+  height: 5rem;
 
 `};
   z-index: 1;
   `;
 
-const CustomerAnimWrapper = posed.div({
-  enter: { x: 0, staggerChildren: 300, beforeChildren: true },
-  exit: { x: 0, staggerChildren: 300, afterChildren: true }
-})
 
 const CustomerAnim = posed.div({
-  preEnter: {x: 50, opacity: 0.01, transition: {duration: 500}},
-  enter: { x: 0, opacity: 1, transition: {/* ease: 'easeOut', */ duration: 500} },
-  exit: { x: -50, opacity: 0.01, transition: {/* ease: 'easeIn', */ duration: 500} }
+  initHide: {
+    x: -50,
+    opacity: 0.01,
+    transition: { duration: 0 },
+  },
+  show: {
+    x: 0,
+    opacity: 1,
+    delay: ({ i }) => 200 + (i * 100),
+    transition: { duration: 500, ease: 'easeOut' }
+  },
+  hide: {
+    x: 50,
+    opacity: 0.01,
+    delay: 300,
+    transition: { duration: 500, ease: 'easeIn' }
+  }
 });
 
 const AnimatedCustomer = styled(CustomerAnim)`
   display: flex;
   flex-direction: row;
+  align-items: 'center';
+  justify-content: 'center';
 `;
 
-const CustomerWrapper = styled(CustomerAnimWrapper)`
+const CustomerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -113,12 +118,21 @@ const CustomerWrapper = styled(CustomerAnimWrapper)`
 `;
 
 const LineAnim = posed.div({
-  preEnter: {}
+  hide: {
+    scale: 0.01,
+    delay: ({ i }) => i * 30,
+    transition: { duration: 250 }
+  },
+  show: {
+    scale: 1,
+    delay: ({ i }) => i * 100,
+    transition: { duration: 250 }
+  }
 });
 
-const Line = styled.div`
+const Line = styled(LineAnim)`
   width: 1px;
-  height: 3.5rem;
+  height: 4rem;
   align-items: center;
   background: #979797;
   margin: 2rem;
@@ -128,22 +142,12 @@ const Line = styled.div`
   `};
 `;
 
-// eslint-disable-next-line camelcase
-function Customer({title, website, white_logo, isLast}) {
-  return (
-    <AnimatedCustomer key={'anim=' + white_logo?.url}>
-      <A key={'link=' + white_logo?.url} title={title} href={website?.url} target="_blank">
-        <Icon src={white_logo?.url} />
-      </A>
-      {!isLast && <Line />}
-    </AnimatedCustomer>
-  );
-}
-
 export default class TestCustomers2 extends Component {
 
   state = {
-    visibleCustomers: []
+    visibleCustomers: [],
+    customerPose: 'initHide',
+    linePose: 'hide'
   };
 
   customerIndex = 0;
@@ -152,32 +156,26 @@ export default class TestCustomers2 extends Component {
   loadCustomers = (promoted) => {
     const promotedToLoad = [];
     for (let index = 0; index < this.visibleLength; index++) {
-      promotedToLoad[index] = promoted[this.customerIndex];
+      promotedToLoad[index * 2] = promoted[this.customerIndex];
       this.customerIndex = (this.customerIndex + 1) % promoted.length;
+      if (index !== this.visibleLength - 1) {
+        promotedToLoad[(index * 2) + 1] = {line: true};
+      }
     }
 
-    const customersToLoad =
-      promotedToLoad.map((itemProps, i, all) =>
-        <AnimatedCustomer
-          key={'anim-' + itemProps.white_logo?.url}
-        >
-          <A
-            title={itemProps.title}
-            href={itemProps.website?.url}
-            target="_blank"
-          >
-            <Icon src={itemProps.white_logo?.url} />
-          </A>
-          {(i !== all.length - 1) && <Line />}
-        </AnimatedCustomer>
-      );
-    ;
-
-    this.setState({visibleCustomers: customersToLoad});
+    this.setState({visibleCustomers: promotedToLoad });
   };
 
-  clearCustomers = () => {
-    this.setState({visibleCustomers: []});
+  hideCustomers = () => {
+    // this.setState({visibleCustomers: []});
+    this.setState({customerPose: 'hide', linePose: 'hide'});
+    const initHideTimeOut = setTimeout(() => {
+      this.setState({customerPose: 'initHide'});
+    }, 800);
+  };
+
+  showCustomers = () => {
+    this.setState({customerPose: 'show', linePose: 'show'});
   }
 
   componentDidMount() {
@@ -189,11 +187,12 @@ export default class TestCustomers2 extends Component {
     ;
 
     this.loadCustomers(promoted);
-    const clearCustomersInterval = setInterval(() => {
-      this.clearCustomers();
-      const loadInterval = setInterval(() => {
+    this.showCustomers();
+    const customersAnimInterval = setInterval(() => {
+      this.hideCustomers();
+      const loadInterval = setTimeout(() => {
         this.loadCustomers(promoted);
-        clearInterval(loadInterval);
+        this.showCustomers();
       }, 1000);
     }, 4000);
 
@@ -205,12 +204,25 @@ export default class TestCustomers2 extends Component {
     <Root id="C">
       <BG src={Background} />
       <Title>{RichText.asText(this.props.text.primary.title)}</Title>
-      <PoseGroup animateOnMount preEnterPose="preEnter">
-        <CustomerWrapper key={'CustomerWrapper-' + this.state.visibleCustomers.length}>
-            {/* style={{display: 'flex', flexDirection: 'row', height: '8rem', justifyContent: 'center'}}> */}
-            {this.state.visibleCustomers}
+        <CustomerWrapper>
+            {this.state.visibleCustomers.map((itemProps, i, all) =>
+              (itemProps.line) ?
+                <Line i={i} pose={this.state.customerPose}/>
+              :
+                <AnimatedCustomer
+                  i={i}
+                  pose={this.state.customerPose}
+                >
+                  <A
+                    title={itemProps.title}
+                    href={itemProps.website?.url}
+                    target="_blank"
+                  >
+                    <Icon src={itemProps.white_logo?.url} />
+                  </A>
+                </AnimatedCustomer>
+            )}
         </CustomerWrapper>
-      </PoseGroup>
     </Root>
     );
   }
