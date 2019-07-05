@@ -59,7 +59,7 @@ const ButtonAndText = styled.div`
 `;
 const ButtonSize = styled.div`
   height: 3.5rem;
-  width: 11rem;
+  width: 18rem;
 
   ${media.maxSmallDesktop`
     display:none;
