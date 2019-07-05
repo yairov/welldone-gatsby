@@ -54,8 +54,8 @@ const SlideView = () => (
       <Text
         header="Your Full-Stack Secret Sauce"
         subText="Supreme architectural and technical expertise provided by experienced full-stack polyglots with a holistic approach"
-        button="CONTACT US"
-        spice_up_project="Spice up your project"
+        button="Start today"
+        spice_up_project="Hire our expert team and boost both your project and your team's expertise, productivity and practices."
       />
       <BottleSize>
         <Bottle />
