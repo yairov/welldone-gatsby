@@ -25,7 +25,7 @@ const Root = styled.div`
 `;
 
 const BottleSize = styled.div`
-  height: auto;
+  height: 42rem;
   width: 52rem;
   padding-top: 2rem;
 
@@ -54,8 +54,8 @@ const SlideView = () => (
       <Text
         header="Your Full-Stack Secret Sauce"
         subText="Supreme architectural and technical expertise provided by experienced full-stack polyglots with a holistic approach"
-        button="Start today"
-        spice_up_project="Hire our expert team and boost both your project and your team's expertise, productivity and practices."
+        button="Hire our expert team today"
+        spice_up_project="Boost both your project and your team's expertise, productivity and practices."
       />
       <BottleSize>
         <Bottle />
