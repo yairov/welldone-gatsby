@@ -10,7 +10,7 @@ import ProjectItem from './NewProjectItem';
 const Root = styled(Element)`
   padding-top: 5rem;
   ${media.minSmallDesktop`
-    padding: 0 25rem;
+    padding: 0 5rem;
   `}
 `;
 
@@ -32,7 +32,6 @@ const HeaderImage = styled.img`
 
 const ProjectWrapper = styled.div`
   display: flex;
-  /* flex-wrap: wrap; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -42,7 +41,6 @@ const ProjectWrapper = styled.div`
     flex-direction: row;
     align-items: start;
 
-    /* flex-direction: row; */
   `}
 `;
 
@@ -90,7 +88,7 @@ const SubHeaderWrapper = styled.div`
 // `;
 
 const Projects = ({projectsBlock, projects, layers, onVideoPlay}) => {
-  console.log('onVideoPlay:', onVideoPlay);
+  // console.log('onVideoPlay:', onVideoPlay);
   return (
     <Root name="Projects" id="Projects">
       <Header>

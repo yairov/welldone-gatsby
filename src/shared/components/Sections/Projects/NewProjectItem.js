@@ -13,7 +13,7 @@ const Root = styled.div`
 
   ${media.minSmallDesktop`
     width: 26rem;
-    pedding: 0 1rem;
+    padding: 0 2rem;
   `}
 `;
 
@@ -103,7 +103,7 @@ export default function ProjectItem({
       <Image
         src={thumbnail.url}
         alt={RichText.asText(title)}
-        onClick={() => {onVideoPlay(video.url)}}
+        onClick={() => {onVideoPlay(video.embed_url); console.log('projitemvideourl', video);}}
       />
       <Title>{RichText.asText(title)}</Title>
       <Layers {...{layers, layersMeta}} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import styled from 'styled-components';
 import {media} from '../shared/theme';
 
@@ -24,38 +24,103 @@ const Content = styled.div`
   }
 `;
 
-const BlogIndexPage = ({
-  allContent,
-  allContent: {project, customer, technology, homepage, customerfeedbacks, layer},
-}) => {
-  const homepageBody = homepage[0].data.body.reduce((result, slice) => {
-    // eslint-disable-next-line no-param-reassign
-    console.log("customers:", customer);
-    result[slice.slice_type] = slice;
-    return result;
-  }, {});
+// const BlogIndexPage = ({
+//   allContent,
+//   allContent: {project, customer, technology, homepage, customerfeedbacks, layer},
+// }) => {
+//   const homepageBody = homepage[0].data.body.reduce((result, slice) => {
+//     // eslint-disable-next-line no-param-reassign
+//     console.log("customers:", customer);
+//     result[slice.slice_type] = slice;
+//     return result;
+//   }, {});
 
-  const {videoModalState, setVideoModalState} = useState({videoModalState: {open: false, videoID: ''}});
-  const playVideo = videoID => {setVideoModalState({videoModalState: {open: true, videoID: videoID}});};
-  console.log("videoModalState:", videoModalState);
-  return (
-    <Content>
-      <MainSlider />
-      <Technologies items={technology} text={homepageBody.technology} />
-      <OurCustomers customers={customer} text={homepageBody.top_customers} />
-      <Projects 
-        projectsBlock={homepageBody.projects.primary}
-        projects={project}
-        layers={layer}
-        onVideoPlay={(videoID) => {playVideo}}
-      />
-      <CustomersSays customerSays={customerfeedbacks} title={homepageBody.what_customer_say} />
-      <ConsultingAndMentoring ingredients={homepageBody.consulting_and_mentoring} />
-      <CoreValues coreValues={homepageBody.core_values} />
-      <JoinUs joinUs={homepageBody.joinus} />
-      <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
-      <VideoModal open={videoModalState}/>
-    </Content>
-  );
+//   const {videoModalState, setVideoModalState} = useState('shit');
+//   function playVideo(videoID) {
+//     const tempFunk = videoID => setVideoModalState({videoModalState: {open: true, videoID: videoID}});
+//     tempFunk(videoID);
+//     console.log("videoModalState:", videoModalState);
+//   };
+//   console.log("setVideoModalState:", setVideoModalState);
+//   return (
+//     <Content>
+//       <MainSlider />
+//       <Technologies items={technology} text={homepageBody.technology} />
+//       <OurCustomers customers={customer} text={homepageBody.top_customers} />
+//       <Projects 
+//         projectsBlock={homepageBody.projects.primary}
+//         projects={project}
+//         layers={layer}
+//         onVideoPlay={() => {setVideoModalState('videoID'); console.log("videoModalState:", videoModalState);}}
+//       />
+//       <CustomersSays customerSays={customerfeedbacks} title={homepageBody.what_customer_say} />
+//       <ConsultingAndMentoring ingredients={homepageBody.consulting_and_mentoring} />
+//       <CoreValues coreValues={homepageBody.core_values} />
+//       <JoinUs joinUs={homepageBody.joinus} />
+//       <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
+//       <VideoModal open={videoModalState}/>
+//     </Content>
+//   );
+// };
+
+export default class BlogIndexPage extends Component {
+  state = {
+    videoModalState: {
+      open: false,
+      videoUrl: ''
+    }
+  };
+
+  playVideo = videoUrl => {
+    this.setState({videoModalState:{
+      open: true,
+      videoUrl: videoUrl
+    }});
+  };
+  
+  closeVideoModal = () => {
+    this.setState({videoModalState: {open: false}});
+  };
+  
+  render() {
+    console.log('homevideourl:',this.state.videoModalState.videoUrl);
+    const {
+    allContent,
+    allContent: {project, customer, technology, homepage, customerfeedbacks, layer},
+    } = this.props;
+  
+    const homepageBody = homepage[0].data.body.reduce((result, slice) => {
+      // eslint-disable-next-line no-param-reassign
+      console.log("customers:", customer);
+      result[slice.slice_type] = slice;
+      return result;
+    }, {});
+
+    return (
+      <Content>
+        <MainSlider />
+        <Technologies items={technology} text={homepageBody.technology} />
+        <OurCustomers customers={customer} text={homepageBody.top_customers} />
+        <Projects 
+          projectsBlock={homepageBody.projects.primary}
+          projects={project}
+          layers={layer}
+          onVideoPlay={this.playVideo}
+        />
+        <CustomersSays customerSays={customerfeedbacks} title={homepageBody.what_customer_say} />
+        <ConsultingAndMentoring ingredients={homepageBody.consulting_and_mentoring} />
+        <CoreValues coreValues={homepageBody.core_values} />
+        <JoinUs joinUs={homepageBody.joinus} />
+        <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
+        <VideoModal
+          open={this.state.videoModalState.open}
+          onClose={this.closeVideoModal}
+          videoUrl={this.state.videoModalState.videoUrl}
+        />
+      </Content>
+    );
+  }
+
 };
-export default BlogIndexPage;
+
+// export default BlogIndexPage;
