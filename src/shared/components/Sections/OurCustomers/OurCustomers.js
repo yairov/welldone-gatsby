@@ -1,9 +1,7 @@
-import React, {Component, useMemo, useState, useEffect} from 'react';
-
+import React, {useMemo, useState, useEffect} from 'react';
+import {RichText} from 'prismic-reactjs';
 import styled from 'styled-components';
 import {media} from '../../../theme';
-import Background from '../../../assets/icons/purp-bg.png';
-import {RichText} from 'prismic-reactjs';
 import {Header as BaseHeader} from '../../UI/Typography.js';
 import CustomerIcons from './CustomerIcons';
 
@@ -76,12 +74,8 @@ const Title = styled(BaseHeader)`
 const Icon = styled.img`
   max-width: 20rem;
   max-height: 3.5rem;
-  height: ${props => (
-    (props.src.endsWith(".svg")) ? "100%" : "auto"
-  )};
-  width: ${props => (
-    (props.src.endsWith(".svg")) ? "100%" : "auto"
-  )};
+  height: ${props => (props.src.endsWith('.svg') ? '100%' : 'auto')};
+  width: ${props => (props.src.endsWith('.svg') ? '100%' : 'auto')};
 
   ${media.maxMobile`
     max-width: 20rem;
@@ -291,7 +285,7 @@ function XOurCustomers({customers, text}) {
 
   return (
     <Root id="C">
-      <BG src={Background} />
+      <BG src={text.primary.background.url} />
       <Title>{RichText.asText(text.primary.title)}</Title>
       {/* <Computer>
         {visibleCustomers.map((c, i, all) => (

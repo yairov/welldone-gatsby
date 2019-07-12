@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, {useState, Component} from 'react';
 import styled from 'styled-components';
 import {media} from '../shared/theme';
 
@@ -47,7 +47,7 @@ const Content = styled.div`
 //       <MainSlider />
 //       <Technologies items={technology} text={homepageBody.technology} />
 //       <OurCustomers customers={customer} text={homepageBody.top_customers} />
-//       <Projects 
+//       <Projects
 //         projectsBlock={homepageBody.projects.primary}
 //         projects={project}
 //         layers={layer}
@@ -67,41 +67,45 @@ export default class BlogIndexPage extends Component {
   state = {
     videoModalState: {
       open: false,
-      videoUrl: ''
-    }
+      videoUrl: '',
+    },
   };
 
   playVideo = videoUrl => {
-    this.setState({videoModalState:{
-      open: true,
-      videoUrl: videoUrl
-    }});
+    this.setState({
+      videoModalState: {
+        open: true,
+        videoUrl: videoUrl,
+      },
+    });
   };
-  
+
   closeVideoModal = () => {
     this.setState({videoModalState: {open: false}});
   };
-  
+
   render() {
-    console.log('homevideourl:',this.state.videoModalState.videoUrl);
+    console.log('homevideourl:', this.state.videoModalState.videoUrl);
     const {
-    allContent,
-    allContent: {project, customer, technology, homepage, customerfeedbacks, layer},
+      allContent,
+      allContent: {project, customer, technology, homepage, customerfeedbacks, layer},
     } = this.props;
-  
+
     const homepageBody = homepage[0].data.body.reduce((result, slice) => {
       // eslint-disable-next-line no-param-reassign
-      console.log("customers:", customer);
+      console.log('customers:', customer);
       result[slice.slice_type] = slice;
       return result;
     }, {});
+
+    console.log({c: homepageBody.top_customers});
 
     return (
       <Content>
         <MainSlider />
         <Technologies items={technology} text={homepageBody.technology} />
         <OurCustomers customers={customer} text={homepageBody.top_customers} />
-        <Projects 
+        <Projects
           projectsBlock={homepageBody.projects.primary}
           projects={project}
           layers={layer}
@@ -120,7 +124,6 @@ export default class BlogIndexPage extends Component {
       </Content>
     );
   }
-
-};
+}
 
 // export default BlogIndexPage;

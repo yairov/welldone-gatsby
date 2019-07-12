@@ -17,8 +17,8 @@ const fontCss = css`
   `}
 `;
 const globalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700');
-  @import url('https://fonts.googleapis.com/css?family=Nunito:300,600,800');
+  @import url('https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700&display=optional');
+  /*@import url('https://fonts.googleapis.com/css?family=Nunito:300,600,800&display=swap');*/
 
 
   html {
