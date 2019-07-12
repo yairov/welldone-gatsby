@@ -23,7 +23,7 @@ const Root = styled.div`
   text-align: left;
   color: white;
 
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
 
   & > div {
     ${media.minSmallDesktop`

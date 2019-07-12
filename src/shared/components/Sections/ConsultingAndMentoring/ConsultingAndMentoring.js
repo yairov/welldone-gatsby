@@ -7,11 +7,11 @@ import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
 import {Header2 as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 const Root = styled(Element)`
-  padding: 2rem 1rem;
+  padding: 4rem 1rem;
   margin-top: 0;
   ${media.minSmallDesktop`
-    margin-bottom:5rem;
-    padding: 0 20rem;
+    /* margin-bottom:5rem; */
+    padding: 4rem 20rem;
     text-align: left;
   `}
 `;

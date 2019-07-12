@@ -10,16 +10,14 @@ import {Element} from 'react-scroll';
 const Wrapper = styled(Element)`
   background-image: linear-gradient(257deg, #d9f1f5, #347cac);
   position: relative;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 4rem 2rem;
 
   &&& {
     ${media.minSmallDesktop`
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding: 4rem 13rem;
   `}
-    padding-bottom: 2rem;
-    padding-top: 2rem;
+    /* padding-bottom: 2rem;
+    padding-top: 2rem; */
   }
 `;
 
@@ -34,21 +32,29 @@ const Header = styled(BaseHeader)`
 const Content = styled.div`
   font-size: 1.5rem;
   color: white;
-  max-width: 29rem;
   text-align: center;
-
   flex: 1;
+  max-width: 70%;
+  ${media.minSmallMobile`
+    text-align: start;
+  `}
+
+  ${media.minSmallDesktop`
+    max-width: 29rem;
+  `}
+
   div {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+
 
     ${media.minSmallDesktop`
     
       max-height: 34rem;
       align-items: flex-start;
       flex-wrap: wrap;
-      text-align: start;
+      /* text-align: start; */
     `}
   }
   p {
@@ -63,11 +69,11 @@ const Content = styled.div`
 
 const Image = styled.img`
   position: absolute;
-  right: 15rem;
+  right: 8rem;
   height: 113%;
   bottom: 0;
   display: none;
-  top: -4rem;
+  top: -5.8rem;
   ${media.minSmallDesktop`
     display: flex;
   `}

@@ -7,14 +7,16 @@ import {media} from '../../../theme';
 import {SubText as BaseSubText, MediumTitle, Header2 as BaseHeader} from '../../UI/Typography';
 
 const MainDiv = styled(Element)`
-  margin-top: 6rem;
+  /* margin-top: 6rem; */
 
   background-color: #f4f9fe;
   height: 100%;
   font-weight: 400;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   ${media.minSmallDesktop`
     &&& {
-      padding-bottom: 5rem;
+      padding-bottom: 8rem;
     }
 
   `}

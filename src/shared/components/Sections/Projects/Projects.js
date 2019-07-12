@@ -10,7 +10,7 @@ import ProjectItem from './NewProjectItem';
 const Root = styled(Element)`
   padding-top: 5rem;
   ${media.minSmallDesktop`
-    padding: 0 5rem;
+    padding: 4rem 5rem;
   `}
 `;
 

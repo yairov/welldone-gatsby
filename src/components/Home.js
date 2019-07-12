@@ -18,8 +18,8 @@ const Content = styled.div`
   overflow-x: hidden;
   & > div {
     ${media.minSmallDesktop`
-      padding: 0 10rem;
-      
+      padding-left: 10rem;
+      padding-right: 10rem;
     `}
   }
 `;

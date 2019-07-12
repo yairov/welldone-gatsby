@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
+import { media } from '../../../../shared/theme';
 
 const turquoiseCss = css`
   background: rgba(183, 240, 197, 0.1);
@@ -20,7 +21,7 @@ const Root = styled.div`
   height: 27.5rem;
   width: 50%;
   box-sizing: border-box;
-  padding: 1.7rem 1rem;
+  padding: 1.7rem 3rem;
   background: rgba(31, 171, 243, 0.1);
   color: #41566E;
   ${({inverse}) => inverse && inverseCss}
@@ -37,7 +38,15 @@ const Icon = styled.img`
 
 const Wrapper = styled.div`
 
-    font-size: 2.3rem;
+  font-size: 2.3rem;
+
+  ${media.maxMobile`
+    font-size: 2rem;
+  `}
+
+  ${media.maxMinimum`
+    font-size: 1.7rem;
+  `}
   
 `;
 

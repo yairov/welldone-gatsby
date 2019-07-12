@@ -27,7 +27,7 @@ const Root = styled.div`
     flex-direction: row;
     padding: 0;
     &&& {
-      padding-top: 3rem;
+      padding-top: 4rem;
       padding-bottom: 18rem;
       padding-left: 22rem;
       padding-right: 22rem;
@@ -121,14 +121,34 @@ const Button = styled(BaseButton)`
   color: #1FABF3;
   background-color: transparent;
   padding: 0.5rem 4.5rem;
-  align-self: flex-end;
+  /* align-self: flex-end; */
   display: flex;
   justify-content: center;
   border-radius: 4px;
-  width: 5rem;
+  /* width: 5rem; */
   &:focus {
     outline: none;
   }
+`;
+
+const ButtonLinker = styled.a`
+  /* border: 2px solid #1FABF3; */
+  /* color: #1FABF3;
+  background-color: transparent; */
+  /* padding: 0.5rem 4.5rem; */
+  align-self: flex-end;
+  display: flex;
+  /* justify-content: center; */
+  /* border-radius: 4px; */
+  width: 12rem;
+  text-decoration: none;
+  /* &:focus {
+    outline: none;
+  } */
+
+  ${media.minSmallDesktop`
+    width: 10rem;
+  `}
 `;
 
 const DesktopContact = styled.div`
@@ -156,16 +176,17 @@ class letsTalk extends Component {
     super()
 
     this.state = {
-      email: '',
-      messege: ''
+      subject: '',
+      message: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handelSubmit = this.handelSubmit.bind(this)
   }
 
-  handleChange = e => {
-    this.setState({[e.target.name] : e.target.value })
+  handleChange = (stateProp, e) => {
+    this.setState({[stateProp] : e.target.value });
+    console.log('props', this.props);
   }
 
 
@@ -192,10 +213,15 @@ class letsTalk extends Component {
         </ContactRoot>
         <FormWrapper>
           <Input placeholder={RichText.asText(this.props.letsTalk.primary.email_placeholder)}
-          onChange={this.handleChange} />
+          onChange={(e) => {this.handleChange('subject', e)}} />
           <TextArea placeholder={RichText.asText(this.props.letsTalk.primary.text_placeholder)} 
-          onChange={this.handleChange} />
-          <Button onClick={(e) => this.handelSubmit(e)}>Send</Button>
+          onChange={(e) => {this.handleChange('message', e)}} />
+          <ButtonLinker
+            href={`mailto:${RichText.asText(this.props.contactItems[1].content)}?subject=${this.state.subject}&body=${this.state.message}`}
+            target="blank"
+          >
+            <Button>Send</Button>
+          </ButtonLinker>
         </FormWrapper>
         `    <MobileContact>
       {this.props.contactItems.map(({icon, content}, idx) => (
