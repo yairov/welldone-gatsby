@@ -59,7 +59,7 @@ const Title = styled(BaseHeader)`
 `;
 
 const SubTitle = styled(BaseSubHeader)`
-  font-weight: 400;
+  font-weight: 100;
   p {
     margin-bottom: 1rem;
   }
@@ -85,7 +85,6 @@ const Icons = styled.div`
 `;
 
 function Layers({layers, layersMeta}) {
-  console.log({layers, layersMeta});
   return (
     <Icons>
       {layers
@@ -102,8 +101,6 @@ export default function ProjectItem({
   project: {title, description, thumbnail, video, customer, technologies, layers},
   onVideoPlay,
 }) {
-  console.log(title[0].text, thumbnail.url, video);
-  // console.log('onVideoPlay:', onVideoPlay);
   return (
     <Root>
       <Image

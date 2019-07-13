@@ -110,8 +110,8 @@ const Projects = ({projectsBlock, projects, layers, onVideoPlay}) => {
           <SubHeader>{RichText.asText(projectsBlock.subtitle)}</SubHeader>
         </SubHeaderWrapper>
       </Header>
-      {promotedLines.map(line => (
-        <ProjectWrapper>
+      {promotedLines.map((line, i) => (
+        <ProjectWrapper key={i}>
           {line.map(item => (
             <ProjectItem
               key={item.thumbnail.url}

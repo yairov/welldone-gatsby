@@ -48,7 +48,7 @@ const Flex = styled.div`
   `}
 `;
 
-const SlideView = () => (
+const SlideView = ({video}) => (
   <Root>
     <Flex>
       <Text
@@ -58,7 +58,7 @@ const SlideView = () => (
         spice_up_project="Boost both your project and your team's expertise, productivity and practices."
       />
       <BottleSize>
-        <Bottle />
+        <Bottle video={video} />
       </BottleSize>
     </Flex>
   </Root>

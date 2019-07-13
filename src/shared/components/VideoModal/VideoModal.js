@@ -100,7 +100,12 @@ export default class VideoModal extends Component {
         shouldCloseOnOverlayClick={true}
         contentLabel="Video"
         closeTimeoutMS={1000}
-        style={{content: this.state.contentStyle}}
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          },
+          content: this.state.contentStyle,
+        }}
       >
         {/* <StyledPlayer
           dangerouslySetInnerHTML={{

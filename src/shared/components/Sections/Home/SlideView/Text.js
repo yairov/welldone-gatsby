@@ -100,12 +100,43 @@ const SubTextWrapper = styled(BaseSubHeader)`
   text-align: start;
 `}
 `;
+
+const Boosts = styled.div`
+  display: flex;
+  flex-direction: row;
+  b {
+    color: #1fabf3;
+  }
+`;
+
+const Boost = styled.div`
+  border: 1px solid #1fabf3;
+  width: 13rem;
+  height: 10rem;
+  padding: 0.5rem;
+  margin-right: 1rem;
+`;
+
 const text = props => {
   return (
     <Wrapper>
       <Header>{props.header}</Header>
       <SubTextWrapper>{props.subText}</SubTextWrapper>
-      <ButtonAndText>
+      <Boosts>
+        <Boost>
+          <b>Boost your Front End.</b> Create an amazing, pixel perfect and responsive UI.{' '}
+        </Boost>
+        <Boost>
+          <b>Boot your Quality and Practices.</b> architecture and best practices
+        </Boost>
+        <Boost>
+          <b>Boot your Productivity.</b> architecture and best practices
+        </Boost>
+        <Boost>
+          <b>Boot your Team.</b> architecture and best practices
+        </Boost>
+      </Boosts>
+      {/* <ButtonAndText>
         <Text> {props.spice_up_project}</Text>
         <ButtonSize>
           <Link
@@ -120,7 +151,7 @@ const text = props => {
             <Button btnType={'Success'}>{props.button}</Button>
           </Link>
         </ButtonSize>
-      </ButtonAndText>
+      </ButtonAndText> */}
     </Wrapper>
   );
 };

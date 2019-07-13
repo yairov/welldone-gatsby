@@ -32,6 +32,7 @@ const Root = styled.div`
   }
   ${media.maxSmallDesktop`
     padding: 4rem 2rem;
+    background: #3F1B73;
   `}
 `;
 
@@ -42,6 +43,10 @@ const BG = styled.img`
   top: 0;
   bottom: 0;
   z-index: -1;
+
+  ${media.maxMobile`
+    display: none;
+  `}
 `;
 
 const Title = styled(BaseHeader)`
@@ -196,10 +201,11 @@ export default class TestCustomers2 extends Component {
         <CustomerWrapper>
           {this.state.visibleCustomers.map((itemProps, i, all) =>
             itemProps.line ? (
-              <Line i={i} pose={this.state.customerPose} />
+              <Line key={'line' + i} i={i} pose={this.state.customerPose} />
             ) : (
               <AnimatedCustomer
                 i={i}
+                key={'cust' + i}
                 pose={this.state.customerPose}
                 style={{justifyContent: 'center', alignItems: 'center'}}
               >

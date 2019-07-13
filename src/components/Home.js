@@ -86,14 +86,13 @@ export default class BlogIndexPage extends Component {
 
     const homepageBody = homepage[0].data.body.reduce((result, slice) => {
       // eslint-disable-next-line no-param-reassign
-      console.log('customers:', customer);
       result[slice.slice_type] = slice;
       return result;
     }, {});
 
     return (
       <Content>
-        <MainSlider />
+        <MainSlider video={this.state.video} />
         <Technologies items={technology} text={homepageBody.technology} />
         <OurCustomers customers={customer} text={homepageBody.top_customers} />
         <Projects

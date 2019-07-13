@@ -20,13 +20,18 @@ import animationData from '../../../../../../static/lottie/bottle-start.json';
 // onClick={() => console.log(ref.current)}
 // eventListeners={eventListeners}
 
-export default function Bottle() {
+export default function Bottle({video}) {
   const ref = useRef();
   useEffect(() => {
+    if (video || !ref.current) {
+      return undefined;
+    }
     const interval = setInterval(() => ref.current.anim.goToAndPlay(800), 7000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-  return <Lottie ref={ref} width="100%" options={{animationData}} segments={[1, 2]} speed={0} />;
+    return () => clearInterval(interval);
+  }, [video]);
+  return (
+    !video && (
+      <Lottie ref={ref} width="100%" options={{animationData}} segments={[1, 2]} speed={0} />
+    )
+  );
 }
