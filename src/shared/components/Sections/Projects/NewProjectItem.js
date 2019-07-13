@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 // import Backdrop from '../../UI/Backdrop/Backdrop';
 import {media} from '../../../theme';
-import playIcon from '../../../assets/icons/play.png'
+import playIcon from '../../../assets/icons/play.png';
 
 const Root = styled.div`
   width: 36rem;
@@ -28,7 +28,7 @@ const Image = styled.a`
   cursor: pointer;
 
   :after {
-    content: "";
+    content: '';
     background-image: url(${playIcon});
     background-size: 40%;
     background-repeat: no-repeat;
@@ -39,12 +39,18 @@ const Image = styled.a`
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity .25s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
   }
 
   :hover:after {
     opacity: 1;
   }
+
+  ${media.maxSmallDesktop`
+  :after {
+    opacity: 1;
+  }
+  `}
 `;
 
 const Title = styled(BaseHeader)`
@@ -94,16 +100,18 @@ function Layers({layers, layersMeta}) {
 export default function ProjectItem({
   layers: layersMeta,
   project: {title, description, thumbnail, video, customer, technologies, layers},
-  onVideoPlay
+  onVideoPlay,
 }) {
-  console.log(title[0].text, thumbnail.url);
+  console.log(title[0].text, thumbnail.url, video);
   // console.log('onVideoPlay:', onVideoPlay);
   return (
     <Root>
       <Image
         src={thumbnail.url}
         alt={RichText.asText(title)}
-        onClick={() => {onVideoPlay(video.embed_url); console.log('projitemvideourl', video);}}
+        onClick={() => {
+          onVideoPlay(video);
+        }}
       />
       <Title>{RichText.asText(title)}</Title>
       <Layers {...{layers, layersMeta}} />

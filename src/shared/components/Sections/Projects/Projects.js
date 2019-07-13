@@ -33,7 +33,7 @@ const HeaderImage = styled.img`
 const ProjectWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 3rem 0;
 
@@ -88,7 +88,19 @@ const SubHeaderWrapper = styled.div`
 // `;
 
 const Projects = ({projectsBlock, projects, layers, onVideoPlay}) => {
-  // console.log('onVideoPlay:', onVideoPlay);
+  const promoted = projects
+    .map(({data}) => data)
+    .sort((l, r) => (l.order || Number.MAX_VALUE) - (r.order || Number.MAX_VALUE))
+    .filter(p => p.promoted === 'yes');
+  const itemsPerLine = 4;
+  const promotedLines = promoted.reduce((result, curr, index) => {
+    if (index % itemsPerLine === 0) {
+      result.push([]);
+    }
+    result[result.length - 1].push(curr);
+    return result;
+  }, []);
+
   return (
     <Root name="Projects" id="Projects">
       <Header>
@@ -98,19 +110,18 @@ const Projects = ({projectsBlock, projects, layers, onVideoPlay}) => {
           <SubHeader>{RichText.asText(projectsBlock.subtitle)}</SubHeader>
         </SubHeaderWrapper>
       </Header>
-      <ProjectWrapper>
-        {projects
-          .map(({data}) => data)
-          .filter(p => p.promoted === 'yes')
-          .sort((l, r) => (l.order || Number.MAX_VALUE) - (r.order || Number.MAX_VALUE))
-          .map(d => {
-            console.log({d});
-            return d;
-          })
-          .map(data => (
-            <ProjectItem key={data.thumbnail.url} project={data} layers={layers} onVideoPlay={onVideoPlay}/>
+      {promotedLines.map(line => (
+        <ProjectWrapper>
+          {line.map(item => (
+            <ProjectItem
+              key={item.thumbnail.url}
+              project={item}
+              layers={layers}
+              onVideoPlay={onVideoPlay}
+            />
           ))}
-      </ProjectWrapper>
+        </ProjectWrapper>
+      ))}
     </Root>
   );
 };

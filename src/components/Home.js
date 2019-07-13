@@ -65,27 +65,20 @@ const Content = styled.div`
 
 export default class BlogIndexPage extends Component {
   state = {
-    videoModalState: {
-      open: false,
-      videoUrl: '',
-    },
+    video: undefined,
   };
 
-  playVideo = videoUrl => {
+  playVideo = video => {
     this.setState({
-      videoModalState: {
-        open: true,
-        videoUrl: videoUrl,
-      },
+      video,
     });
   };
 
   closeVideoModal = () => {
-    this.setState({videoModalState: {open: false}});
+    this.setState({video: undefined});
   };
 
   render() {
-    console.log('homevideourl:', this.state.videoModalState.videoUrl);
     const {
       allContent,
       allContent: {project, customer, technology, homepage, customerfeedbacks, layer},
@@ -97,8 +90,6 @@ export default class BlogIndexPage extends Component {
       result[slice.slice_type] = slice;
       return result;
     }, {});
-
-    console.log({c: homepageBody.top_customers});
 
     return (
       <Content>
@@ -117,9 +108,9 @@ export default class BlogIndexPage extends Component {
         <JoinUs joinUs={homepageBody.joinus} />
         <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
         <VideoModal
-          open={this.state.videoModalState.open}
+          open={!!this.state.video}
           onClose={this.closeVideoModal}
-          videoUrl={this.state.videoModalState.videoUrl}
+          video={this.state.video}
         />
       </Content>
     );
