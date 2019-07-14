@@ -12,6 +12,7 @@ import LetsTalk from '../shared/components/Sections/LetsTalk/LetsTalk';
 import CoreValues from '../shared/components/Sections/CoreValues/CoreValues';
 import Projects from '../shared/components/Sections/Projects/Projects';
 import VideoModal from '../shared/components/VideoModal/VideoModal';
+import TLDRModal from '../shared/components/Sections/TLDRModal/TLDRModal';
 
 const Content = styled.div`
   position: relative;
@@ -66,6 +67,7 @@ const Content = styled.div`
 export default class BlogIndexPage extends Component {
   state = {
     video: undefined,
+    tldrOpen :false
   };
 
   playVideo = video => {
@@ -76,6 +78,16 @@ export default class BlogIndexPage extends Component {
 
   closeVideoModal = () => {
     this.setState({video: undefined});
+  };
+
+  closeTLDRModal = () => {
+    this.setState({tldrOpen: false});
+  }
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.setState({tldrOpen: true});
+    }, 8000);
   };
 
   render() {
@@ -111,9 +123,12 @@ export default class BlogIndexPage extends Component {
           onClose={this.closeVideoModal}
           video={this.state.video}
         />
+        <TLDRModal
+          open={this.state.tldrOpen}
+          onClose={this.closeTLDRModal}
+          onPlay={this.playVideo}
+        />
       </Content>
     );
   }
 }
-
-// export default BlogIndexPage;

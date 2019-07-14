@@ -67,6 +67,7 @@ export default class VideoModal extends Component {
         left,
         bottom,
         right,
+        zIndex: 1151
       },
     });
   };
@@ -103,6 +104,7 @@ export default class VideoModal extends Component {
         style={{
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            zIndex: 1150
           },
           content: this.state.contentStyle,
         }}
