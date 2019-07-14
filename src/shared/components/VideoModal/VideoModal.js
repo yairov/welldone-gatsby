@@ -10,6 +10,7 @@ const ReactPlayer = styled(_ReactPlayer)`
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden
 `;
 
 export default class VideoModal extends Component {
@@ -67,7 +68,7 @@ export default class VideoModal extends Component {
         left,
         bottom,
         right,
-        zIndex: 1151
+        zIndex: 1150
       },
     });
   };

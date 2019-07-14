@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../theme/media';
+import {RichText} from 'prismic-reactjs';
 import posed, { PoseGroup } from 'react-pose';
 import ropeSVG from './Rope.svg';
 import playIcon from '../../../assets/icons/play.png';
@@ -23,6 +24,7 @@ const Modal = styled(ModalAnim)`
 	left: 5rem;
 	max-width: 400px;
 	z-index: 1100;
+	filter: drop-shadow(20px 30px 10px rgba(0, 0, 0, 0.3));
 
 	display: flex;
 	flex-direction: column;
@@ -64,7 +66,7 @@ const Title = styled.div`
 	padding-bottom: 1rem;
 `;
 
-const Text = styled.p`
+const Text = styled.div`
 	color: black;
 	font-family: 'Heebo' ,sans-serif;
 	font-size: 200%;
@@ -72,58 +74,70 @@ const Text = styled.p`
 	padding-bottom: 1rem;
 `;
 
-const VideoThumb = styled.img`
+const VideoWrapperClick = styled.div`
 	width: 100%;
 	cursor: pointer;
+	position: relative;
+`;
+
+const VideoThumb = styled.img`
+	width: 100%;
+	display: block;
 `;
 
 const PlayThumbIcon = styled.img`
 	position: absolute;
-	top: 25%;
-	bottom: 25%;
-	left: 37%;
-	height: 50%;
+	display: block;
+	top: 32%;
+	left: 36%;
+	height: 39%;
 `;
 
-const Close = styled.div`
+const Line = styled.div`
 	position: absolute;
-	top: 0.2rem;
-	right: 0.8rem;
-	
-	:before {
-		content: 'X';
-		font-size: 2.4rem;
-	}
+	top: 0;
+	left: 50%;
+	background-color: gray;
+	display: block;
+	width: 4px;
+	height: 100%;
 `;
 
-const data = {
-	title: 'TL;DR',
-	text:
-		`Don’t have time to read?
-    Watch this to get it fast!`,
-	video: 'Video Object',
-	videoThumb: 'https://i.ytimg.com/vi/l7-dbZM8B_s/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAz7N-p94fVAbCQHJpIXZRpzO4Qkw'
-};
+const CloseStyle = styled.div`
+	position: absolute;
+	top: 0.5rem;
+	right: 0.7rem;
+	height: 2.5rem;
+	width: 2.5rem;
+	cursor: pointer;
+	display: block;
+`;
+const Close = ({onClick}) => (
+	<CloseStyle onClick={onClick}>
+		<Line style={{ transform: 'rotate(45deg)' }}/>
+		<Line style={{ transform: 'rotate(-45deg)' }}/>
+	</CloseStyle>
+);
 
-const TLDRModal = props => {
-	console.log("tldrinside:", props.open);
+const RopeModal = ({ open, ropeData, onClose, onPlay }) => {
 	return (
-		<Modal key="key" pose={props.open ? 'open' : 'close'}>
+		<Modal key="key" pose={open ? 'open' : 'close'}>
 			<Rope src={ropeSVG} />
 			<ModalWindow>
-				<Close onClick={props.onClose} />
-				<Title>{data.title}</Title>
-				<Text>{data.text}</Text>
-				<div style={{position: 'relative', width: '100%'}}>
+				<Close onClick={onClose} />
+				<Title>{RichText.render(ropeData.title)}</Title>
+				<Text>{RichText.render(ropeData.text)}</Text>
+				<VideoWrapperClick
+					onClick={() => onPlay(ropeData.video)}
+				>
 					<VideoThumb
-						src={data.videoThumb}
-						onClick={() => props.onPlay(data.video)}
-					/>
+						src={ropeData.video.thumbnail_url}
+						/>
 					<PlayThumbIcon src={playIcon}/>
-				</div>
+				</VideoWrapperClick>
 			</ModalWindow>
 		</Modal>
 	);
 };
 
-export default TLDRModal;
+export default RopeModal;
