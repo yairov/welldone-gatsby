@@ -88,8 +88,7 @@ export default class BlogIndexPage extends Component {
   };
 
   openRopeModal = () => {
-    if (!this.state.ropeModalOpen)
-      this.setState({ropeModalOpen: true});
+    if (!this.state.ropeModalOpen) this.setState({ropeModalOpen: true});
   };
 
   scrollTimeout;
@@ -115,6 +114,8 @@ export default class BlogIndexPage extends Component {
       allContent: {project, customer, technology, homepage, customerfeedbacks, layer},
     } = this.props;
 
+    const {video} = this.state;
+
     const homepageBody = homepage[0].data.body.reduce((result, slice) => {
       // eslint-disable-next-line no-param-reassign
       result[slice.slice_type] = slice;
@@ -123,7 +124,7 @@ export default class BlogIndexPage extends Component {
 
     return (
       <Content>
-        <MainSlider video={this.state.video} />
+        <MainSlider video={video} />
         <Technologies items={technology} text={homepageBody.technology} />
         <OurCustomers customers={customer} text={homepageBody.top_customers} />
         <Projects
@@ -137,17 +138,13 @@ export default class BlogIndexPage extends Component {
         <CoreValues coreValues={homepageBody.core_values} />
         <JoinUs joinUs={homepageBody.joinus} />
         <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
-        <VideoModal
-          open={!!this.state.video}
-          onClose={this.closeVideoModal}
-          video={this.state.video}
-        />
-        <RopeModal
+        <VideoModal open={!!video} onClose={this.closeVideoModal} video={video} />
+        {/* <RopeModal
           open={this.state.ropeModalOpen}
           onClose={this.closeRopeModal}
           onPlay={this.playVideo}
           ropeData={homepageBody.rope_modal.primary}
-        />
+        /> */}
       </Content>
     );
   }

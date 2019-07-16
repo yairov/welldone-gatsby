@@ -122,7 +122,7 @@ const text = props => {
     <Wrapper>
       <Header>{props.header}</Header>
       <SubTextWrapper>{props.subText}</SubTextWrapper>
-      <Boosts>
+      {/* <Boosts>
         <Boost>
           <b>Boost your Front End.</b> Create an amazing, pixel perfect and responsive UI.{' '}
         </Boost>
@@ -135,23 +135,15 @@ const text = props => {
         <Boost>
           <b>Boot your Team.</b> architecture and best practices
         </Boost>
-      </Boosts>
-      {/* <ButtonAndText>
+      </Boosts> */}
+      <ButtonAndText>
         <Text> {props.spice_up_project}</Text>
         <ButtonSize>
-          <Link
-            onClick={props.closed}
-            activeClass="NavigationItem-module--active--3NifW"
-            to={'LetsTalk'}
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-          >
-            <Button btnType={'Success'}>{props.button}</Button>
+          <Link onClick={props.closed} to={'LetsTalk'} spy smooth offset={-70} duration={500}>
+            <Button btnType="Success">{props.button}</Button>
           </Link>
         </ButtonSize>
-      </ButtonAndText> */}
+      </ButtonAndText>
     </Wrapper>
   );
 };
