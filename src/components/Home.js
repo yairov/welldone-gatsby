@@ -84,7 +84,7 @@ export default class BlogIndexPage extends Component {
 
   closeRopeModal = () => {
     this.setState({ropeModalOpen: false});
-    window.removeEventListener('scroll', this.onScroll);
+    //window.removeEventListener('scroll', this.onScroll);
   };
 
   openRopeModal = () => {
@@ -94,18 +94,18 @@ export default class BlogIndexPage extends Component {
   scrollTimeout;
 
   onScroll = () => {
-    window.removeEventListener('scroll', this.onScroll);
+    // window.removeEventListener('scroll', this.onScroll);
     clearTimeout(this.scrollTimeout);
     this.scrollTimeout = setTimeout(this.openRopeModal, modalRopeCountTime);
   };
 
   componentDidMount = () => {
-    window.addEventListener('scroll', this.onScroll);
+    // window.addEventListener('scroll', this.onScroll);
     this.scrollTimeout = setTimeout(this.openRopeModal, modalRopeCountTime);
   };
 
   componentWillMount = () => {
-    window.removeEventListener('scroll', this.onScroll);
+    // window.removeEventListener('scroll', this.onScroll);
   };
 
   render() {
