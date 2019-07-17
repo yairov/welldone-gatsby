@@ -12,7 +12,6 @@ import LetsTalk from '../shared/components/Sections/LetsTalk/LetsTalk';
 import CoreValues from '../shared/components/Sections/CoreValues/CoreValues';
 import Projects from '../shared/components/Sections/Projects/Projects';
 import VideoModal from '../shared/components/VideoModal/VideoModal';
-import RopeModal from '../shared/components/Sections/RopeModal/RopeModal';
 
 const Content = styled.div`
   position: relative;
@@ -64,12 +63,9 @@ const Content = styled.div`
 //   );
 // };
 
-const modalRopeCountTime = 15000;
-
 export default class BlogIndexPage extends Component {
   state = {
     video: undefined,
-    ropeModalOpen: false,
   };
 
   playVideo = video => {
@@ -80,32 +76,6 @@ export default class BlogIndexPage extends Component {
 
   closeVideoModal = () => {
     this.setState({video: undefined});
-  };
-
-  closeRopeModal = () => {
-    this.setState({ropeModalOpen: false});
-    //window.removeEventListener('scroll', this.onScroll);
-  };
-
-  openRopeModal = () => {
-    if (!this.state.ropeModalOpen) this.setState({ropeModalOpen: true});
-  };
-
-  scrollTimeout;
-
-  onScroll = () => {
-    // window.removeEventListener('scroll', this.onScroll);
-    clearTimeout(this.scrollTimeout);
-    this.scrollTimeout = setTimeout(this.openRopeModal, modalRopeCountTime);
-  };
-
-  componentDidMount = () => {
-    // window.addEventListener('scroll', this.onScroll);
-    this.scrollTimeout = setTimeout(this.openRopeModal, modalRopeCountTime);
-  };
-
-  componentWillMount = () => {
-    // window.removeEventListener('scroll', this.onScroll);
   };
 
   render() {
@@ -139,12 +109,6 @@ export default class BlogIndexPage extends Component {
         <JoinUs joinUs={homepageBody.joinus} />
         <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
         <VideoModal open={!!video} onClose={this.closeVideoModal} video={video} />
-        {/* <RopeModal
-          open={this.state.ropeModalOpen}
-          onClose={this.closeRopeModal}
-          onPlay={this.playVideo}
-          ropeData={homepageBody.rope_modal.primary}
-        /> */}
       </Content>
     );
   }
