@@ -48,7 +48,7 @@ const Flex = styled.div`
   `}
 `;
 
-const SlideView = ({video}) => (
+const SlideView = ({video, welldoneVideo, onVideoPlay}) => (
   <Root>
     <Flex>
       <Text
@@ -56,6 +56,8 @@ const SlideView = ({video}) => (
         subText="Supreme architectural and technical expertise provided by experienced full-stack polyglots with a holistic approach"
         button="Hire our expert team today"
         spice_up_project="Boost both your project and your team's expertise, productivity and practices."
+        welldoneVideo={welldoneVideo}
+        onVideoPlay={onVideoPlay}
       />
       <BottleSize>
         <Bottle video={video} />

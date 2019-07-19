@@ -1,10 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Welldone Software`,
+    description: `Your fullstack secret sauce. Get your team to build amazing front-ends and rock-solid backends.`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-144193631-1',
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -27,7 +32,7 @@ module.exports = {
         icon: `src/images/welldone-favicon.svg`, // This path is relative to the root of the site.
       },
     },
-    "gatsby-plugin-styled-components",
+    'gatsby-plugin-styled-components',
     // {
     //   resolve: "gatsby-source-prismic",
     //   options: {
@@ -40,4 +45,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

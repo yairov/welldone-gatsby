@@ -94,7 +94,11 @@ export default class BlogIndexPage extends Component {
 
     return (
       <Content>
-        <MainSlider video={video} />
+        <MainSlider
+          video={video}
+          welldoneVideo={homepageBody.rope_modal.primary.video}
+          onVideoPlay={this.playVideo}
+        />
         <Technologies items={technology} text={homepageBody.technology} />
         <OurCustomers customers={customer} text={homepageBody.top_customers} />
         <Projects

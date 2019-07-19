@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 // import Backdrop from '../../UI/Backdrop/Backdrop';
 import {media} from '../../../theme';
-import playIcon from '../../../assets/icons/play.png';
+import VideoImage from '../../VideoImage';
 
 const Root = styled.div`
   width: 36rem;
@@ -14,42 +14,6 @@ const Root = styled.div`
   ${media.minSmallDesktop`
     width: 26rem;
     padding: 0 2rem;
-  `}
-`;
-
-const Image = styled.a`
-  display: block;
-  width: 25rem;
-  height: 25rem;
-  margin: auto;
-  background-image: url(${props => props.src});
-  background-repeat: no-repeat;
-  background-size: 100%;
-  cursor: pointer;
-
-  :after {
-    content: '';
-    background-image: url(${playIcon});
-    background-size: 40%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgba(0.5, 0.5, 0.5, 0.5);
-    font-size: 2rem;
-    display: block;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.25s ease-in-out;
-  }
-
-  :hover:after {
-    opacity: 1;
-  }
-
-  ${media.maxSmallDesktop`
-  :after {
-    opacity: 1;
-  }
   `}
 `;
 
@@ -103,7 +67,7 @@ export default function ProjectItem({
 }) {
   return (
     <Root>
-      <Image
+      <VideoImage
         src={thumbnail.url}
         alt={RichText.asText(title)}
         onClick={() => {

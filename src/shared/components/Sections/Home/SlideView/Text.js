@@ -1,10 +1,13 @@
 import React from 'react';
-//import classes from './Text.css';
 import styled, {css} from 'styled-components';
+import {RichText} from 'prismic-reactjs';
+import {Link} from 'react-scroll';
+import Button from '../../../UI/Button/Button';
+import VideoImage from '../../../../components/VideoImage';
 import {media} from '../../../../theme/media';
 import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../../UI/Typography';
-import Button from '../../../UI/Button/Button';
-import {Link} from 'react-scroll';
+import playIcon from '../../../../assets/icons/play.png';
+
 const applyRenderCss = css`
   div {
     padding: 0 2rem;
@@ -49,34 +52,6 @@ const Wrapper = styled.div`
   `}
 `;
 
-const ButtonAndText = styled.div`
-  height: 3.5rem;
-  display: flex;
-  flex-direction: column;
-  ${media.maxSmallDesktop`
-    display:none;
-  `}
-`;
-const ButtonSize = styled.div`
-  height: 3.5rem;
-  width: 18rem;
-
-  ${media.maxSmallDesktop`
-    display:none;
-  `}
-`;
-const Text = styled.div`
-  color: #000000;
-  padding: 1rem 0;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  ${media.minSmallDesktop`
-    padding: 0;
-    font-size: 1.3rem;
-    padding: 0 ;
-  `}
-`;
-
 const Header = styled(BaseHeader)`
   color: #1fabf3;
   padding: 0 6rem;
@@ -89,7 +64,7 @@ const Header = styled(BaseHeader)`
 `;
 const SubTextWrapper = styled(BaseSubHeader)`
   ${applyRenderCss}
-  display: flex;
+
   margin-bottom: 1.5rem;
   flex-direction: column;
   font-weight: 400;
@@ -99,6 +74,16 @@ const SubTextWrapper = styled(BaseSubHeader)`
   margin-bottom:5rem;
   text-align: start;
 `}
+  /* a {
+    display: inline;
+  } */
+  img {
+    display: inline;
+    width: 1em;
+    text-align: middle;
+    position: relative;
+    top: 0.2em;
+  }
 `;
 
 const Boosts = styled.div`
@@ -117,11 +102,50 @@ const Boost = styled.div`
   margin-right: 1rem;
 `;
 
-const text = props => {
+const SmallVideoImage = styled(VideoImage)`
+  position: relative;
+  height: 6em;
+  width: 9em;
+`;
+
+const MyLink = styled(Link)`
+  width: 20em;
+  button {
+    font-size: 1.5em !important;
+  }
+
+  x-margin: 0 auto;
+`;
+
+const Text = ({welldoneVideo, subText, header, onVideoPlay}) => {
   return (
     <Wrapper>
-      <Header>{props.header}</Header>
-      <SubTextWrapper>{props.subText}</SubTextWrapper>
+      <Header>{header}</Header>
+      <SubTextWrapper>
+        We create amazing front ends and rock-solid backends while upgrading your inhouse team.
+        <br />
+        Boost your project's quality and your time to market without compromising your team's
+        expertise, productivity and practices.
+        <a
+          href="/"
+          onClick={() => {
+            onVideoPlay(welldoneVideo);
+          }}
+        >
+          <img src={playIcon} alt="Welldone explainer video" />
+        </a>
+      </SubTextWrapper>
+      <MyLink to={'LetsTalk'} spy smooth offset={-70} duration={500}>
+        <Button btnType="Success">Start Boosting Today!</Button>
+      </MyLink>
+      {/* <Prompt>{subText}</Prompt> */}
+      {/* <SmallVideoImage
+        src={welldoneVideo.thumbnail_url}
+        alt={'Watch explainer video'}
+        onClick={() => {
+          onVideoPlay(welldoneVideo);
+        }}
+      /> */}
       {/* <Boosts>
         <Boost>
           <b>Boost your Front End.</b> Create an amazing, pixel perfect and responsive UI.{' '}
@@ -135,7 +159,7 @@ const text = props => {
         <Boost>
           <b>Boot your Team.</b> architecture and best practices
         </Boost>
-      </Boosts> */}
+      </Boosts>
       <ButtonAndText>
         <Text> {props.spice_up_project}</Text>
         <ButtonSize>
@@ -144,7 +168,8 @@ const text = props => {
           </Link>
         </ButtonSize>
       </ButtonAndText>
+    */}
     </Wrapper>
   );
 };
-export default text;
+export default Text;
