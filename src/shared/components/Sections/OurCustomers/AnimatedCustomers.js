@@ -211,8 +211,6 @@ export default class TestCustomers2 extends Component {
               >
                 <A
                   title={itemProps.title}
-                  href={itemProps.website?.url}
-                  target="_blank"
                   // style={{justifyContent: 'center', alignItems: 'center'}}
                 >
                   <Icon src={itemProps.white_logo?.url} />

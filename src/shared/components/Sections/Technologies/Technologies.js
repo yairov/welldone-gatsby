@@ -85,7 +85,7 @@ const RenderItems = ({items}) => {
   return items
     .sort((l, r) => l.data.order - r.data.order)
     .map(item => (
-      <a key={item.data.icon.url} title={item.data.title} href="#">
+      <a key={item.data.icon.url} title={item.data.title}>
         <CustomerIcon src={item.data.icon.url} />
       </a>
     ));

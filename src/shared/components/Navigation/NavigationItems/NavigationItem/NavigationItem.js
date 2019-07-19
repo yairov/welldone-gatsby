@@ -63,7 +63,7 @@ class navigationItem extends Component {
       <NavigationItem name={this.props.link} active={this.state.active} onClick={this.props.closed}>
         <Link
           onClick={this.props.closed}
-          activeClass="NavigationItem-module--active--3NifW"
+          activeClass="NavigationItem-module--active"
           to={this.props.link}
           spy={true}
           smooth={true}

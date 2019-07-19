@@ -136,7 +136,7 @@ const Text = ({welldoneVideo, subText, header, onVideoPlay}) => {
         </a>
       </SubTextWrapper>
       <MyLink to={'LetsTalk'} spy smooth offset={-70} duration={500}>
-        <Button btnType="Success">Start Boosting Today!</Button>
+        <Button btnType="Success">Start Today!</Button>
       </MyLink>
       {/* <Prompt>{subText}</Prompt> */}
       {/* <SmallVideoImage
