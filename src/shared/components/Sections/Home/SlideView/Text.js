@@ -127,7 +127,7 @@ const Text = ({welldoneVideo, subText, header, onVideoPlay}) => {
         Boost your project's quality and your time to market without compromising your team's
         expertise, productivity and practices.
         <a
-          href="/"
+          style={{cursor: 'pointer'}}
           onClick={() => {
             onVideoPlay(welldoneVideo);
           }}
