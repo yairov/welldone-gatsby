@@ -110,7 +110,7 @@ const SmallVideoImage = styled(VideoImage)`
 `;
 
 const MyLink = styled(Link)`
-  width: 20em;
+  width: 14em;
   button {
     font-size: 1.5em !important;
   }
@@ -127,14 +127,14 @@ const Text = ({welldoneVideo, subText, header, onVideoPlay}) => {
         <br />
         Boost your project's quality and your time to market without compromising your team's
         expertise, productivity and practices.
-        <a
+        {/* <a
           style={{cursor: 'pointer'}}
           onClick={() => {
             onVideoPlay(welldoneVideo);
           }}
         >
-          <img src={playIcon} alt="Welldone explainer video" />
-        </a>
+          {<img src={playIcon} alt="Welldone explainer video" />}
+        </a> */}
       </SubTextWrapper>
       <MyLink to={'LetsTalk'} spy smooth offset={-70} duration={500}>
         <Button btnType="Success">Start Today!</Button>

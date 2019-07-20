@@ -59,7 +59,12 @@ const SlideView = ({video, welldoneVideo, onVideoPlay}) => (
         welldoneVideo={welldoneVideo}
         onVideoPlay={onVideoPlay}
       />
-      <BottleSize>
+      <BottleSize
+        style={{cursor: 'pointer'}}
+        onClick={() => {
+          onVideoPlay(welldoneVideo);
+        }}
+      >
         <Bottle video={video} />
       </BottleSize>
     </Flex>
