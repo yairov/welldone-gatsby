@@ -8,6 +8,7 @@ import {media} from '../../../theme';
 import ProjectItem from './NewProjectItem';
 
 const Root = styled(Element)`
+  margin-top: 5em;
   padding-top: 5rem;
   ${media.minSmallDesktop`
     padding: 4rem 5rem;
@@ -125,34 +126,5 @@ const Projects = ({projectsBlock, projects, layers, onVideoPlay}) => {
     </Root>
   );
 };
-
-// {/* <Root name="Projects" id="Projects">
-// <MainHeader>
-//   <LatestWorkWrapper>
-//     <TitleWrapper>
-//       <Thumbnail src={projectsBlock.img.url} />
-//       <HeaderContent>
-//         <Header>{RichText.asText(projectsBlock.title)}</Header>
-//       </HeaderContent>
-//     </TitleWrapper>
-//     <SubHeader>{RichText.asText(projectsBlock.subtitle)}</SubHeader>
-//     <ProjectWrapper>
-//       {/* {projects.items.map(item => (
-//         <ProjectItem
-//           key={item.thumbnail.url}
-//           title={RichText.asText(item.title)}
-//           subtitle={RichText.asText(item.subtitle)}
-//           thumbnail={item.thumbnail.url}
-//           mainImg={item.mainimage.url}
-//           movie={item.movie.url}
-//           desktop={item.desktop.url}
-//           mobile={item.mobile.url}
-//           cloud={item.cloud.url}
-//         />
-//       ))} */}
-//     </ProjectWrapper>
-//   </LatestWorkWrapper>
-// </MainHeader>
-// </Root> */}
 
 export default Projects;
