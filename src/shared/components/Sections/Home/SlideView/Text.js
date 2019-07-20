@@ -61,7 +61,8 @@ const Header = styled(BaseHeader)`
     font-size: 3.5rem;
     text-align: start;
   `}
-`;
+`.withComponent('h1');
+
 const SubTextWrapper = styled(BaseSubHeader)`
   ${applyRenderCss}
 
