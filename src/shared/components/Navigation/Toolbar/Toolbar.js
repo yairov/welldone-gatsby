@@ -122,7 +122,7 @@ const Header = props => {
               offset={-70}
               duration={500}
             >
-              <Button btnType={props.btnType}> Lets Talk</Button>
+              <Button btnType={props.btnType}> Let's Talk</Button>
             </Link>
           </ButtonSize>
         </DesktopOnly>
