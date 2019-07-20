@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 // import Backdrop from '../../UI/Backdrop/Backdrop';
 import {media} from '../../../theme';
-import VideoImage from '../../VideoImage';
+import _VideoImage from '../../VideoImage';
 
 const Root = styled.div`
   width: 36rem;
@@ -48,6 +48,10 @@ const Icons = styled.div`
   `}
 `;
 
+const VideoImage = styled(_VideoImage)`
+  border: solid 1px #ddd;
+`;
+
 function Layers({layers, layersMeta}) {
   return (
     <Icons>
@@ -60,6 +64,7 @@ function Layers({layers, layersMeta}) {
     </Icons>
   );
 }
+
 export default function ProjectItem({
   layers: layersMeta,
   project: {title, description, thumbnail, video, customer, technologies, layers},
