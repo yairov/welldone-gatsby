@@ -10,6 +10,13 @@ module.exports = {
         trackingId: 'UA-144193631-1',
       },
     },
+    {
+      resolve: `gatsby-plugin-hotjar`,
+      options: {
+        id: 1411846,
+        sv: 6,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
