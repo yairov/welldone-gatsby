@@ -30,11 +30,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Welldone Software`,
+        short_name: `Welldone`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#fff`,
+        theme_color: `#1EABF3`,
         display: `minimal-ui`,
         icon: `src/images/welldone-favicon.svg`, // This path is relative to the root of the site.
       },
