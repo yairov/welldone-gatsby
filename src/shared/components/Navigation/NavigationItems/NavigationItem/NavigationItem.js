@@ -12,6 +12,12 @@ const NavigationItem = styled.div`
   font-size: 150%;
   cursor: pointer;
   color: ${props => (props.name && props.active ? '#40A4C8;' : '#51718C')};
+
+  & a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   ${media.minSmallDesktop`
     margin: 0;
     display: block;
@@ -22,8 +28,6 @@ const NavigationItem = styled.div`
     font-size: 100%;
 
     & a {
-        text-decoration: none;
-        color: inherit;
         &:hover {
             border-bottom: 2px solid #40A4C8;
             width: 110%;

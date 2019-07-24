@@ -51,7 +51,9 @@ const sideDrawer = props => {
             offset={-70}
             duration={500}
           >
-            <Button btnType="Success"> Let's Talk</Button>
+            <div style={{width: '40%', margin: 'auto 30%'}}>
+              <Button btnType="Success">Let's Talk</Button>
+            </div>
           </Link>
         </nav>
       </SideDrawer>
