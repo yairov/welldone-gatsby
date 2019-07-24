@@ -22,6 +22,8 @@ const NavigationItem = styled.div`
     font-size: 100%;
 
     & a {
+        text-decoration: none;
+        color: inherit;
         &:hover {
             border-bottom: 2px solid #40A4C8;
             width: 110%;
@@ -59,6 +61,10 @@ class navigationItem extends Component {
   };
 
   render() {
+    if (this.props.simple) {
+      return <NavigationItem>{this.props.children}</NavigationItem>;
+    }
+
     return (
       <NavigationItem name={this.props.link} active={this.state.active} onClick={this.props.closed}>
         <Link
