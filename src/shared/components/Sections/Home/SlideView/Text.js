@@ -123,53 +123,14 @@ const Text = ({welldoneVideo, subText, header, onVideoPlay}) => {
     <Wrapper>
       <Header>{header}</Header>
       <SubTextWrapper>
-        We create amazing front ends and rock-solid backends while upgrading your inhouse team.
+        We create amazing frontends and rock-solid backends while upgrading your inhouse team.
         <br />
-        Boost your project's quality and your time to market without compromising your team's
-        expertise, productivity and practices.
-        {/* <a
-          style={{cursor: 'pointer'}}
-          onClick={() => {
-            onVideoPlay(welldoneVideo);
-          }}
-        >
-          {<img src={playIcon} alt="Welldone explainer video" />}
-        </a> */}
+        Boost your project's quality and your time to market along side your own team's
+        productivity, expertise and happiness.
       </SubTextWrapper>
       <MyLink to={'LetsTalk'} spy smooth offset={-70} duration={500}>
         <Button btnType="Success">Start Today!</Button>
       </MyLink>
-      {/* <Prompt>{subText}</Prompt> */}
-      {/* <SmallVideoImage
-        src={welldoneVideo.thumbnail_url}
-        alt={'Watch explainer video'}
-        onClick={() => {
-          onVideoPlay(welldoneVideo);
-        }}
-      /> */}
-      {/* <Boosts>
-        <Boost>
-          <b>Boost your Front End.</b> Create an amazing, pixel perfect and responsive UI.{' '}
-        </Boost>
-        <Boost>
-          <b>Boot your Quality and Practices.</b> architecture and best practices
-        </Boost>
-        <Boost>
-          <b>Boot your Productivity.</b> architecture and best practices
-        </Boost>
-        <Boost>
-          <b>Boot your Team.</b> architecture and best practices
-        </Boost>
-      </Boosts>
-      <ButtonAndText>
-        <Text> {props.spice_up_project}</Text>
-        <ButtonSize>
-          <Link onClick={props.closed} to={'LetsTalk'} spy smooth offset={-70} duration={500}>
-            <Button btnType="Success">{props.button}</Button>
-          </Link>
-        </ButtonSize>
-      </ButtonAndText>
-    */}
     </Wrapper>
   );
 };
