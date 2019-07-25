@@ -125,8 +125,8 @@ const Text = ({welldoneVideo, subText, header, onVideoPlay}) => {
       <SubTextWrapper>
         We create amazing frontends and rock-solid backends while upgrading your inhouse team.
         <br />
-        Boost your project's quality and your time to market along side your own team's
-        productivity, expertise and happiness.
+        Boost your project's quality and your time to market alongside your own team's productivity,
+        expertise and happiness.
       </SubTextWrapper>
       <MyLink to={'LetsTalk'} spy smooth offset={-70} duration={500}>
         <Button btnType="Success">Start Today!</Button>
