@@ -26,9 +26,9 @@ const Content = styled.div`
 `;
 
 const SeoRenderers = {
-  og: ({name, value}) => <meta name={name} property={name} value={value} />,
+  og: ({name, value}) => <meta name={name} property={name} content={value} />,
   tag: ({name, value}) => React.createElement(name, null, value),
-  meta: ({name, value}) => <meta name={name} value={value} />,
+  meta: ({name, value}) => <meta name={name} content={value} />,
 };
 export default class BlogIndexPage extends Component {
   state = {
