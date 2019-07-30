@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import posed from 'react-pose';
+import AnimateHeight from 'react-animate-height';
 import styled from 'styled-components';
 import {RichText} from 'prismic-reactjs';
-import {media} from '../../../theme';
+import { media } from '../../../theme';
 import {Header as BaseHeader} from '../../UI/Typography';
-
-const A = styled.a`
-  padding: 1rem;
-  padding-bottom: 0;
-`;
+import circuitSVG from '../../../assets/graphics/circuit.svg';
+import PromotedCustomers from './PromotedCustomers';
+import AllCustomers from './AllCustomers';
+import TVFlash from './TVFlash';
+import MoreButton from './MoreButton';
 
 const Root = styled.div`
   &&& {
@@ -17,35 +17,26 @@ const Root = styled.div`
   }
 
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   font-size: 2rem;
-  align-items: center;
+  align-items: start;
   text-align: left;
   color: white;
-
-  /* margin-bottom: 4rem; */
+  background: linear-gradient(195deg, rgba(31, 64, 157, 1) 0%, rgba(45, 36, 99, 1) 49.9%, rgba(78, 15, 130, 1) 100%);
+  overflow: hidden;
 
   & > div {
+    z-index: 10;
     ${media.minSmallDesktop`
       padding: 0 10rem;
     `}
   }
+
   ${media.maxSmallDesktop`
-    padding: 4rem 2rem;
+    align-items: center;
+    padding: 4rem 2rem 6rem 2rem;
     background: #3F1B73;
-  `}
-`;
-
-const BG = styled.img`
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-
-  ${media.maxMobile`
-    display: none;
   `}
 `;
 
@@ -59,97 +50,37 @@ const Title = styled(BaseHeader)`
   `}
 `;
 
-const Icon = styled.img`
-  height: 3.5rem;
-  width: auto;
-  max-width: 17rem;
+const Circuit = styled.div`
+  position: absolute;
+  background-image: url(${circuitSVG});
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 29rem;
+  width: 32rem;
 
-  ${media.maxMobile`
-  /* max-width: 20rem; */
-  height: 6rem;
-  max-width: 25rem;
-`};
-  z-index: 1;
-`;
 
-const CustomerAnim = posed.div({
-  initHide: {
-    x: -50,
-    opacity: 0.01,
-    transition: {duration: 0},
-  },
-  show: {
-    x: 0,
-    opacity: 1,
-    delay: ({i}) => 200 + i * 100,
-    transition: {duration: 500, ease: 'easeOut'},
-  },
-  hide: {
-    x: 50,
-    opacity: 0.01,
-    delay: 300,
-    transition: {duration: 500, ease: 'easeIn'},
-  },
-});
-
-const AnimatedCustomer = styled(CustomerAnim)`
-  display: flex;
-  /* flex-direction: row; */
-  align-items: 'center';
-  justify-content: 'center';
-  width: 19rem;
-  height: 6rem;
-`;
-
-const CustomerWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 8rem;
-  margin: auto;
-
-  ${media.maxSmallDesktop`
-  height: 5rem;
-  `}
-
-  ${media.maxMobile`
-    flex-direction: column;
-    justify-content: space-between;
-    height: 37rem;
-    margin-top: 5rem;
+  ${media.minSmallDesktop`
+    height: 27rem;
+    width: 17rem;
   `}
 `;
 
-const LineAnim = posed.div({
-  hide: {
-    scale: 0.01,
-    delay: ({i}) => i * 30,
-    transition: {duration: 250},
-  },
-  show: {
-    scale: 1,
-    delay: ({i}) => i * 100,
-    transition: {duration: 250},
-  },
-});
+const TopRightCircuit = styled(Circuit)`
+  right: -11rem;
+  top: -7rem;
+`;
 
-const Line = styled(LineAnim)`
-  width: 1px;
-  height: 4rem;
-  align-items: center;
-  background: #979797;
-  margin: 2rem;
-
-  ${media.maxMobile`
-    display: none;
-  `};
+const BottomLeftCircuit = styled(Circuit)`
+  left: -10rem;
+  bottom: -5rem;
 `;
 
 export default class TestCustomers2 extends Component {
   state = {
     visibleCustomers: [],
     customerPose: 'initHide',
+    showMore: false,
+    showFlash: false
   };
 
   customerIndex = 0;
@@ -176,6 +107,25 @@ export default class TestCustomers2 extends Component {
   showCustomers = () => {
     this.setState({customerPose: 'show'});
   };
+  
+  flashTimeOuts = [];
+
+  toggleShowMore = () => {
+
+    this.flashTimeOuts.forEach(timeOut => {
+      clearTimeout(timeOut);
+    });
+    this.flashTimeOuts = [];
+
+    this.flashTimeOuts.push(setTimeout(() => {
+      this.setState({showFlash: true});
+    }, 100));
+    this.flashTimeOuts.push(setTimeout(() => {
+      this.setState({showFlash: false});
+    }, 500));
+
+    this.setState({showMore: !this.state.showMore});
+  }
 
   componentDidMount() {
     const promoted = this.props.customers
@@ -194,31 +144,43 @@ export default class TestCustomers2 extends Component {
   }
 
   render() {
+    const allCustomers = this.props.customers
+      .map(({data}) => data)
+      .sort((l, r) => l.order || Number.MAX_VALUE - r.order || Number.MAX_VALUE);
+
     return (
-      <Root id="C">
-        <BG src={this.props.text.primary.background.url} />
+      <Root id="C" pose={this.state.showMore ? 'all' : 'promoted'}>
+        {/* <BG src={this.props.text.primary.background.url} /> */}
+        <TopRightCircuit />
+        <BottomLeftCircuit />
         <Title>{RichText.asText(this.props.text.primary.title)}</Title>
-        <CustomerWrapper>
-          {this.state.visibleCustomers.map((itemProps, i, all) =>
-            itemProps.line ? (
-              <Line key={'line' + i} i={i} pose={this.state.customerPose} />
-            ) : (
-              <AnimatedCustomer
-                i={i}
-                key={'cust' + i}
-                pose={this.state.customerPose}
-                style={{justifyContent: 'center', alignItems: 'center'}}
-              >
-                <A
-                  title={itemProps.title}
-                  // style={{justifyContent: 'center', alignItems: 'center'}}
-                >
-                  <Icon src={itemProps.white_logo?.url} />
-                </A>
-              </AnimatedCustomer>
-            )
-          )}
-        </CustomerWrapper>
+        <AnimateHeight
+          duration={1000}
+          height={this.state.showMore ? '0' : 'auto'}
+          delay={this.state.showMore? 1000 : 0}
+        >
+          <PromotedCustomers
+            customers={this.state.visibleCustomers}
+            pose={this.state.showMore ? 'hide' : 'show'}
+            customerPose={this.state.customerPose}
+          />
+        </AnimateHeight>
+        <TVFlash pose={this.state.showFlash ? 'show' : 'hide'} />
+        <AnimateHeight
+          height={this.state.showMore ? 'auto' : '0'}
+          delay={this.state.showMore? 1000 : 0}
+          duration={allCustomers.length * (this.state.showMore ? 80 : 55)}
+        >
+          <AllCustomers
+            customers={allCustomers}
+            pose={this.state.showMore ? 'show' : 'hide'}
+            total={allCustomers.length}
+          />
+        </AnimateHeight>
+        <MoreButton
+          showMore={this.state.showMore}
+          onClick={this.toggleShowMore}
+        />
       </Root>
     );
   }
