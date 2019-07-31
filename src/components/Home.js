@@ -13,6 +13,7 @@ import LetsTalk from '../shared/components/Sections/LetsTalk/LetsTalk';
 import CoreValues from '../shared/components/Sections/CoreValues/CoreValues';
 import Projects from '../shared/components/Sections/Projects/Projects';
 import VideoModal from '../shared/components/VideoModal/VideoModal';
+import RopeModal from '../shared/components/Sections/RopeModal/RopeModal';
 
 const Content = styled.div`
   position: relative;
@@ -87,6 +88,7 @@ export default class BlogIndexPage extends Component {
             letsTalk={homepageBody.let_s_talk}
             contactItems={homepageBody.let_s_talk.items}
           />
+          <RopeModal ropeData={homepageBody.rope_modal.primary} onPlay={this.playVideo}/>
           <VideoModal open={!!video} onClose={this.closeVideoModal} video={video} />
         </Content>
       </>
