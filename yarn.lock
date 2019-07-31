@@ -4385,14 +4385,12 @@ gatsby-node-helpers@^0.3.0:
 gatsby-plugin-google-analytics@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.1.4.tgz#f0b64900e125cef03e930332c45063ece8263206"
-  integrity sha512-TyCazAUVMfMy6U/dHtXYLg9FTS7PtOBrRZkpp0Pdqe2M9qA10xG54JZpjJcLGUkZr5oeZPjNAvoiVyatrTcWiw==
   dependencies:
     "@babel/runtime" "^7.0.0"
 
 gatsby-plugin-hotjar@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-hotjar/-/gatsby-plugin-hotjar-1.0.1.tgz#f5703d7d2a354752e20230a0074d53c7287d8950"
-  integrity sha512-1iZIftJin3Ti51ho7HiGes2ZiXZhU0/sSe6OCvULy3F9hSpADrX5jU48ajnZnrS1O0lf7pyVfjvBBpXOawASHw==
   dependencies:
     babel-runtime "^6.26.0"
 
@@ -8312,6 +8310,13 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-animate-height@^2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/react-animate-height/-/react-animate-height-2.0.15.tgz#155f42e1ab0befe785b36b3e76233230172c1857"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+
 react-click-outside@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-click-outside/-/react-click-outside-3.0.1.tgz#6e77e84d2f17afaaac26dbad743cbbf909f5e24c"
@@ -8423,7 +8428,6 @@ react-modal@^3.8.2:
 react-player@^1.11.1:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/react-player/-/react-player-1.11.1.tgz#81d89151889b70b2d9cc2ed526fdb47fe636563c"
-  integrity sha512-bS4qls4eICdwklCm/jqjSvYZt1dl07biT8aAiXG9dMZ2s789cZtCDiHdwKP2FH82jHYk5oFfHXy7EL9lMjUfxA==
   dependencies:
     deepmerge "^3.0.0"
     load-script "^1.0.0"
