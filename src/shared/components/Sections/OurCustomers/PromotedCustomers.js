@@ -8,13 +8,13 @@ import { PromotedIcon } from './Icon'
 const LineAnim = posed.div({
   hide: {
     scale: 0.01,
-    delay: ({i}) => i * 30,
-    transition: {duration: 250},
+    delay: ({ i }) => i * 30,
+    transition: ({ animDuration }) => ({duration: animDuration})
   },
   show: {
     scale: 1,
-    delay: ({i}) => i * 100,
-    transition: {duration: 250},
+    delay: ({ i, delay }) => i * delay,
+    transition: ({ animDuration }) => ({duration: animDuration})
   },
 });
 
@@ -39,15 +39,21 @@ const PromotedCustomerAnim = posed.div({
   show: {
     x: 0,
     opacity: 1,
-    delay: ({i}) => 200 + i * 100,
-    transition: {duration: 500, ease: 'easeOut'},
+    delay: ({ i, delay, switchDuration }) => (0.2 * switchDuration) + (i * delay),
+    transition: ({ switchDuration }) => ({
+      duration: switchDuration * 0.5,
+      ease: 'easeOut'
+    })
   },
   hide: {
     x: 50,
     opacity: 0.01,
-    delay: 300,
-    transition: {duration: 500, ease: 'easeIn'},
-  },
+    delay: ({ switchDuration }) => switchDuration * 0.3,
+    transition: ({ switchDuration }) => ({
+      duration: switchDuration * 0.5,
+      ease: 'easeIn'
+    })
+  }
 });
 
 const PromotedCustomer = styled(PromotedCustomerAnim)`
@@ -98,12 +104,20 @@ const PromotedCustomers = props =>
 	<PromotedWrapper {...props}>
 		{props.customers.map((itemProps, i, all) =>
 			itemProps.line ? (
-				<Line key={'line' + i} i={i} pose={props.customerPose} />
+        <Line
+          key={'line' + i}
+          i={i}
+          pose={props.customerPose}
+          animDuration={props.switchDuration * 0.25}
+          delay={props.delay}
+          />
 			) : (
 				<PromotedCustomer
 					i={i}
 					key={'cust' + i}
-					pose={props.customerPose}
+          pose={props.customerPose}
+          switchDuration={props.switchDuration}
+          delay={props.delay}
 					style={{justifyContent: 'center', alignItems: 'center'}}
 				>
 					<A

@@ -40,12 +40,13 @@ const RegularCustomer = styled(RegularCustomerAnim)`
   display: flex;
   align-items: 'center';
   justify-content: 'center';
-  width: 20vw;
-  height: 6rem;
+  width: 23vw;
+  height: 7rem;
   padding: 1rem 4rem;
 
   ${media.minSmallDesktop`
     width: 13vw;
+    height: 6rem;
   `}
 `;
 

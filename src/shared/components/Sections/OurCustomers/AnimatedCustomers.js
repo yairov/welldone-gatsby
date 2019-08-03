@@ -10,6 +10,11 @@ import AllCustomers from './AllCustomers';
 import TVFlash from './TVFlash';
 import MoreButton from './MoreButton';
 
+// Promoted Animation Consts
+const switchPromotedLogosEvery = 7000;
+const promotedLogoSwitchDuration = 1000;
+const promptedLogoStaggerDelay = 100;
+
 const Root = styled.div`
   &&& {
     padding-top: 4rem;
@@ -102,6 +107,9 @@ export default class TestCustomers2 extends Component {
 
   hideCustomers = () => {
     this.setState({customerPose: 'hide'});
+    setTimeout(() => {
+      this.setState({customerPose: 'initHide'});
+    }, 0.8 * promotedLogoSwitchDuration);
   };
 
   showCustomers = () => {
@@ -134,13 +142,13 @@ export default class TestCustomers2 extends Component {
       .sort((l, r) => l.order || Number.MAX_VALUE - r.order || Number.MAX_VALUE);
     this.loadCustomers(promoted);
     this.showCustomers();
-    const customersAnimInterval = setInterval(() => {
+    setInterval(() => {
       this.hideCustomers();
-      const loadInterval = setTimeout(() => {
+      setTimeout(() => {
         this.loadCustomers(promoted);
         this.showCustomers();
-      }, 1000);
-    }, 10000);
+      }, promotedLogoSwitchDuration);
+    }, switchPromotedLogosEvery);
   }
 
   render() {
@@ -150,7 +158,6 @@ export default class TestCustomers2 extends Component {
 
     return (
       <Root id="C" pose={this.state.showMore ? 'all' : 'promoted'}>
-        {/* <BG src={this.props.text.primary.background.url} /> */}
         <TopRightCircuit />
         <BottomLeftCircuit />
         <Title>{RichText.asText(this.props.text.primary.title)}</Title>
@@ -163,6 +170,8 @@ export default class TestCustomers2 extends Component {
             customers={this.state.visibleCustomers}
             pose={this.state.showMore ? 'hide' : 'show'}
             customerPose={this.state.customerPose}
+            switchDuration={promotedLogoSwitchDuration}
+            delay={promptedLogoStaggerDelay}
           />
         </AnimateHeight>
         <TVFlash pose={this.state.showFlash ? 'show' : 'hide'} />

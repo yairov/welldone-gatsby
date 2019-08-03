@@ -5,7 +5,7 @@ import { media } from '../../../theme';
 export const PromotedIcon = styled.img`
   height: 3.5rem;
   width: auto;
-  max-width: 17rem;
+  max-width: 12rem;
   z-index: 1;
 
   ${media.maxMobile`
@@ -16,7 +16,7 @@ export const PromotedIcon = styled.img`
 
 export const RegularIcon = styled(PromotedIcon)`
   ${media.maxMobile`
-  height: 4rem;
+  height: 6.5rem;
   max-width: 13rem;
 `};
 `;
