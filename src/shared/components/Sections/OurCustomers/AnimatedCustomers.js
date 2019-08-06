@@ -80,6 +80,12 @@ const BottomLeftCircuit = styled(Circuit)`
   bottom: -5rem;
 `;
 
+const AnimatedHeightNoPadding = styled(AnimateHeight)`
+  &&{
+    padding: 0;
+  }
+`;
+
 export default class TestCustomers2 extends Component {
   state = {
     visibleCustomers: [],
@@ -175,7 +181,7 @@ export default class TestCustomers2 extends Component {
           />
         </AnimateHeight>
         <TVFlash pose={this.state.showFlash ? 'show' : 'hide'} />
-        <AnimateHeight
+        <AnimatedHeightNoPadding
           height={this.state.showMore ? 'auto' : '0'}
           delay={this.state.showMore? 1000 : 0}
           duration={allCustomers.length * (this.state.showMore ? 80 : 55)}
@@ -185,7 +191,7 @@ export default class TestCustomers2 extends Component {
             pose={this.state.showMore ? 'show' : 'hide'}
             total={allCustomers.length}
           />
-        </AnimateHeight>
+        </AnimatedHeightNoPadding>
         <MoreButton
           showMore={this.state.showMore}
           onClick={this.toggleShowMore}
