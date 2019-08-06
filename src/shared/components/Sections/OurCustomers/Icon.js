@@ -15,8 +15,6 @@ export const PromotedIcon = styled.img`
 `;
 
 export const RegularIcon = styled(PromotedIcon)`
-  height: 4.5rem;
-  
   ${media.maxMobile`
   height: 6.5rem;
   max-width: 13rem;
