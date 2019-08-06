@@ -68,7 +68,7 @@ const Size = styled.div`
   `}
 `;
 
-const MainSlider = ({items, video, welldoneVideo, onVideoPlay}) => {
+const MainSlider = ({ welldoneVideo, onVideoPlay }) => {
   return (
     <Content>
       <GlobalStyle />
@@ -76,7 +76,7 @@ const MainSlider = ({items, video, welldoneVideo, onVideoPlay}) => {
       <LeftTopTriangle />
       <LeftBottomTriangle />
       <Size>
-        <SlideView {...{items, video, welldoneVideo, onVideoPlay}} />
+        <SlideView {...{ welldoneVideo, onVideoPlay }} />
       </Size>
     </Content>
   );

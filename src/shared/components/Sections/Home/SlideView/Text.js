@@ -118,7 +118,7 @@ const MyLink = styled(Link)`
   x-margin: 0 auto;
 `;
 
-const Text = ({welldoneVideo, subText, header, onVideoPlay}) => {
+const Text = ({ header }) => {
   return (
     <Wrapper>
       <Header>{header}</Header>
