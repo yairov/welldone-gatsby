@@ -61,7 +61,6 @@ export default class BlogIndexPage extends Component {
 
     const seoFields = seo[0].data.field;
 
-    console.log('home props:', this.props);
     return (
       <>
         <Helmet>{seoFields.map(({type, name, value}) => SeoRenderers[type]({name, value}))}</Helmet>

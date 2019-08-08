@@ -93,6 +93,7 @@ const Projects = ({projectsBlock, projects, layers, onVideoPlay}) => {
     .map(({data}) => data)
     .sort((l, r) => (l.order || Number.MAX_VALUE) - (r.order || Number.MAX_VALUE))
     .filter(p => p.promoted === 'yes');
+  console.log('promoted projects:', promoted);
   const itemsPerLine = 4;
   const promotedLines = promoted.reduce((result, curr, index) => {
     if (index % itemsPerLine === 0) {

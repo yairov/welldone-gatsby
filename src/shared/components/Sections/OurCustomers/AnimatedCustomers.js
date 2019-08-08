@@ -137,7 +137,7 @@ export default class TestCustomers2 extends Component {
     const promoted = this.props.customers
       .map(({data}) => data)
       .filter(c => c.promoted === 'yes')
-      .sort((l, r) => l.order || Number.MAX_VALUE - r.order || Number.MAX_VALUE);
+      .sort((l, r) => (l.order || Number.MAX_VALUE) > (r.order || Number.MAX_VALUE) ? 1 : -1);
     this.loadCustomers(promoted);
     this.showCustomers();
     const customersAnimInterval = setInterval(() => {
@@ -150,13 +150,15 @@ export default class TestCustomers2 extends Component {
   }
 
   render() {
-    const allCustomers = this.props.customers
-      .map(({data}) => data)
-      .sort((l, r) => l.order || Number.MAX_VALUE - r.order || Number.MAX_VALUE);
+    const allCustomers = this.props.customers.map(({ data }) => data);
+    const promoted = allCustomers.filter(c => c.promoted === 'yes')
+      .sort((l, r) => (l.order || Number.MAX_VALUE) > (r.order || Number.MAX_VALUE) ? 1 : -1);
+    const unPromoted = allCustomers.filter(c => c.promoted === 'no')
+    .sort((l, r) => (l.order || Number.MAX_VALUE) > (r.order || Number.MAX_VALUE) ? 1 : -1);
+    const sortedCustomers = [ ...promoted, ...unPromoted];
 
     return (
       <Root id="C" pose={this.state.showMore ? 'all' : 'promoted'}>
-        {/* <BG src={this.props.text.primary.background.url} /> */}
         <TopRightCircuit />
         <BottomLeftCircuit />
         <Title>{RichText.asText(this.props.text.primary.title)}</Title>
@@ -175,12 +177,11 @@ export default class TestCustomers2 extends Component {
         <AnimatedHeightNoPadding
           height={this.state.showMore ? 'auto' : '0'}
           delay={this.state.showMore? 1000 : 0}
-          duration={allCustomers.length * (this.state.showMore ? 80 : 55)}
+          duration={sortedCustomers.length * (this.state.showMore ? 80 : 55)}
         >
           <AllCustomers
-            customers={allCustomers}
+            customers={sortedCustomers}
             pose={this.state.showMore ? 'show' : 'hide'}
-            total={allCustomers.length}
           />
         </AnimatedHeightNoPadding>
         <MoreButton
