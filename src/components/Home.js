@@ -67,7 +67,6 @@ export default class BlogIndexPage extends Component {
         <Helmet>{seoFields.map(({type, name, value}) => SeoRenderers[type]({name, value}))}</Helmet>
         <Content>
           <MainSlider
-            video={video}
             welldoneVideo={homepageBody.rope_modal.primary.video}
             onVideoPlay={this.playVideo}
           />

@@ -20,7 +20,7 @@
     "gatsby-source-prismic": "^2.3.0-alpha.3",
     "gatsby-transformer-sharp": "^2.1.19",
     "link-react": "^3.0.0",
-    "lottie-web": "^5.5.4",
+    "lottie-web": "^5.5.7",
     "prismic-javascript": "^2.0.3",
     "prismic-reactjs": "^1.0.0",
     "prop-types": "^15.7.2",

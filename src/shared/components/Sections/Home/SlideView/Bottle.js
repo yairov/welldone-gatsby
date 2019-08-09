@@ -1,37 +1,53 @@
-import React, {useRef, useEffect} from 'react';
+import React, { Component } from 'react';
+import lottie from 'lottie-web';
+import importAnimation from '../../../../../../static/lottie/animtionImporter';
 
-import Lottie from 'react-lottie';
-import animationData from '../../../../../../static/lottie/bottle-start.json';
+export default class Bottle extends Component {
+    
+  container = React.createRef();
+  animationOptions = null;
+  animationData = null;
+  loop = (event) => {
 
-// const eventListeners = [
-//   'complete',
-//   'loopComplete',
-//   'enterFrame',
-//   'segmentStart',
-//   'config_ready',
-//   'data_ready',
-//   'DOMLoaded',
-//   'destroy',
-// ].map(eventName => ({
-//   eventName,
-//   callback: e => console.log(),
-// }));
-
-// onClick={() => console.log(ref.current)}
-// eventListeners={eventListeners}
-
-export default function Bottle({video}) {
-  const ref = useRef();
-  useEffect(() => {
-    if (video || !ref.current) {
-      return undefined;
+    if (!event.type || event.type !== 'enterFrame') {
+      return;
     }
-    const interval = setInterval(() => ref.current.anim.goToAndPlay(800), 7000);
-    return () => clearInterval(interval);
-  }, [video]);
-  return (
-    !video && (
-      <Lottie ref={ref} width="100%" options={{animationData}} segments={[1, 2]} speed={0} />
-    )
-  );
+
+    if (event.currentTime > 575) {
+      this.anim.goToAndPlay(340, true);
+    }
+  };
+  componentDidMount = () => {
+      this.animationData = importAnimation('bottle-repeater.json');
+      this.animationOptions = {
+          container: this.container,
+          animationData: this.animationData,
+          loop: true,
+          autoplay: true,
+          name: 'title',
+          renderer: 'svg',
+          rendererSettings: {
+              progressiveLoad: true
+          },
+
+      };
+      this.anim = lottie.loadAnimation(this.animationOptions);
+      this.anim.addEventListener('enterFrame', this.loop);
+  };
+
+  componentWillUnmount() {
+    this.anim.removeEventListener('enterFrame', this.loop);
+  }
+  
+
+  render() {
+      return (
+          <div
+            {...this.props}
+            ref={elem => {this.container = elem}}
+          >
+              
+          </div>
+      )
+  }
 }
