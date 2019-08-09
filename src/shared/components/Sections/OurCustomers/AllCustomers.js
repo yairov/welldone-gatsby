@@ -54,6 +54,7 @@ const AllCustomers = props =>
 	<AllWrapper>
 		{props.customers.map((itemProps, i, all) => (
       <RegularCustomer
+        key={'reg-cust-' + i}
         i={i}
         total={all.length}
         pose={props.pose}
