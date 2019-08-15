@@ -5,8 +5,7 @@ import { RichText } from 'prismic-reactjs';
 import posed, { PoseGroup } from 'react-pose';
 import ropeSVG from './Rope.svg';
 import ropeTipSVG from './rope-tip.svg';
-import playIcon from '../../../assets/icons/play.png';
-import { anticipate } from '@popmotion/easing';
+import playIcon from '../../../assets/icons/play.svg';
 
 const ModalAnim = posed.div({
   open: {
@@ -93,8 +92,9 @@ const VideoThumb = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
+    opacity: 0.4;
     height: 100%;
-    width: 30%;
+    width: 23%;
   }
 `;
 
