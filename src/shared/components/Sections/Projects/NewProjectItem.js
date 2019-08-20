@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
-// import ReactPlayer from 'react-player';
-import {RichText} from 'prismic-reactjs';
+import React, { useState } from 'react';
+import { RichText } from 'prismic-reactjs';
 import styled from 'styled-components';
-import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
-// import Backdrop from '../../UI/Backdrop/Backdrop';
-import {media} from '../../../theme';
+import { Header as BaseHeader, SubHeader as BaseSubHeader } from '../../UI/Typography';
+import { media } from '../../../theme';
 import _VideoImage from '../../VideoImage';
+import Description from './ProjectDescription';
 
 const Root = styled.div`
   width: 36rem;
@@ -22,21 +21,10 @@ const Title = styled(BaseHeader)`
   text-transform: uppercase;
 `;
 
-const SubTitle = styled(BaseSubHeader)`
-  font-weight: 100;
-  p {
-    margin-bottom: 1rem;
-  }
-`;
-
 const Icon = styled.img`
   width: 2rem;
   height: 2rem;
   padding: 0.5rem;
-
-  /* ${media.maxSmallDesktop`
-    padding: 0 25rem;
-  `} */
 `;
 
 const Icons = styled.div`
@@ -52,6 +40,14 @@ const VideoImage = styled(_VideoImage)`
   border: solid 1px #ddd;
 `;
 
+const MoreButton = styled.div`
+  cursor: pointer;
+  height: 2rem;
+  width: 100%;
+  color: #1FABF3;
+  text-align: center;
+`;
+
 function Layers({layers, layersMeta}) {
   return (
     <Icons>
@@ -65,11 +61,14 @@ function Layers({layers, layersMeta}) {
   );
 }
 
+
 export default function ProjectItem({
   layers: layersMeta,
-  project: {title, description, thumbnail, video, customer, technologies, layers},
+  project: {title, description, thumbnail, video, layers},
   onVideoPlay,
 }) {
+  const [expendDecription, setExpendDecription] = useState(false);
+
   return (
     <Root>
       <VideoImage
@@ -81,7 +80,15 @@ export default function ProjectItem({
       />
       <Title>{RichText.asText(title)}</Title>
       <Layers {...{layers, layersMeta}} />
-      <SubTitle>{RichText.render(description)}</SubTitle>
+      <Description
+        text={description}
+        extend={expendDecription}
+      />
+      <MoreButton
+        onClick={() => { setExpendDecription(!expendDecription); }}
+      >
+        {expendDecription ? 'Less...' : 'More...'}
+      </MoreButton>
     </Root>
   );
 }
