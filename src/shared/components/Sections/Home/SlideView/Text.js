@@ -6,7 +6,6 @@ import Button from '../../../UI/Button/Button';
 import VideoImage from '../../../../components/VideoImage';
 import {media} from '../../../../theme/media';
 import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../../UI/Typography';
-import playIcon from '../../../../assets/icons/play.png';
 
 const applyRenderCss = css`
   div {

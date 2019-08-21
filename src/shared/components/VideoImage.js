@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import playIcon from '../assets/icons/play.png';
+import playIcon from '../assets/icons/play.svg';
 import {media} from '../theme/media';
 
 const VideoImage = styled.a`
@@ -15,27 +15,23 @@ const VideoImage = styled.a`
   :after {
     content: '';
     background-image: url(${playIcon});
-    background-size: 40%;
+    background-size: 16%;
     background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgba(0.5, 0.5, 0.5, 0.5);
+    background-position: bottom 1rem right 1rem;
     font-size: 2rem;
     display: block;
     width: 100%;
     height: 100%;
-    opacity: 0;
+    opacity: 0.3;
     transition: opacity 0.25s ease-in-out;
   }
 
-  :hover:after {
-    opacity: 1;
+  :hover {
+    :after {
+      background-color: #c0c0c0;
+      opacity: 0.4;
+    }
   }
-
-  ${media.maxSmallDesktop`
-  :after {
-    opacity: 1;
-  }
-  `}
 `;
 
 export default VideoImage;
