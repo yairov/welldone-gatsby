@@ -26,6 +26,12 @@ const VideoImage = styled.a`
     transition: opacity 0.25s ease-in-out;
   }
 
+  :hover {
+    :after {
+      background-color: #c0c0c0;
+      opacity: 0.4;
+    }
+  }
 `;
 
 export default VideoImage;
