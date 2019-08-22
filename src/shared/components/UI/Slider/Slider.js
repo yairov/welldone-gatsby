@@ -1,6 +1,6 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import {withState, compose} from 'recompose';
-//import classes from './Logo.css'
 import styled from 'styled-components';
 import {media} from '../../../theme/index';
 import ellipse from '../../../assets/icons/ellipse.svg';
@@ -8,6 +8,7 @@ import ellipse from '../../../assets/icons/ellipse.svg';
 const Circle = styled.img`
   width: ${({isActive}) => (isActive ? 1.7 : 1.15)}rem;
 `;
+
 const Wrapper = styled.div`
   justify-content: center;
   margin-top: 1.5rem;
@@ -23,9 +24,8 @@ const Wrapper = styled.div`
 `;
 
 const Root = styled.div`
-  
   overflow: hidden;
-  max-width:100%;
+  max-width: 100%;
   &&& {
     ${media.minSmallDesktop`
       padding-right: ${({innerPadding = 0}) => innerPadding};
@@ -35,9 +35,7 @@ const Root = styled.div`
   ${media.minSmallDesktop`
     display:block; 
   `};
-
 `;
-
 
 const ChildrenWrapper = styled.div`
   max-height: 100%;
@@ -60,22 +58,39 @@ const ChildrenWrapper = styled.div`
   }
 `;
 
+const Slider = ({
+  hideOnMobile,
+  className,
+  currentSlide,
+  controlsCss,
+  children,
+  setCurrentSlide,
+}) => {
+  const handleClick = e => {
+    setCurrentSlide(e.currentTarget.getAttribute('tabIndex'));
+  };
 
-const slider = (props) => {
-    return (
-        <>
-            <Root hideOnMobile={props.hideOnMobile} className={props.className}>
-            <ChildrenWrapper currentSlide={props.currentSlide}>{props.children}</ChildrenWrapper>
-            </Root>
-            <Wrapper controlsCss={props.controlsCss} hideOnMobile={props.hideOnMobile}>
-                {props.children.map((item, idx) => (
-                    <i key={idx} onClick={() => props.setCurrentSlide(idx)}>
-                    <Circle isActive={idx === props.currentSlide} src={ellipse} />
-                    </i>
-                ))}
-            </Wrapper>
-        </>
-    )
+  return (
+    <>
+      <Root hideOnMobile={hideOnMobile} className={className}>
+        <ChildrenWrapper currentSlide={currentSlide}>{children}</ChildrenWrapper>
+      </Root>
+      <Wrapper controlsCss={controlsCss} hideOnMobile={hideOnMobile}>
+        {children.map((_, idx) => (
+          <i
+            // eslint-disable-next-line react/no-array-index-key
+            key={idx}
+            tabIndex={idx}
+            onClick={handleClick}
+            onKeyDown={handleClick}
+            role="link"
+          >
+            <Circle isActive={idx === currentSlide} src={ellipse} />
+          </i>
+        ))}
+      </Wrapper>
+    </>
+  );
 };
 
-export default compose(withState('currentSlide', 'setCurrentSlide', 0))(slider);
+export default compose(withState('currentSlide', 'setCurrentSlide', 0))(Slider);

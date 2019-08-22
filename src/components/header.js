@@ -1,47 +1,47 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import Toolbar from '../shared/components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../shared/components/Navigation/SideDrawer/SideDrawer';
+import {ButtonTypes} from './utilities/enums';
 
-class Header extends Component {
-  state = {
-    showSideDrawer: false,
-    btnType: 'Success',
+const Header = () => {
+  const [showSideDrawer, setShowSideDrawer] = useState(false);
+  const [buttonType, setButtonType] = useState(ButtonTypes.Success);
+
+  const sideDrawerClosedHandler = () => {
+    setShowSideDrawer(false);
   };
 
-  sideDrawerClosedHandler = () => {
-    this.setState({showSideDrawer: false});
-  };
-
-  sideDrawerToggleHandler = () => {
-    this.setState(prevState => {
-      return {showSideDrawer: !prevState.showSideDrawer};
+  const sideDrawerToggleHandler = () => {
+    setShowSideDrawer(prevState => {
+      return !prevState;
     });
   };
 
-  btnTypeSuccessHandler = () => {
-    this.setState({
-      btnType: 'Danger',
-    });
+  const buttonTypeSuccessHandler = () => {
+    setButtonType(ButtonTypes.Danger);
   };
 
-  btnTypeDangerHandler = () => {
-    this.setState({btnType: 'Success'});
+  const buttonTypeDangerHandler = () => {
+    setButtonType(ButtonTypes.Success);
   };
 
-  render() {
-    const {btnType, showSideDrawer} = this.state;
-    return (
-      <>
-        <Toolbar
-          drawerToggleClicked={this.sideDrawerToggleHandler}
-          btnType={btnType}
-          btnTypeSuccessHandler={this.btnTypeSuccessHandler}
-          btnTypeDangerHandler={this.btnTypeDangerHandler}
-        />
-        <SideDrawer open={showSideDrawer} closed={this.sideDrawerClosedHandler} />
-      </>
-    );
-  }
-}
+  // React.useEffect(() => {
+  //   // console.log('whatt');
+  //   console.log(ButtonTypes.Success);
+  //   console.log(ButtonTypes.Danger);
+  // }, []);
+
+  return (
+    <>
+      <Toolbar
+        drawerToggleClicked={sideDrawerToggleHandler}
+        buttonType={buttonType}
+        buttonTypeSuccessHandler={buttonTypeSuccessHandler}
+        buttonTypeDangerHandler={buttonTypeDangerHandler}
+      />
+      <SideDrawer open={showSideDrawer} closed={sideDrawerClosedHandler} />
+    </>
+  );
+};
 
 export default Header;

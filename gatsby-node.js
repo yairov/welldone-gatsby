@@ -39,8 +39,10 @@ async function loadContent() {
   let page = 1;
   let totalPages;
   do {
+    // eslint-disable-next-line no-await-in-loop
     const res = await api.query('', {pageSize: 100, page});
     allDocs.push(...res.results);
+    // eslint-disable-next-line prefer-destructuring
     totalPages = res.totalPages;
     page += 1;
   } while (page < totalPages);
@@ -57,12 +59,9 @@ async function loadContent() {
   // console.log(content)
 }
 
-exports.createPages = async props => {
+exports.createPages = async ({actions: {createPage}}) => {
   const allContent = await loadContent();
-  console.log(Object.keys(allContent), JSON.stringify(allContent.project, null, 2));
-  const {
-    actions: {createPage},
-  } = props;
+  // console.log(Object.keys(allContent), JSON.stringify(allContent.project, null, 2));
   createPage({
     path: '/',
     component: path.resolve('./src/templates/index.js'),

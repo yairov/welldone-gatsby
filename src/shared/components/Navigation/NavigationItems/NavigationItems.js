@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import NavigationItem from './NavigationItem/NavigationItem';
-import styled, {css} from 'styled-components';
 import {media} from '../../../theme/media';
+
 const NavigationItems = styled.div`
   margin: auto;
   padding: 0;
@@ -14,25 +15,26 @@ const NavigationItems = styled.div`
         flex-direction: row;
   `}
 `;
+
 const Margin = styled.div`
   margin: auto 0;
 `;
 
-const navigationItems = props => {
+const navigationItems = ({closed}) => {
   // console.log(props)
   return (
     <Margin>
       <NavigationItems>
-        <NavigationItem closed={props.closed} link="Projects">
+        <NavigationItem closed={closed} link="Projects">
           Latest Projects
         </NavigationItem>
-        <NavigationItem closed={props.closed} link="CustomersSays">
+        <NavigationItem closed={closed} link="CustomersSays">
           What Customers Says
         </NavigationItem>
-        <NavigationItem closed={props.closed} link="WhatWeDo">
+        <NavigationItem closed={closed} link="WhatWeDo">
           What We Do
         </NavigationItem>
-        <NavigationItem closed={props.closed} link="CoreValues">
+        <NavigationItem closed={closed} link="CoreValues">
           Who We Are
         </NavigationItem>
         <NavigationItem simple>
@@ -40,7 +42,7 @@ const navigationItems = props => {
             Blog
           </a>
         </NavigationItem>
-        <NavigationItem closed={props.closed} link="Join">
+        <NavigationItem closed={closed} link="Join">
           Join Us
         </NavigationItem>
       </NavigationItems>

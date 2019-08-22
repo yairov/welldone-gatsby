@@ -1,6 +1,6 @@
 import colors from './colors';
-export * from './media';
 
+export * from './media';
 
 const fonts = {
   desktop: {xSmall: '1.4rem', small: '1.5rem', medium: '1.6rem', xMedium: '1.7rem', large: '3rem'},

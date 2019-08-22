@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Header as BaseHeader} from '../../../UI/Typography';
-//import {media} from '../../../../theme';
 
 const Root = styled.div`
   display: flex;
@@ -16,17 +15,14 @@ const Icon = styled.img`
 `;
 
 const Header = styled(BaseHeader)`
-  color: #1FABF3;
+  color: #1fabf3;
 `;
 
-const IconWithText = (props) => (
-  <Root >
-    <Icon src={props.src} />
-     <Header>{props.header}</Header>
+const IconWithText = ({src, header}) => (
+  <Root>
+    <Icon src={src} />
+    <Header>{header}</Header>
   </Root>
 );
 
 export default IconWithText;
-
-
-

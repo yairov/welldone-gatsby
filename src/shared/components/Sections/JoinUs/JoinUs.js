@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {media} from '../../../theme/media';
-
-import {RichText} from 'prismic-reactjs';
-import {Header as BaseHeader} from '../../UI/Typography';
-
 import {Element} from 'react-scroll';
+import {RichText} from 'prismic-reactjs';
+import {media} from '../../../theme/media';
+import {Header as BaseHeader} from '../../UI/Typography';
 
 const Wrapper = styled(Element)`
   background-image: linear-gradient(257deg, #d9f1f5, #347cac);
@@ -15,8 +13,7 @@ const Wrapper = styled(Element)`
   &&& {
     ${media.minSmallDesktop`
     padding: 4rem 13rem;
-  `}
-    /* padding-bottom: 2rem;
+  `} /* padding-bottom: 2rem;
     padding-top: 2rem; */
   }
 `;
@@ -47,7 +44,6 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-
 
     ${media.minSmallDesktop`
     
@@ -101,4 +97,5 @@ const JoinUs = ({joinUs: {primary}}) => {
     </Wrapper>
   );
 };
+
 export default JoinUs;

@@ -1,6 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import { media } from '../../../theme';
+import {media} from '../../../theme';
 
 export const PromotedIcon = styled.img`
   height: 3.5rem;
@@ -16,7 +15,7 @@ export const PromotedIcon = styled.img`
 
 export const RegularIcon = styled(PromotedIcon)`
   height: 4.5rem;
-  
+
   ${media.maxMobile`
   height: 6.5rem;
   max-width: 13rem;

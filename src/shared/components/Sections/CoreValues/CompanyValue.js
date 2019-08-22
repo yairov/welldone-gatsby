@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import { media } from '../../../../shared/theme';
+import {media} from '../../../../shared/theme';
 
 const turquoiseCss = css`
   background: rgba(183, 240, 197, 0.1);
@@ -8,7 +8,7 @@ const turquoiseCss = css`
 
 const inverseCss = css`
   background-color: white;
-  color: #1FABF3;
+  color: #1fabf3;
 `;
 
 const Root = styled.div`
@@ -23,7 +23,7 @@ const Root = styled.div`
   box-sizing: border-box;
   padding: 1.7rem 3rem;
   background: rgba(31, 171, 243, 0.1);
-  color: #41566E;
+  color: #41566e;
   ${({inverse}) => inverse && inverseCss}
   ${({turquoise}) => turquoise && turquoiseCss};
 `;
@@ -37,7 +37,6 @@ const Icon = styled.img`
 `;
 
 const Wrapper = styled.div`
-
   font-size: 2.3rem;
 
   ${media.maxMobile`
@@ -47,11 +46,10 @@ const Wrapper = styled.div`
   ${media.maxMinimum`
     font-size: 1.7rem;
   `}
-  
 `;
 
 const CompanyValue = ({src, children, inverse, turquoise}) => (
-  <Root  inverse={inverse} turquoise={turquoise}>
+  <Root inverse={inverse} turquoise={turquoise}>
     <Wrapper>{children}</Wrapper>
     <Icon src={src} />
   </Root>

@@ -1,4 +1,7 @@
-import React, {Component, createRef} from 'react';
+/* eslint-disable no-mixed-operators */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable react/destructuring-assignment */
+import React, {useState, useCallback, useEffect} from 'react';
 import './videoModal.css';
 import Modal from 'react-modal';
 import _ReactPlayer from 'react-player';
@@ -10,41 +13,33 @@ const ReactPlayer = styled(_ReactPlayer)`
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden
+  overflow: hidden;
 `;
 
-export default class VideoModal extends Component {
-  playerRef = createRef();
+const VideoModal = ({onClose, video}) => {
+  const [contentStyle, setContentStyle] = useState({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  });
 
-  state = {
-    contentStyle: {
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-    },
-  };
+  const handleVideoEnd = useCallback(() => {
+    setTimeout(onClose, 1000);
+  }, [onClose]);
 
-  playVideo = event => {
-    this.playerRef.playing = true;
-  };
-
-  handleVideoEnd = () => {
-    setTimeout(this.props.onClose, 1000);
-  };
-
-  calculatestyle = () => {
+  const calculatestyle = useCallback(() => {
     const winWidth = window.innerWidth;
     const winHeight = window.innerHeight;
     const wMargin = winWidth * 0.05;
     const hMargin = winHeight * 0.05;
     let ratio = 9 / 16;
-    let height = 0,
-      width = 0;
-    let top = 0,
-      left = 0,
-      bottom = 0,
-      right = 0;
+    let height = 0;
+    let width = 0;
+    let top = 0;
+    let left = 0;
+    let bottom = 0;
+    let right = 0;
     if (winHeight / winWidth >= ratio) {
       width = winWidth - 2 * wMargin;
       height = width * ratio;
@@ -62,92 +57,90 @@ export default class VideoModal extends Component {
       right = left;
     }
 
-    this.setState({
-      contentStyle: {
-        top,
-        left,
-        bottom,
-        right,
-        zIndex: 1150
-      },
+    setContentStyle({
+      top,
+      left,
+      bottom,
+      right,
+      zIndex: 1150,
     });
-  };
+  }, [setContentStyle]);
 
-  componentDidMount = () => {
-    this.calculatestyle();
-    window.addEventListener('resize', this.calculatestyle);
-  };
-
-  componentWillUnmount = () => {
-    window.removeEventListener('resize', this.calculatestyle);
-  };
-
-  getVideoUrl() {
-    const video = this.props?.video;
+  const getVideoUrl = useCallback(() => {
     if (!video) {
       return null;
     }
     if (video.provider_name === 'Vimeo') {
       return video.provider_url + video.video_id;
-    } else {
-      return video.embed_url;
     }
-  }
 
-  render() {
-    return (
-      <Modal
-        isOpen={!!this.props.video}
-        onRequestClose={this.props.onClose}
-        shouldCloseOnOverlayClick={true}
-        contentLabel="Video"
-        closeTimeoutMS={1000}
-        style={{
-          overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            zIndex: 1150
-          },
-          content: this.state.contentStyle,
-        }}
-      >
-        {/* <StyledPlayer
+    return video.embed_url;
+  }, [video]);
+
+  useEffect(() => {
+    calculatestyle();
+    window.addEventListener('resize', calculatestyle);
+
+    return () => {
+      window.removeEventListener('resize', calculatestyle);
+    };
+    // eslint-disable-next-line
+  }, []);
+
+  return (
+    <Modal
+      isOpen={!!video}
+      onRequestClose={onClose}
+      shouldCloseOnOverlayClick
+      contentLabel="Video"
+      closeTimeoutMS={1000}
+      style={{
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          zIndex: 1150,
+        },
+        content: contentStyle,
+      }}
+    >
+      {/* <StyledPlayer
           dangerouslySetInnerHTML={{
-            __html: this.props?.video?.html?.replace(/(height|width)="[^"]*"/gi, '$1="100%"'),
+            __html: props?.video?.html?.replace(/(height|width)="[^"]*"/gi, '$1="100%"'),
           }}
 		/> */}
 
-        <ReactPlayer
-          url={this.getVideoUrl()}
-          className="react-player"
-          width="100%"
-          height="100%"
-          playing
-          onEnded={this.handleVideoEnd}
-        />
+      <ReactPlayer
+        url={getVideoUrl()}
+        className="react-player"
+        width="100%"
+        height="100%"
+        playing
+        onEnded={handleVideoEnd}
+      />
 
-        {/* <StyledPlayer
+      {/* <StyledPlayer
 		
 
 
 		 || ''
 
 		
-          url={cleanUrl(this.props.videoUrl)}
+          url={cleanUrl(videoUrl)}
           width="100%"
           height="100%"
           preload="true"
-          ref={this.playerRef}
+          ref={playerRef}
           //   opts={{
           //     autoplay: 1,
           //     playerVars: {rel: 0, showinfo: 0, ecver: 2},
           //   }}
-          onReady={this.playVideo}
-          onEnded={this.handleVideoEnd}
+          onReady={playVideo}
+          onEnded={handleVideoEnd}
         /> */}
-      </Modal>
-    );
-  }
-}
+    </Modal>
+  );
+};
+
+export default VideoModal;
 
 /*
 

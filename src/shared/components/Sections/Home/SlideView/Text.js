@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {RichText} from 'prismic-reactjs';
 import {Link} from 'react-scroll';
 import Button from '../../../UI/Button/Button';
-import VideoImage from '../../../../components/VideoImage';
 import {media} from '../../../../theme/media';
 import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../../UI/Typography';
+/* import {RichText} from 'prismic-reactjs';
+import VideoImage from '../../../../components/VideoImage'; */
 
 const applyRenderCss = css`
   div {
@@ -86,7 +86,7 @@ const SubTextWrapper = styled(BaseSubHeader)`
   }
 `;
 
-const Boosts = styled.div`
+/* const Boosts = styled.div`
   display: flex;
   flex-direction: row;
   b {
@@ -106,7 +106,7 @@ const SmallVideoImage = styled(VideoImage)`
   position: relative;
   height: 6em;
   width: 9em;
-`;
+`; */
 
 const MyLink = styled(Link)`
   width: 14em;
@@ -117,20 +117,21 @@ const MyLink = styled(Link)`
   x-margin: 0 auto;
 `;
 
-const Text = ({ header }) => {
+const Text = ({header}) => {
   return (
     <Wrapper>
       <Header>{header}</Header>
       <SubTextWrapper>
         We create amazing frontends and rock-solid backends while upgrading your inhouse team.
         <br />
-        Boost your project's quality and your time to market alongside your own team's productivity,
-        expertise and happiness.
+        Boost your project&apos;s quality and your time to market alongside your own team's
+        productivity, expertise and happiness.
       </SubTextWrapper>
-      <MyLink to={'LetsTalk'} spy smooth offset={-70} duration={500}>
-        <Button btnType="Success">Start Today!</Button>
+      <MyLink to="LetsTalk" spy smooth offset={-70} duration={500}>
+        <Button buttonType="Success">Start Today!</Button>
       </MyLink>
     </Wrapper>
   );
 };
+
 export default Text;

@@ -7,7 +7,7 @@ import GlobalStyle from '../shared/theme/globalStyle';
 
 Modal.setAppElement('body');
 
-function IndexPage({pageContext: {allContent}}) {
+const IndexPage = ({pageContext: {allContent}}) => {
   //  console.log('allContent');
   //  console.log(allContent.footer[0].data);
 

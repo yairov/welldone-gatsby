@@ -4,11 +4,10 @@ import {media} from '../../../theme';
 import Slider from '../../UI/Slider/Slider';
 
 const Root = styled.div`
-    visibility: ${props => props.seeMore ? "visible" : "hidden"};
-    transition: ${props => props.seeMore ? "all 1s ease-out" : "none"};
-    opacity: ${props => props.seeMore ? 1 : 0};
-    max-height: ${props => props.seeMore ? '100%' : 0};
-
+  visibility: ${({seeMore}) => (seeMore ? 'visible' : 'hidden')};
+  transition: ${({seeMore}) => (seeMore ? 'all 1s ease-out' : 'none')};
+  opacity: ${({seeMore}) => (seeMore ? 1 : 0)};
+  max-height: ${({seeMore}) => (seeMore ? '100%' : 0)};
 `;
 
 const Wrapper = styled.div`
@@ -58,18 +57,23 @@ const IconsSliderWrapper = styled(Wrapper)`
 `;
 
 const RenderItems = ({items}) => {
-
   return items
     .sort((l, r) => l.order - r.order)
     .map(({data}, idx) => (
-      <a key={idx} title={data.title} href={data.website.url} target="_blank">
+      <a
+        // eslint-disable-next-line react/no-array-index-key
+        key={idx}
+        title={data.title}
+        href={data.website.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <CustomerIcon src={data.white_logo.url} />
       </a>
     ));
 };
 
 const CustomerIcons = ({items, seeMore}) => {
-
   const sliders = items.reduce(
     (icons, icon, idx) =>
       idx % MAX_ICONS === 0
@@ -84,17 +88,17 @@ const CustomerIcons = ({items, seeMore}) => {
     <Root seeMore={seeMore}>
       <SliderWrapper>
         <Slider>
-            {sliders.map((sliderItems, idx) => (
-                <IconsSliderWrapper key={idx}>
-                <RenderItems items={sliderItems} />
-                </IconsSliderWrapper>
-            ))}
-            </Slider>
+          {sliders.map((sliderItems, idx) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <IconsSliderWrapper key={idx}>
+              <RenderItems items={sliderItems} />
+            </IconsSliderWrapper>
+          ))}
+        </Slider>
       </SliderWrapper>
       <Wrapper>
         <RenderItems items={items} />
       </Wrapper>
-
     </Root>
   );
 };

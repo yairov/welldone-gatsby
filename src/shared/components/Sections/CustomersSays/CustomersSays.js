@@ -1,14 +1,12 @@
 import React from 'react';
-// import classes from './CustomersSays.module.css';
 import styled from 'styled-components';
+import {Element} from 'react-scroll';
+import {RichText} from 'prismic-reactjs';
+import LinesEllipsis from 'react-lines-ellipsis';
 import {media} from '../../../theme';
 import Slider from '../../UI/Slider/Slider';
 import whiteTriangle from '../../../assets/icons/whiteTriangle.svg';
-import {Element} from 'react-scroll';
-import {RichText} from 'prismic-reactjs';
-import {Header as BaseHeader, SubHeader as BaseSubHeader, QuoteText} from '../../UI/Typography.js';
-
-import LinesEllipsis from 'react-lines-ellipsis';
+import {Header as BaseHeader, SubHeader as BaseSubHeader, QuoteText} from '../../UI/Typography';
 
 const WhiteTriangle = styled.img.attrs({src: whiteTriangle})`
   display: none;
@@ -123,6 +121,7 @@ const SliderWrapper = styled.div`
     `}
   }
 `;
+
 const Content = styled(QuoteText)`
   z-index: 2;
   font-size: 2.4rem;
@@ -132,6 +131,7 @@ const Content = styled(QuoteText)`
     
   `}
 `;
+
 const CustomerWrapper = styled.div`
   display: flex;
   z-index: 2;
@@ -160,6 +160,7 @@ const CustomerIcon = styled.img`
     height: 4.2rem;
   `}
 `;
+
 const NameWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -177,20 +178,19 @@ const NameTitle = styled(Name)`
   `}
 `;
 
-const customersSays = props => {
-  //  console.log('feedback');
-  //  console.log(props.customerSays);
-
+const customersSays = ({title, customerSays}) => {
   return (
     <Wrapper id="CustomersSays">
       <WhiteTriangle />
-      <Title>{RichText.asText(props.title.primary.title)}</Title>
-      <SubTitle>{RichText.asText(props.title.primary.sub_title)}</SubTitle>
+      <Title>{RichText.asText(title.primary.title)}</Title>
+      <SubTitle>{RichText.asText(title.primary.sub_title)}</SubTitle>
 
       <Slider>
-        {props.customerSays.map((item, idx) => {
+        {customerSays.map(item => {
           return (
-            <Slide key={idx}>
+            <Slide key={item.id}>
+              {' '}
+              {/* key changed from the index provided by map function... key shuold be unique */}
               <ContentWrapper>
                 <SliderWrapper>
                   <Content>
