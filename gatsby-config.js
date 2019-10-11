@@ -43,7 +43,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: '#1EABF3',
         display: 'minimal-ui',
-        icon: 'src/images/welldone-favicon.svg', // This path is relative to the root of the site.
+        icon: 'src/shared/assets/welldone-favicon.svg', // This path is relative to the root of the site.
       },
     },
     'gatsby-plugin-styled-components',
