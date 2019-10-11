@@ -29,7 +29,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/statics/images`,
       },
     },
     'gatsby-transformer-sharp',
@@ -43,7 +43,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: '#1EABF3',
         display: 'minimal-ui',
-        icon: 'src/shared/assets/welldone-favicon.svg', // This path is relative to the root of the site.
+        icon: 'src/statics/images/welldone-favicon.svg',
       },
     },
     'gatsby-plugin-styled-components',

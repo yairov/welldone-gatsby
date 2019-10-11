@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { RichText } from 'prismic-reactjs';
+import React from 'react';
+import {RichText} from 'prismic-reactjs';
 import styled from 'styled-components';
-import { Header as BaseHeader, SubHeader as BaseSubHeader } from '../../UI/Typography';
-import { media } from '../../../theme';
-import _VideoImage from '../../VideoImage';
+import {Header as BaseHeader} from 'shared/components/UI/Typography';
+import {media} from 'shared/theme';
+import _VideoImage from 'shared/components/VideoImage';
+import useBooleanState from 'shared/hooks/useBooleanState';
 import Description from './ProjectDescription';
 
 const Root = styled.div`
@@ -42,10 +43,11 @@ const VideoImage = styled(_VideoImage)`
 
 const MoreButton = styled.div`
   cursor: pointer;
-  height: 2rem;
   width: 100%;
-  color: #1FABF3;
+  color: #1fabf3;
   text-align: center;
+  margin-top: 5px;
+  font-size: 1.25em;
 `;
 
 function Layers({layers, layersMeta}) {
@@ -61,13 +63,12 @@ function Layers({layers, layersMeta}) {
   );
 }
 
-
 function ProjectItem({
   layers: layersMeta,
   project: {title, description, thumbnail, video, layers},
   onVideoPlay,
 }) {
-  const [expendDecription, setExpendDecription] = useState(false);
+  const [expendDescription, toggleExpendDescription] = useBooleanState(false);
 
   return (
     <Root>
@@ -80,14 +81,9 @@ function ProjectItem({
       />
       <Title>{RichText.asText(title)}</Title>
       <Layers layers={layers} layersMeta={layersMeta} />
-      <Description
-        text={description}
-        extend={expendDecription}
-      />
-      <MoreButton
-        onClick={() => { setExpendDecription(!expendDecription); }}
-      >
-        {expendDecription ? 'Less...' : 'More...'}
+      <Description text={description} extend={expendDescription} />
+      <MoreButton onClick={toggleExpendDescription}>
+        {expendDescription ? 'Less...' : 'More...'}
       </MoreButton>
     </Root>
   );
