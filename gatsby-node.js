@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
@@ -49,6 +50,7 @@ async function loadContent() {
 
   const content = allDocs.reduce((result, doc) => {
     if (!result[doc.type]) {
+      // eslint-disable-next-line no-param-reassign
       result[doc.type] = [];
     }
     result[doc.type].push(doc);
