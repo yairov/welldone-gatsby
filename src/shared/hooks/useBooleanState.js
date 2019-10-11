@@ -1,6 +1,7 @@
 import React from 'react';
+import {noop} from 'lodash';
 
-export const useBooleanState = (initialBooleanState, callbackHandler) => {
+const useBooleanState = (initialBooleanState, callbackHandler = noop) => {
   const [booleanState, setBooleanState] = React.useState(initialBooleanState);
 
   const booleanToggleFn = React.useCallback(
@@ -29,3 +30,5 @@ export const useBooleanState = (initialBooleanState, callbackHandler) => {
 
   return [booleanState, booleanToggleFn, booleanOnFn, booleanOffFn];
 };
+
+export default useBooleanState;

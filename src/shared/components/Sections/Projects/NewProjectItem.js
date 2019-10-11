@@ -1,11 +1,11 @@
 import React from 'react';
-// import ReactPlayer from 'react-player';
 import {RichText} from 'prismic-reactjs';
 import styled from 'styled-components';
-import {Header as BaseHeader, SubHeader as BaseSubHeader} from 'shared/components/UI/Typography';
-// import Backdrop from 'shared/components/UI/Backdrop/Backdrop';
+import {Header as BaseHeader} from 'shared/components/UI/Typography';
 import {media} from 'shared/theme';
 import _VideoImage from 'shared/components/VideoImage';
+import useBooleanState from 'shared/hooks/useBooleanState';
+import Description from './ProjectDescription';
 
 const Root = styled.div`
   width: 36rem;
@@ -22,21 +22,10 @@ const Title = styled(BaseHeader)`
   text-transform: uppercase;
 `;
 
-const SubTitle = styled(BaseSubHeader)`
-  font-weight: 100;
-  p {
-    margin-bottom: 1rem;
-  }
-`;
-
 const Icon = styled.img`
   width: 2rem;
   height: 2rem;
   padding: 0.5rem;
-
-  /* ${media.maxSmallDesktop`
-    padding: 0 25rem;
-  `} */
 `;
 
 const Icons = styled.div`
@@ -52,7 +41,16 @@ const VideoImage = styled(_VideoImage)`
   border: solid 1px #ddd;
 `;
 
-const Layers = ({layers, layersMeta}) => {
+const MoreButton = styled.div`
+  cursor: pointer;
+  width: 100%;
+  color: #1fabf3;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 1.25em;
+`;
+
+function Layers({layers, layersMeta}) {
   return (
     <Icons>
       {layers
@@ -63,13 +61,15 @@ const Layers = ({layers, layersMeta}) => {
         ))}
     </Icons>
   );
-};
+}
 
-const ProjectItem = ({
+function ProjectItem({
   layers: layersMeta,
-  project: {title, description, thumbnail, video /* , customer, technologies */, layers},
+  project: {title, description, thumbnail, video, layers},
   onVideoPlay,
-}) => {
+}) {
+  const [expendDescription, toggleExpendDescription] = useBooleanState(false);
+
   return (
     <Root>
       <VideoImage
@@ -81,9 +81,12 @@ const ProjectItem = ({
       />
       <Title>{RichText.asText(title)}</Title>
       <Layers layers={layers} layersMeta={layersMeta} />
-      <SubTitle>{RichText.render(description)}</SubTitle>
+      <Description text={description} extend={expendDescription} />
+      <MoreButton onClick={toggleExpendDescription}>
+        {expendDescription ? 'Less...' : 'More...'}
+      </MoreButton>
     </Root>
   );
-};
+}
 
 export default ProjectItem;
