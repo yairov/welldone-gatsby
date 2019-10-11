@@ -7,6 +7,16 @@ const Circle = styled.img`
   width: ${({isActive}) => (isActive ? 1.7 : 1.15)}rem;
 `;
 
+const I = styled.i`
+  :focus {
+    outline: none;
+    ${Circle} {
+      background-color: #ededed;
+      border-radius: 5px;
+    }
+  }
+`;
+
 const Wrapper = styled.div`
   justify-content: center;
   margin-top: 1.5rem;
@@ -59,9 +69,11 @@ const ChildrenWrapper = styled.div`
 const Slider = ({hideOnMobile, className, controlsCss, children}) => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
-  const handleClick = e => {
+  const handleClick = React.useCallback(e => {
+    e.preventDefault();
+    e.stopPropagation();
     setCurrentSlide(e.currentTarget.getAttribute('tabIndex'));
-  };
+  }, []);
 
   return (
     <>
@@ -70,7 +82,7 @@ const Slider = ({hideOnMobile, className, controlsCss, children}) => {
       </Root>
       <Wrapper controlsCss={controlsCss} hideOnMobile={hideOnMobile}>
         {children.map((_, idx) => (
-          <i
+          <I
             // eslint-disable-next-line react/no-array-index-key
             key={idx}
             tabIndex={idx}
@@ -79,7 +91,7 @@ const Slider = ({hideOnMobile, className, controlsCss, children}) => {
             role="link"
           >
             <Circle isActive={idx === currentSlide} src={ellipse} />
-          </i>
+          </I>
         ))}
       </Wrapper>
     </>

@@ -9,7 +9,7 @@ import {media} from 'shared/theme/media';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import Logo from '../Logo/Logo';
 
-const SideDrawer = styled.div`
+const SideDrawerContainer = styled.div`
   position: fixed;
   width: 75%;
   max-width: 70%;
@@ -20,44 +20,35 @@ const SideDrawer = styled.div`
   background-color: white;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
-  transform: ${({open}) => (open ? 'translateX(0)' : 'translateX(-100%)')};
+  transform: ${({isOpen}) => (isOpen ? 'translateX(0)' : 'translateX(-100%)')};
   ${media.minSmallDesktop`
     display: none;
-}
-`}
+  `}
 `;
 
 const LogoSize = styled.div`
   height: 11%;
 `;
 
-const sideDrawer = ({open, closed}) => {
+const SideDrawer = ({isOpen, onClick}) => {
   return (
     <Aux>
-      <Backdrop show={open} clicked={closed} />
-
-      <SideDrawer open={open} onClick={closed}>
+      <Backdrop show={isOpen} clicked={onClick} />
+      <SideDrawerContainer isOpen={isOpen} onClick={onClick}>
         <LogoSize>
           <Logo />
         </LogoSize>
         <nav>
-          <NavigationItems closed={closed} />
-          <Link
-            onClick={closed}
-            activeClass="NavigationItem-module--active--3NifW"
-            to="LetsTalk"
-            spy
-            smooth
-            offset={-70}
-            duration={500}
-          >
+          <NavigationItems onClick={onClick} />
+          <Link onClick={onClick} to="LetsTalk" spy smooth offset={-70} duration={500}>
             <div style={{width: '40%', margin: 'auto 30%'}}>
               <Button buttonType="Success">Let&#39;s Talk</Button>
             </div>
           </Link>
         </nav>
-      </SideDrawer>
+      </SideDrawerContainer>
     </Aux>
   );
 };
-export default sideDrawer;
+
+export default SideDrawer;
