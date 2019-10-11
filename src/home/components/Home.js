@@ -1,18 +1,20 @@
 import React, {useState, useCallback, useMemo} from 'react';
-import {Helmet} from 'react-helmet';
 import styled from 'styled-components';
 import {media} from 'shared/theme';
+import VideoModal from 'shared/components/VideoModal';
 
-import MainSlider from 'shared/components/Sections/Home/MainSlider';
-import ConsultingAndMentoring from 'shared/components/Sections/ConsultingAndMentoring/ConsultingAndMentoring';
-import OurCustomers from 'shared/components/Sections/OurCustomers/AnimatedCustomers';
-import Technologies from 'shared/components/Sections/Technologies/Technologies';
-import CustomersSays from 'shared/components/Sections/CustomersSays/CustomersSays';
-import JoinUs from 'shared/components/Sections/JoinUs/JoinUs';
-import LetsTalk from 'shared/components/Sections/LetsTalk/LetsTalk';
-import CoreValues from 'shared/components/Sections/CoreValues/CoreValues';
-import Projects from 'shared/components/Sections/Projects/Projects';
-import VideoModal from 'shared/components/VideoModal/VideoModal';
+import Menu from './Menu';
+import Header from './Header';
+import MainSlider from './Sections/MainSlider';
+import ConsultingAndMentoring from './Sections/ConsultingAndMentoring/ConsultingAndMentoring';
+import OurCustomers from './Sections/OurCustomers/AnimatedCustomers';
+import Technologies from './Sections/Technologies/Technologies';
+import CustomersSays from './Sections/CustomersSays/CustomersSays';
+import JoinUs from './Sections/JoinUs/JoinUs';
+import LetsTalk from './Sections/LetsTalk/LetsTalk';
+import CoreValues from './Sections/CoreValues/CoreValues';
+import Projects from './Sections/Projects/Projects';
+import Footer from './Footer';
 
 const Content = styled.div`
   position: relative;
@@ -25,16 +27,12 @@ const Content = styled.div`
   }
 `;
 
-const SeoRenderers = {
-  og: ({name, value}) => <meta name={name} property={name} content={value} key={`og-${name}`} />,
-  tag: ({name, value}) => React.createElement(name, {key: `tag-${name}`}, value),
-  meta: ({name, value}) => <meta name={name} content={value} key={`meta-${name}`} />,
-};
-
-const BlogIndexPage = ({
-  allContent: {project, customer, technology, homepage, customerfeedbacks, layer, seo},
+const Home = ({
+  allContent: {project, customer, technology, homepage, customerfeedbacks, layer, seo, footer},
 }) => {
   const [video, setVideo] = useState(undefined);
+  const playVideo = useCallback(videoUrl => setVideo(videoUrl), [setVideo]);
+  const closeVideoModal = useCallback(() => setVideo(undefined), [setVideo]);
 
   const homepageBody = useMemo(() => {
     return homepage[0].data.body.reduce((result, slice) => {
@@ -44,22 +42,10 @@ const BlogIndexPage = ({
     }, {});
   }, [homepage]);
 
-  const [seoFields] = useState(seo[0].data.field);
-
-  const playVideo = useCallback(
-    videoUrl => {
-      setVideo(videoUrl);
-    },
-    [setVideo]
-  );
-
-  const closeVideoModal = useCallback(() => {
-    setVideo(undefined);
-  }, [setVideo]);
-
   return (
     <>
-      <Helmet>{seoFields.map(({type, name, value}) => SeoRenderers[type]({name, value}))}</Helmet>
+      <Header fields={seo[0].data.field} />
+      <Menu />
       <Content>
         <MainSlider welldoneVideo={homepageBody.rope_modal.primary.video} onVideoPlay={playVideo} />
         <Technologies items={technology} text={homepageBody.technology} />
@@ -77,8 +63,9 @@ const BlogIndexPage = ({
         <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
         <VideoModal open={!!video} onClose={closeVideoModal} video={video} />
       </Content>
+      <Footer footer={footer[0].data} follow={footer[0].data.body[0].items} />
     </>
   );
 };
 
-export default BlogIndexPage;
+export default Home;

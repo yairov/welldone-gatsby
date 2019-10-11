@@ -41,8 +41,8 @@ const SideDrawer = styled.div`
     `}
 `;
 
-const drawerToggle = ({clicked}) => (
-  <SideDrawer onClick={clicked}>
+const drawerToggle = ({onClick}) => (
+  <SideDrawer onClick={onClick}>
     <div />
     <div />
     <div />

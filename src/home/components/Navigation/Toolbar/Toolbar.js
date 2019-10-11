@@ -8,7 +8,7 @@ import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 
-const Toolbar = styled.div`
+const ToolbarContainer = styled.div`
   transition: 0.5s; /* Add a transition effect (when scrolling - and font size is decreased) */
   height: 5.5rem;
   width: 100%;
@@ -79,12 +79,12 @@ const ButtonSize = styled.div`
   font-size: small;
 `;
 
-const Header = ({
+const Toolbar = ({
   buttonType,
   buttonTypeSuccessHandler,
   buttonTypeDangerHandler,
   drawerToggleClicked,
-  closed,
+  onClick,
 }) => {
   const isOverTop = useCallback((topPx = 5) => {
     return document.body.scrollTop > topPx || document.documentElement.scrollTop > topPx;
@@ -111,33 +111,25 @@ const Header = ({
   }, [buttonType, buttonTypeDangerHandler, buttonTypeSuccessHandler, isOverTop, toolbarClassName]);
 
   return (
-    <Toolbar className={toolbarClassName}>
+    <ToolbarContainer className={toolbarClassName}>
       <Items>
         <LogoSize className={toolbarClassName}>
           <Logo />
         </LogoSize>
         <DrawerToggleSize>
-          <DrawerToggle clicked={drawerToggleClicked} />
+          <DrawerToggle onClick={drawerToggleClicked} />
         </DrawerToggleSize>
         <DesktopOnly>
-          <NavigationItems />
+          <NavigationItems onClick={onClick} />
           <ButtonSize>
-            <Link
-              onClick={closed}
-              activeClass="NavigationItem-module--active--3NifW"
-              to="LetsTalk"
-              spy
-              smooth
-              offset={-70}
-              duration={500}
-            >
+            <Link onClick={onClick} to="LetsTalk" spy smooth offset={-70} duration={500}>
               <Button buttonType={buttonType}>Let&apos;s Talk</Button>
             </Link>
           </ButtonSize>
         </DesktopOnly>
       </Items>
-    </Toolbar>
+    </ToolbarContainer>
   );
 };
 
-export default Header;
+export default Toolbar;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
-import LinesEllipsis from 'react-lines-ellipsis';
+import LinesEllipsisLoose from 'react-lines-ellipsis/lib/loose';
 import {media} from 'shared/theme';
 import Slider from 'shared/components/UI/Slider/Slider';
 import whiteTriangle from 'shared/assets/icons/whiteTriangle.svg';
@@ -117,10 +117,10 @@ const SliderWrapper = styled.div`
   z-index: 2;
   ${media.minSmallDesktop`
     padding-right: 6rem;
-`}
+  `}
   div:nth-child(2) {
     ${media.minSmallDesktop`
-      justify-content:flex-start;
+      justify-content: flex-start;
       padding-right: 6rem;
     `}
   }
@@ -131,8 +131,6 @@ const Content = styled(QuoteText)`
   font-size: 2.4rem;
   ${media.minSmallDesktop`
     font-size: 1.5rem;
-    
-    
   `}
 `;
 
@@ -182,7 +180,7 @@ const NameTitle = styled(Name)`
   `}
 `;
 
-const customersSays = ({title, customerSays}) => {
+const CustomersSays = ({title, customerSays}) => {
   return (
     <Wrapper id="CustomersSays">
       <WhiteTriangle />
@@ -198,10 +196,9 @@ const customersSays = ({title, customerSays}) => {
               <ContentWrapper>
                 <SliderWrapper>
                   <Content>
-                    <LinesEllipsis
+                    <LinesEllipsisLoose
                       text={item.data.feedback[0].text}
-                      maxLine="6"
-                      ellipsis="..."
+                      maxLine={6}
                       trimRight
                       basedOn="letters"
                     />
@@ -223,4 +220,4 @@ const customersSays = ({title, customerSays}) => {
     </Wrapper>
   );
 };
-export default customersSays;
+export default CustomersSays;
