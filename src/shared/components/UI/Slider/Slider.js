@@ -1,8 +1,7 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styled from 'styled-components';
-import {media} from '../../../theme/index';
-import ellipse from '../../../assets/icons/ellipse.svg';
+import {media} from 'shared/theme/index';
+import ellipse from 'shared/assets/icons/ellipse.svg';
 
 const Circle = styled.img`
   width: ${({isActive}) => (isActive ? 1.7 : 1.15)}rem;

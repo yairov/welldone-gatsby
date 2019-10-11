@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {media} from '../../../theme';
-import {Header as BaseHeader} from '../../UI/Typography';
+import {media} from 'shared/theme';
+import {Header as BaseHeader} from 'shared/components/UI/Typography';
 
 const Root = styled.div`
   margin-bottom: 2rem;

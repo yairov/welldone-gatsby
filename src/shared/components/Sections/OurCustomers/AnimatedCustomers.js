@@ -2,9 +2,9 @@ import React, {useReducer, useEffect, useCallback, useState} from 'react';
 import AnimateHeight from 'react-animate-height';
 import styled from 'styled-components';
 import {RichText} from 'prismic-reactjs';
-import {media} from '../../../theme';
-import {Header as BaseHeader} from '../../UI/Typography';
-import circuitSVG from '../../../assets/graphics/circuit.svg';
+import {media} from 'shared/theme';
+import {Header as BaseHeader} from 'shared/components/UI/Typography';
+import circuitSVG from 'shared/assets/graphics/circuit.svg';
 import PromotedCustomers from './PromotedCustomers';
 import AllCustomers from './AllCustomers';
 import TVFlash from './TVFlash';
@@ -141,8 +141,7 @@ const TestCustomers2 = ({customers, text}) => {
         promotedToLoad[index * 2] = promoted[currentCustomerIndex];
         currentCustomerIndex = (currentCustomerIndex + 1) % promoted.length;
         if (index !== state.visibleLength - 1) {
-          // eslint-disable-next-line no-mixed-operators
-          promotedToLoad[index * 2 + 1] = {line: true};
+          promotedToLoad[(index * 2) + 1] = {line: true}; // prettier-ignore
         }
       }
       // console.log(promotedToLoad);
@@ -224,7 +223,7 @@ const TestCustomers2 = ({customers, text}) => {
       <Title>{RichText.asText(text.primary.title)}</Title>
       <AnimateHeight
         duration={1000}
-        height={state.showMore ? '0' : 'auto'}
+        height={state.showMore ? 0 : 'auto'}
         delay={state.showMore ? 1000 : 0}
       >
         <PromotedCustomers
@@ -237,7 +236,7 @@ const TestCustomers2 = ({customers, text}) => {
       </AnimateHeight>
       <TVFlash pose={state.showFlash ? 'show' : 'hide'} />
       <AnimatedHeightNoPadding
-        height={state.showMore ? 'auto' : '0'}
+        height={state.showMore ? 'auto' : 0}
         delay={state.showMore ? 1000 : 0}
         duration={state.sortedCustomers.length * (state.showMore ? 80 : 55)}
       >

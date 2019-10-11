@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Toolbar from '../shared/components/Navigation/Toolbar/Toolbar';
-import SideDrawer from '../shared/components/Navigation/SideDrawer/SideDrawer';
+import Toolbar from 'shared/components/Navigation/Toolbar/Toolbar';
+import SideDrawer from 'shared/components/Navigation/SideDrawer/SideDrawer';
 import {ButtonTypes} from './utilities/enums';
 
 const Header = () => {

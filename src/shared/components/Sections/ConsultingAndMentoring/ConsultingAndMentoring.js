@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
-import {media} from '../../../theme/media';
+import {media} from 'shared/theme/media';
+import {Header2 as BaseHeader, SubHeader as BaseSubHeader} from 'shared/components/UI/Typography';
 import InfoBox from './InfoBox/InfoBox';
-import {Header2 as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
 
 const Root = styled(Element)`
   padding: 4rem 1rem;

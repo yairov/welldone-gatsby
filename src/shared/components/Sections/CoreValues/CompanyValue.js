@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {media} from '../../../theme';
+import {media} from 'shared/theme';
 
 const turquoiseCss = css`
   background: rgba(183, 240, 197, 0.1);

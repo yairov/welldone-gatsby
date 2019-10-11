@@ -2,8 +2,8 @@
 import React from 'react';
 import styled from 'styled-components';
 // import {RichText} from 'prismic-reactjs';
-// import {SubText, FooterHeader} from '../UI/Typography';
-import {media} from '../../theme/media';
+// import {SubText, FooterHeader} from 'shared/components/UI/Typography';
+import {media} from 'shared/theme/media';
 
 const Root = styled.div`
   background: #ecf4f9;

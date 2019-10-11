@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-// import {BoldText} from '../../../UI/Typography';
-import {media} from '../../../../theme/media';
+// import {BoldText} from 'shared/components/UI/Typography';
+import {media} from 'shared/theme/media';
 
 const Root = styled.div`
   position: relative;

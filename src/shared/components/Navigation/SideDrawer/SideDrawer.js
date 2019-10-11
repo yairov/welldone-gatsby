@@ -1,13 +1,13 @@
 import React from 'react';
 import {Link} from 'react-scroll';
 import styled from 'styled-components';
-import NavigationItems from '../NavigationItems/NavigationItems';
-import Backdrop from '../../UI/Backdrop/Backdrop';
-import Aux from '../../UI/Auxiliary';
-import Button from '../../UI/Button/Button';
-import Logo from '../Logo/Logo';
+import Backdrop from 'shared/components/UI/Backdrop/Backdrop';
+import Aux from 'shared/components/UI/Auxiliary';
+import Button from 'shared/components/UI/Button/Button';
+import {media} from 'shared/theme/media';
 
-import {media} from '../../../theme/media';
+import NavigationItems from '../NavigationItems/NavigationItems';
+import Logo from '../Logo/Logo';
 
 const SideDrawer = styled.div`
   position: fixed;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import burgerLogo from '../../../assets/icons/logo.svg';
-import {media} from '../../../theme/media';
+import burgerLogo from 'shared/assets/icons/logo.svg';
+import {media} from 'shared/theme/media';
 
 const Logo = styled.div`
 height: 100%;

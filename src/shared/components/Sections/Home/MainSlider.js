@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import GlobalStyle from '../../../theme/globalStyle';
-import triangle from '../../../assets/icons/triangle1.svg';
-import lefttopbg from '../../../assets/icons/lefttopbg.svg';
-import {media} from '../../../theme';
+import GlobalStyle from 'shared/theme/globalStyle';
+import triangle from 'shared/assets/icons/triangle1.svg';
+import lefttopbg from 'shared/assets/icons/lefttopbg.svg';
+import {media} from 'shared/theme';
 import SlideView from './SlideView/SlideView';
 
 const BackgroundTriangle = styled.img.attrs({src: triangle})`

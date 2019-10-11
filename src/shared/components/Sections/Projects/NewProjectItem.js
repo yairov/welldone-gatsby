@@ -2,10 +2,10 @@ import React from 'react';
 // import ReactPlayer from 'react-player';
 import {RichText} from 'prismic-reactjs';
 import styled from 'styled-components';
-import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
-// import Backdrop from '../../UI/Backdrop/Backdrop';
-import {media} from '../../../theme';
-import _VideoImage from '../../VideoImage';
+import {Header as BaseHeader, SubHeader as BaseSubHeader} from 'shared/components/UI/Typography';
+// import Backdrop from 'shared/components/UI/Backdrop/Backdrop';
+import {media} from 'shared/theme';
+import _VideoImage from 'shared/components/VideoImage';
 
 const Root = styled.div`
   width: 36rem;

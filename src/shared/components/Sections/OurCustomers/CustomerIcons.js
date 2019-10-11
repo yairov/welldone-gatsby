@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {media} from '../../../theme';
-import Slider from '../../UI/Slider/Slider';
+import {media} from 'shared/theme';
+import Slider from 'shared/components/UI/Slider/Slider';
 
 const Root = styled.div`
   visibility: ${({seeMore}) => (seeMore ? 'visible' : 'hidden')};

@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 import {RichText} from 'prismic-reactjs';
 import shortid from 'shortid';
-import {Header} from '../../UI/Typography';
-import BaseButton from '../../UI/Button/Button2';
-import triangle from '../../../assets/icons/triangle1.svg';
-import {media} from '../../../theme/media';
+import {Header} from 'shared/components/UI/Typography';
+import BaseButton from 'shared/components/UI/Button/Button2';
+import triangle from 'shared/assets/icons/triangle1.svg';
+import {media} from 'shared/theme/media';
 
 const BackgroundTriangle = styled.img.attrs({src: triangle})`
   position: absolute;

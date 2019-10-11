@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import lottie from 'lottie-web';
-import importAnimation from '../../../../../../static/lottie/animtionImporter';
+import importAnimation from 'lottie/animtionImporter';
 
 const Bottle = () => {
   const container = React.useRef();

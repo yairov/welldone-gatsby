@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import playIcon from '../assets/icons/play.svg';
+import playIcon from 'shared/assets/icons/play.svg';
 
 const VideoImage = styled.a`
   display: block;

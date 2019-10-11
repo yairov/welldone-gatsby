@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Header as BaseHeader} from '../../../UI/Typography';
+import {Header as BaseHeader} from 'shared/components/UI/Typography';
 
 const Root = styled.div`
   display: flex;

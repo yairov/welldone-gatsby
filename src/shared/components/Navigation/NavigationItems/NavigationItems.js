@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import {media} from 'shared/theme/media';
 import NavigationItem from './NavigationItem/NavigationItem';
-import {media} from '../../../theme/media';
 
 const NavigationItems = styled.div`
   margin: auto;

@@ -84,8 +84,7 @@ const VideoModal = ({onClose, video}) => {
     return () => {
       window.removeEventListener('resize', calculatestyle);
     };
-    // eslint-disable-next-line
-  }, []);
+  }, [calculatestyle]);
 
   return (
     <Modal
@@ -118,12 +117,12 @@ const VideoModal = ({onClose, video}) => {
       />
 
       {/* <StyledPlayer
-		
+
 
 
 		 || ''
 
-		
+
           url={cleanUrl(videoUrl)}
           width="100%"
           height="100%"

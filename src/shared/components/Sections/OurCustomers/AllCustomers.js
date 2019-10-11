@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import shortid from 'shortid';
 import posed from 'react-pose';
-import {media} from '../../../theme';
+import {media} from 'shared/theme';
 import A from './A';
 import {RegularIcon} from './Icon';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, {keyframes} from 'styled-components';
-import {media} from '../../../theme';
-import moreSVG from '../../../assets/icons/more-icon.svg';
+import {media} from 'shared/theme';
+import moreSVG from 'shared/assets/icons/more-icon.svg';
 
 const upDownAnim = keyframes`
   0% { transform: translateY(0); }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {media} from '../../../theme';
+import {media} from 'shared/theme';
 
 export const PromotedIcon = styled.img`
   height: 3.5rem;

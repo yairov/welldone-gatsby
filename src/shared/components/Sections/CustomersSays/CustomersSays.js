@@ -3,10 +3,14 @@ import styled from 'styled-components';
 import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
 import LinesEllipsis from 'react-lines-ellipsis';
-import {media} from '../../../theme';
-import Slider from '../../UI/Slider/Slider';
-import whiteTriangle from '../../../assets/icons/whiteTriangle.svg';
-import {Header as BaseHeader, SubHeader as BaseSubHeader, QuoteText} from '../../UI/Typography';
+import {media} from 'shared/theme';
+import Slider from 'shared/components/UI/Slider/Slider';
+import whiteTriangle from 'shared/assets/icons/whiteTriangle.svg';
+import {
+  Header as BaseHeader,
+  SubHeader as BaseSubHeader,
+  QuoteText,
+} from 'shared/components/UI/Typography';
 
 const WhiteTriangle = styled.img.attrs({src: whiteTriangle})`
   display: none;

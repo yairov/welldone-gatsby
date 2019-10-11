@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-scroll';
 import styled from 'styled-components';
-import {media} from '../../../../theme/media';
+import {media} from 'shared/theme/media';
 
 const NavigationItemWrapper = styled.div`
   margin: 2rem;

@@ -1,7 +1,7 @@
 import React from 'react';
 import posed from 'react-pose';
 import styled from 'styled-components';
-import {media} from '../../../theme';
+import {media} from 'shared/theme';
 import A from './A';
 import {PromotedIcon} from './Icon';
 

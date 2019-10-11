@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import posed from 'react-pose';
-import {media} from '../../../theme';
-import horizontalFlashSVG from '../../../assets/graphics/horizontal-flash.svg';
-import verticalFlashSVG from '../../../assets/graphics/vertical-flash.svg';
+import {media} from 'shared/theme';
+import horizontalFlashSVG from 'shared/assets/graphics/horizontal-flash.svg';
+import verticalFlashSVG from 'shared/assets/graphics/vertical-flash.svg';
 
 const TVFlashAnim = posed.div({
   show: {

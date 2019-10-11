@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import {RichText} from 'prismic-reactjs';
 import {Element} from 'react-scroll';
 
-import {Header2 as BaseHeader, SubHeader} from '../../UI/Typography';
-import {media} from '../../../theme';
+import {Header2 as BaseHeader, SubHeader} from 'shared/components/UI/Typography';
+import {media} from 'shared/theme';
 import ProjectItem from './NewProjectItem';
 
 const Root = styled(Element)`

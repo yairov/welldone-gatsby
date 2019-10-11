@@ -70,3 +70,13 @@ exports.createPages = async ({actions: {createPage}}) => {
     },
   });
 };
+
+exports.onCreateWebpackConfig = ({getConfig, stage}) => {
+  const webpackConfig = getConfig();
+  if (stage.startsWith('develop') && webpackConfig.resolve) {
+    webpackConfig.resolve.alias = {
+      ...webpackConfig.resolve.alias,
+      'react-dom': '@hot-loader/react-dom',
+    };
+  }
+};

@@ -1,11 +1,13 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import {Link} from 'react-scroll';
-import Button from '../../../UI/Button/Button';
-import {media} from '../../../../theme/media';
-import {Header as BaseHeader, SubHeader as BaseSubHeader} from '../../../UI/Typography';
-/* import {RichText} from 'prismic-reactjs';
-import VideoImage from '../../../../components/VideoImage'; */
+import Button from 'shared/components/UI/Button/Button';
+import {media} from 'shared/theme/media';
+import {Header as BaseHeader, SubHeader as BaseSubHeader} from 'shared/components/UI/Typography';
+/*
+  import {RichText} from 'prismic-reactjs';
+  import VideoImage from 'shared/components/VideoImage';
+*/
 
 const applyRenderCss = css`
   div {

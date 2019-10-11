@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {media} from '../../../theme/media';
+import {media} from 'shared/theme/media';
 
 const Button = styled.button`
   color: white};

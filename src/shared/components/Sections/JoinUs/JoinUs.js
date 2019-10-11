@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
-import {media} from '../../../theme/media';
-import {Header as BaseHeader} from '../../UI/Typography';
+import {media} from 'shared/theme/media';
+import {Header as BaseHeader} from 'shared/components/UI/Typography';
 
 const Wrapper = styled(Element)`
   background-image: linear-gradient(257deg, #d9f1f5, #347cac);

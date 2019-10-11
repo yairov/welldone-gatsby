@@ -1,11 +1,12 @@
 import {Link} from 'react-scroll';
 import React, {useEffect, useCallback, useState} from 'react';
 import styled from 'styled-components';
+import {media} from 'shared/theme/media';
+import Button from 'shared/components/UI/Button/Button';
+
 import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
-import {media} from '../../../theme/media';
-import Button from '../../UI/Button/Button';
 
 const Toolbar = styled.div`
   transition: 0.5s; /* Add a transition effect (when scrolling - and font size is decreased) */

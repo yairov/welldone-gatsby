@@ -1,18 +1,18 @@
 import React, {useState, useCallback, useMemo} from 'react';
 import {Helmet} from 'react-helmet';
 import styled from 'styled-components';
-import {media} from '../shared/theme';
+import {media} from 'shared/theme';
 
-import MainSlider from '../shared/components/Sections/Home/MainSlider';
-import ConsultingAndMentoring from '../shared/components/Sections/ConsultingAndMentoring/ConsultingAndMentoring';
-import OurCustomers from '../shared/components/Sections/OurCustomers/AnimatedCustomers';
-import Technologies from '../shared/components/Sections/Technologies/Technologies';
-import CustomersSays from '../shared/components/Sections/CustomersSays/CustomersSays';
-import JoinUs from '../shared/components/Sections/JoinUs/JoinUs';
-import LetsTalk from '../shared/components/Sections/LetsTalk/LetsTalk';
-import CoreValues from '../shared/components/Sections/CoreValues/CoreValues';
-import Projects from '../shared/components/Sections/Projects/Projects';
-import VideoModal from '../shared/components/VideoModal/VideoModal';
+import MainSlider from 'shared/components/Sections/Home/MainSlider';
+import ConsultingAndMentoring from 'shared/components/Sections/ConsultingAndMentoring/ConsultingAndMentoring';
+import OurCustomers from 'shared/components/Sections/OurCustomers/AnimatedCustomers';
+import Technologies from 'shared/components/Sections/Technologies/Technologies';
+import CustomersSays from 'shared/components/Sections/CustomersSays/CustomersSays';
+import JoinUs from 'shared/components/Sections/JoinUs/JoinUs';
+import LetsTalk from 'shared/components/Sections/LetsTalk/LetsTalk';
+import CoreValues from 'shared/components/Sections/CoreValues/CoreValues';
+import Projects from 'shared/components/Sections/Projects/Projects';
+import VideoModal from 'shared/components/VideoModal/VideoModal';
 
 const Content = styled.div`
   position: relative;
@@ -26,9 +26,9 @@ const Content = styled.div`
 `;
 
 const SeoRenderers = {
-  og: ({name, value}) => <meta name={name} property={name} content={value} />,
-  tag: ({name, value}) => React.createElement(name, null, value),
-  meta: ({name, value}) => <meta name={name} content={value} />,
+  og: ({name, value}) => <meta name={name} property={name} content={value} key={`og-${name}`} />,
+  tag: ({name, value}) => React.createElement(name, {key: `tag-${name}`}, value),
+  meta: ({name, value}) => <meta name={name} content={value} key={`meta-${name}`} />,
 };
 
 const BlogIndexPage = ({

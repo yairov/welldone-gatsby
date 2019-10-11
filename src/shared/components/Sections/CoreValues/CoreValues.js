@@ -2,9 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import {RichText} from 'prismic-reactjs';
 import {Element} from 'react-scroll';
+import {media} from 'shared/theme';
+import {
+  SubText as BaseSubText,
+  MediumTitle,
+  Header2 as BaseHeader,
+} from 'shared/components/UI/Typography';
 import CompanyValue from './CompanyValue';
-import {media} from '../../../theme';
-import {SubText as BaseSubText, MediumTitle, Header2 as BaseHeader} from '../../UI/Typography';
 
 const MainDiv = styled(Element)`
   /* margin-top: 6rem; */
