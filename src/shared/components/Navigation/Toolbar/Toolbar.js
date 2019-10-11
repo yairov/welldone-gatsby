@@ -1,13 +1,11 @@
 import {Link} from 'react-scroll';
-import React, {useEffect, useCallback, useMemo, useState} from 'react';
+import React, {useEffect, useCallback, useState} from 'react';
 import styled from 'styled-components';
-import classNames from 'classnames';
 import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import {media} from '../../../theme/media';
 import Button from '../../UI/Button/Button';
-import {ButtonTypes} from '../../../../components/utilities/enums';
 
 const Toolbar = styled.div`
   transition: 0.5s; /* Add a transition effect (when scrolling - and font size is decreased) */
@@ -31,16 +29,16 @@ const Toolbar = styled.div`
     z-index: 1000;
   }
   ${media.minSmallDesktop`
-height: 7rem;
-&.scrolled {
-  margin-top:0;
-  padding:0;
-  height: 2.5rem;
-  font-size: 0.9rem;
-  align-items: baseline;
-  background:white;
-  z-index:1000;
-}
+    height: 7rem;
+    &.scrolled {
+      margin-top:0;
+      padding:0;
+      height: 2.5rem;
+      font-size: 0.9rem;
+      align-items: baseline;
+      background:white;
+      z-index:1000;
+    }
 `}
 `;
 

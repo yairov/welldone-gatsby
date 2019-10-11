@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import lottie from 'lottie-web';
 import importAnimation from '../../../../../../static/lottie/animtionImporter';
 
-const Bottle = props => {
+const Bottle = () => {
   const container = React.useRef();
   const [anim, setAnim] = React.useState(null);
 
@@ -45,7 +45,7 @@ const Bottle = props => {
     };
   }, [anim, loop]);
 
-  return <div {...props} ref={container} />;
+  return <div ref={container} />;
 };
 
 export default Bottle;

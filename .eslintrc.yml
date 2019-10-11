@@ -24,7 +24,6 @@ env:
   es6: true
 
 rules:
-
   no-debugger: off
   padded-blocks: off
   no-unused-vars: [error, {args: after-used, argsIgnorePattern: '^_'}]
@@ -55,14 +54,13 @@ rules:
   react-hooks/exhaustive-deps: warn
   import/no-cycle: error
   prettier/prettier: error
-#  max-len: [warn, 120, {ignoreComments: true}]
-#  semi: [error, always]
-#  comma-dangle: [error, always-multiline]
-#  quotes: [error, single]
-#  arrow-parens: [error, as-needed]
-#  babel/object-curly-spacing: [error, never]
-#  object-curly-spacing: off
-#  react/jsx-tag-spacing: [error, {closingSlash: never, beforeSelfClosing: never, afterOpening: never}]
+  max-len: [warn, 120, {ignoreComments: true}]
+  semi: [error, always]
+  comma-dangle: [error, always-multiline]
+  quotes: [error, single]
+  arrow-parens: [error, as-needed]
+  object-curly-spacing: off
+  babel/object-curly-spacing: [error, never]
 
 settings:
   import/resolver:

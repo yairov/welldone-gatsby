@@ -26,7 +26,7 @@ const RegularCustomerAnim = posed.div({
   show: {
     scale: 1,
     opacity: 1,
-    delay: ({i}) => 1200 + i * 50,
+    delay: ({i}) => 1200 + (i * 50), // prettier-ignore
     transition: {duration: 100, ease: 'easeOut'},
   },
   hide: {
@@ -57,7 +57,7 @@ const AllCustomers = ({customers, pose}) => (
       const i = shortid.generate();
       return (
         <RegularCustomer
-          key={'reg-cust-' + i}
+          key={`reg-cust-${i}`}
           i={i}
           total={all.length}
           pose={pose}

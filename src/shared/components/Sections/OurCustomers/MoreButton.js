@@ -37,7 +37,7 @@ const MoreButtonIcon = styled.img`
 `;
 
 const MoreButton = ({showMore, onClick}) => (
-  <MoreButtonWrapper {...{showMore, onClick}}>
+  <MoreButtonWrapper showMore={showMore} onClick={onClick}>
     <MoreButtonIcon src={moreSVG} showMore={showMore} />
   </MoreButtonWrapper>
 );

@@ -42,7 +42,6 @@ const sideDrawer = ({open, closed}) => {
         </LogoSize>
         <nav>
           <NavigationItems closed={closed} />
-
           <Link
             onClick={closed}
             activeClass="NavigationItem-module--active--3NifW"
@@ -53,7 +52,7 @@ const sideDrawer = ({open, closed}) => {
             duration={500}
           >
             <div style={{width: '40%', margin: 'auto 30%'}}>
-              <Button buttonType="Success">Let's Talk</Button>
+              <Button buttonType="Success">Let&#39;s Talk</Button>
             </div>
           </Link>
         </nav>

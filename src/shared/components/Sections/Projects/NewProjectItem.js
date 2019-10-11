@@ -80,7 +80,7 @@ const ProjectItem = ({
         }}
       />
       <Title>{RichText.asText(title)}</Title>
-      <Layers {...{layers, layersMeta}} />
+      <Layers layers={layers} layersMeta={layersMeta} />
       <SubTitle>{RichText.render(description)}</SubTitle>
     </Root>
   );

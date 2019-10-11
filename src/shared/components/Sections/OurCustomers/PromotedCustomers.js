@@ -39,7 +39,7 @@ const PromotedCustomerAnim = posed.div({
   show: {
     x: 0,
     opacity: 1,
-    delay: ({i, delay, switchDuration}) => 0.2 * switchDuration + i * delay,
+    delay: ({i, delay, switchDuration}) => (0.2 * switchDuration) + (i * delay), // prettier-ignore
     transition: ({switchDuration}) => ({
       duration: switchDuration * 0.5,
       ease: 'easeOut',
@@ -101,7 +101,12 @@ const PromotedWrapper = styled(PromotedWrapperAnim)`
 `;
 
 const PromotedCustomers = ({customers, customerPose, switchDuration, delay}) => (
-  <PromotedWrapper {...{customers, customerPose, switchDuration, delay}}>
+  <PromotedWrapper
+    customers={customers}
+    customerPose={customerPose}
+    switchDuration={switchDuration}
+    delay={delay}
+  >
     {customers.map((itemProps, i) =>
       itemProps.line ? (
         <Line

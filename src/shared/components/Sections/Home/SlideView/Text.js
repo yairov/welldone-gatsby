@@ -124,7 +124,7 @@ const Text = ({header}) => {
       <SubTextWrapper>
         We create amazing frontends and rock-solid backends while upgrading your inhouse team.
         <br />
-        Boost your project&apos;s quality and your time to market alongside your own team's
+        Boost your project&#39;s quality and your time to market alongside your own team&#39;s
         productivity, expertise and happiness.
       </SubTextWrapper>
       <MyLink to="LetsTalk" spy smooth offset={-70} duration={500}>

@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // import {RichText} from 'prismic-reactjs';
-import {SubText, FooterHeader} from '../UI/Typography';
+// import {SubText, FooterHeader} from '../UI/Typography';
 import {media} from '../../theme/media';
 
 const Root = styled.div`

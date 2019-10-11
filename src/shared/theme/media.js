@@ -28,6 +28,7 @@ export const media = transform(
   {...breakPoints, ...otherBreakPoints},
   (result, breakPoint, breakPointName) => {
     ['min', 'max'].forEach(minMax => {
+      // eslint-disable-next-line no-param-reassign
       result[camelCase(`${minMax} ${breakPointName}`)] = createMediaQuery(minMax, breakPoint); // minMobile, minTablet...
     });
   }

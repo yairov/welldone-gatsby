@@ -1,6 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import {withState, compose} from 'recompose';
 import styled from 'styled-components';
 import {media} from '../../../theme/index';
 import ellipse from '../../../assets/icons/ellipse.svg';
@@ -58,14 +57,9 @@ const ChildrenWrapper = styled.div`
   }
 `;
 
-const Slider = ({
-  hideOnMobile,
-  className,
-  currentSlide,
-  controlsCss,
-  children,
-  setCurrentSlide,
-}) => {
+const Slider = ({hideOnMobile, className, controlsCss, children}) => {
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+
   const handleClick = e => {
     setCurrentSlide(e.currentTarget.getAttribute('tabIndex'));
   };
@@ -93,4 +87,4 @@ const Slider = ({
   );
 };
 
-export default compose(withState('currentSlide', 'setCurrentSlide', 0))(Slider);
+export default Slider;
