@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import {media} from '../../../theme/media';
 import {RichText} from 'prismic-reactjs';
-import posed, {PoseGroup} from 'react-pose';
+import posed from 'react-pose';
+import {media} from '../../../theme/media';
 import ropeSVG from './Rope.svg';
+// eslint-disable-next-line import/no-unresolved
 import playIcon from '../../../assets/icons/play.png';
 
 const ModalAnim = posed.div({

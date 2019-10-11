@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from "styled-components"
+import styled from 'styled-components';
 import {media} from '../../../../theme/media';
 
 const SideDrawer = styled.div`
@@ -39,14 +39,14 @@ const SideDrawer = styled.div`
     width: 30px;
     height: 30px;
     `}
+`;
 
-
-`
-const drawerToggle = (props) => (
-    <SideDrawer  onClick={props.clicked}>
-        <div></div> 
-        <div></div> 
-        <div></div> 
-    </SideDrawer>
+const drawerToggle = ({clicked}) => (
+  <SideDrawer onClick={clicked}>
+    <div />
+    <div />
+    <div />
+  </SideDrawer>
 );
+
 export default drawerToggle;

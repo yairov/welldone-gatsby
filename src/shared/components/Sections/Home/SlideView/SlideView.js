@@ -1,10 +1,5 @@
 import React from 'react';
-
-// import 'slick-carousel/slick/slick-theme.css';
-// import 'slick-carousel/slick/slick.css';
-
 import styled from 'styled-components';
-
 import {media} from '../../../../theme/media';
 import Text from './Text';
 import Bottle from './Bottle';
@@ -48,12 +43,12 @@ const Flex = styled.div`
   `}
 `;
 
-const SlideView = ({ welldoneVideo, onVideoPlay }) => (
+const SlideView = ({welldoneVideo, onVideoPlay}) => (
   <Root>
     <Flex>
       <Text
         header="Your Full-Stack Secret Sauce"
-        subText="Supreme architectural and technical expertise provided by experienced full-stack polyglots with a holistic approach"
+        subText="Supreme architectural and technical expertise provided by experienced full-stack polyglots with a holistic approach" // eslint-disable-line max-len
         button="Hire our expert team today"
         spice_up_project="Boost both your project and your team's expertise, productivity and practices."
       />

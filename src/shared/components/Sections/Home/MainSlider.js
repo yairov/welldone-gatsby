@@ -1,11 +1,8 @@
 import React from 'react';
-
-import GlobalStyle from '../../../theme/globalStyle';
-
 import styled from 'styled-components';
-import triangle from '../../../../shared/assets/icons/triangle1.svg';
-import lefttopbg from '../../../../shared/assets/icons/lefttopbg.svg';
-import leftbottombg from '../../../../shared/assets/icons/lefttopbg.svg';
+import GlobalStyle from '../../../theme/globalStyle';
+import triangle from '../../../assets/icons/triangle1.svg';
+import lefttopbg from '../../../assets/icons/lefttopbg.svg';
 import {media} from '../../../theme';
 import SlideView from './SlideView/SlideView';
 
@@ -30,7 +27,7 @@ const LeftTopTriangle = styled.img.attrs({
   height: 30rem;
 `;
 
-const LeftBottomTriangle = styled.img.attrs({src: leftbottombg})`
+const LeftBottomTriangle = styled.img.attrs({src: lefttopbg})`
   position: absolute;
   left: -7rem;
   top: 24rem;
@@ -68,7 +65,7 @@ const Size = styled.div`
   `}
 `;
 
-const MainSlider = ({ welldoneVideo, onVideoPlay }) => {
+const MainSlider = ({welldoneVideo, onVideoPlay}) => {
   return (
     <Content>
       <GlobalStyle />
@@ -76,9 +73,10 @@ const MainSlider = ({ welldoneVideo, onVideoPlay }) => {
       <LeftTopTriangle />
       <LeftBottomTriangle />
       <Size>
-        <SlideView {...{ welldoneVideo, onVideoPlay }} />
+        <SlideView welldoneVideo={welldoneVideo} onVideoPlay={onVideoPlay} />
       </Size>
     </Content>
   );
 };
+
 export default MainSlider;

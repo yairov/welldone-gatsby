@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
-import {RichText} from 'prismic-reactjs';
-import {SubText, FooterHeader} from '../UI/Typography';
+// import {RichText} from 'prismic-reactjs';
+// import {SubText, FooterHeader} from '../UI/Typography';
 import {media} from '../../theme/media';
 
 const Root = styled.div`
@@ -18,22 +18,22 @@ const Root = styled.div`
   `}
 `;
 
-const Header = styled(FooterHeader)`
-  color: #1fabf3;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  display: none;
-  ${media.minSmallDesktop`
-    display:flex;
-  `}
-`;
+// const Header = styled(FooterHeader)`
+//   color: #1fabf3;
+//   margin-bottom: 1rem;
+//   font-size: 1.5rem;
+//   display: none;
+//   ${media.minSmallDesktop`
+//     display:flex;
+//   `}
+// `;
 
-const SubHeader = styled(SubText)`
-  font-size: 1.2rem;
-  line-height: 1.9;
-  color: #7e8a98;
-  font-weight: 100;
-`;
+// const SubHeader = styled(SubText)`
+//   font-size: 1.2rem;
+//   line-height: 1.9;
+//   color: #7e8a98;
+//   font-weight: 100;
+// `;
 
 const Icon = styled.img`
   width: 17rem;
@@ -83,7 +83,7 @@ const FollowsWrapper = styled.div`
   `} */
 `;
 
-const Footer = ({footer: {logo, footer_trademark}, follow}) => {
+const Footer = ({footer: {logo /* , footer_trademark */}, follow}) => {
   return (
     <Root>
       <LinksWrapper>

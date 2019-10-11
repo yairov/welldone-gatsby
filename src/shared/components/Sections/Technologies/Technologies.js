@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {media} from '../../../theme';
-import Slider from '../../UI/Slider/Slider';
 import {Header as BaseHeader} from '../../UI/Typography';
 
 const Root = styled.div`
@@ -56,7 +55,8 @@ const Wrapper = styled.div`
 `;
 
 const CustomerIcon = styled.img``;
-const SliderWrapper = styled.div`
+
+/* const SliderWrapper = styled.div`
   padding-bottom: 3rem;
   ${media.minSmallDesktop`
     display:none;
@@ -70,7 +70,8 @@ const IconsSliderWrapper = styled(Wrapper)`
   ${media.minSmallDesktop`
     display:none;
   `}
-`;
+`; */
+
 const Title = styled(BaseHeader)`
   padding: 1rem 0rem;
   font-weight: bold;

@@ -1,53 +1,51 @@
-import React, { Component } from 'react';
+import React, {useEffect} from 'react';
 import lottie from 'lottie-web';
 import importAnimation from '../../../../../../static/lottie/animtionImporter';
 
-export default class Bottle extends Component {
-    
-  container = React.createRef();
-  animationOptions = null;
-  animationData = null;
-  loop = (event) => {
+const Bottle = () => {
+  const container = React.useRef();
+  const [anim, setAnim] = React.useState(null);
 
-    if (!event.type || event.type !== 'enterFrame') {
-      return;
-    }
+  const loop = React.useCallback(
+    event => {
+      if (!event.type || event.type !== 'enterFrame') {
+        return;
+      }
 
-    if (event.currentTime > 575) {
-      this.anim.goToAndPlay(340, true);
-    }
-  };
-  componentDidMount = () => {
-      this.animationData = importAnimation('bottle-repeater.json');
-      this.animationOptions = {
-          container: this.container,
-          animationData: this.animationData,
+      if (event.currentTime > 575) {
+        anim.goToAndPlay(340, true);
+      }
+    },
+    [anim]
+  );
+
+  useEffect(() => {
+    if (!anim) {
+      setAnim(
+        lottie.loadAnimation({
+          container: container.current,
+          animationData: importAnimation('bottle-repeater.json'),
           loop: true,
           autoplay: true,
           name: 'title',
           renderer: 'svg',
           rendererSettings: {
-              progressiveLoad: true
+            progressiveLoad: true,
           },
+        })
+      );
+    } else {
+      anim.addEventListener('enterFrame', loop);
+    }
 
-      };
-      this.anim = lottie.loadAnimation(this.animationOptions);
-      this.anim.addEventListener('enterFrame', this.loop);
-  };
+    return () => {
+      if (anim) {
+        anim.removeEventListener('enterFrame', loop);
+      }
+    };
+  }, [anim, loop]);
 
-  componentWillUnmount() {
-    this.anim.removeEventListener('enterFrame', this.loop);
-  }
-  
+  return <div ref={container} />;
+};
 
-  render() {
-      return (
-          <div
-            {...this.props}
-            ref={elem => {this.container = elem}}
-          >
-              
-          </div>
-      )
-  }
-}
+export default Bottle;

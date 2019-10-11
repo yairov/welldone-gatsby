@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import playIcon from '../assets/icons/play.svg';
-import {media} from '../theme/media';
 
 const VideoImage = styled.a`
   display: block;
   width: 25rem;
   height: 25rem;
   margin: auto;
-  background-image: url(${props => props.src});
+  background-image: url(${({src}) => src});
   background-repeat: no-repeat;
   background-size: 100%;
   cursor: pointer;

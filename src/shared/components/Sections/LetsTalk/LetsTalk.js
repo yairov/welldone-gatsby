@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
-import {Header} from '../../UI/Typography';
 import {RichText} from 'prismic-reactjs';
+import shortid from 'shortid';
+import {Header} from '../../UI/Typography';
 import BaseButton from '../../UI/Button/Button2';
 import triangle from '../../../assets/icons/triangle1.svg';
 import {media} from '../../../theme/media';
@@ -145,73 +146,67 @@ const MobileContact = styled(DesktopContact)`
   `}
 `;
 
-class LetsTalk extends Component {
-  constructor() {
-    super();
+const LetsTalk = ({contactItems, letsTalk}) => {
+  const [state, setState] = useState({
+    subject: '',
+    message: '',
+  });
 
-    this.state = {
-      subject: '',
-      message: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handelSubmit = this.handelSubmit.bind(this);
-  }
-
-  handleChange = (stateProp, e) => {
-    this.setState({[stateProp]: e.target.value});
-    console.log('props', this.props);
+  const handleChange = (stateProp, e) => {
+    setState({[stateProp]: e.target.value});
+    // console.log('props', props);
   };
 
-  handelSubmit() {
-    window.location.href = `mailto:${RichText.asText(this.props.contactItems[1].content)}?subject=${
-      this.state.subject
-    }&body=${this.state.message}`;
-  }
+  const handelSubmit = () => {
+    window.location.href = `mailto:${RichText.asText(contactItems[1].content)}?subject=${
+      state.subject
+    }&body=${state.message}`;
+  };
 
-  render() {
-    return (
-      <Root id="LetsTalk">
-        <BackgroundTriangle />
-        <ContactRoot>
-          <ContactImg src={this.props.letsTalk.primary.image_header.url} />
-          <Title>{RichText.asText(this.props.letsTalk.primary.title)}</Title>
-          <SubTitle>{RichText.asText(this.props.letsTalk.primary.sub_title)}</SubTitle>
-          <DesktopContact>
-            {this.props.contactItems.map(({icon, content}, idx) => (
-              <Contact key={idx}>
-                <ContactIcon src={icon.url} />
-                <ContactInfo>{RichText.asText(content)}</ContactInfo>
-              </Contact>
-            ))}
-          </DesktopContact>
-        </ContactRoot>
-        <FormWrapper>
-          <Input
-            placeholder={RichText.asText(this.props.letsTalk.primary.email_placeholder)}
-            onChange={e => {
-              this.handleChange('subject', e);
-            }}
-          />
-          <TextArea
-            placeholder={RichText.asText(this.props.letsTalk.primary.text_placeholder)}
-            onChange={e => {
-              this.handleChange('message', e);
-            }}
-          />
-          <Button onClick={this.handelSubmit}>Send</Button>
-        </FormWrapper>
-        `{' '}
-        <MobileContact>
-          {this.props.contactItems.map(({icon, content}, idx) => (
+  return (
+    <Root id="LetsTalk">
+      <BackgroundTriangle />
+      <ContactRoot>
+        <ContactImg src={letsTalk.primary.image_header.url} />
+        <Title>{RichText.asText(letsTalk.primary.title)}</Title>
+        <SubTitle>{RichText.asText(letsTalk.primary.sub_title)}</SubTitle>
+        <DesktopContact>
+          {contactItems.map(({icon, content}, idx) => (
+            // eslint-disable-next-line react/no-array-index-key
             <Contact key={idx}>
               <ContactIcon src={icon.url} />
               <ContactInfo>{RichText.asText(content)}</ContactInfo>
             </Contact>
           ))}
-        </MobileContact>
-      </Root>
-    );
-  }
-}
+        </DesktopContact>
+      </ContactRoot>
+      <FormWrapper>
+        <Input
+          placeholder={RichText.asText(letsTalk.primary.email_placeholder)}
+          onChange={e => {
+            handleChange('subject', e);
+          }}
+        />
+        <TextArea
+          placeholder={RichText.asText(letsTalk.primary.text_placeholder)}
+          onChange={e => {
+            handleChange('message', e);
+          }}
+        />
+        <Button onClick={handelSubmit}>Send</Button>
+      </FormWrapper>
+      <MobileContact>
+        {contactItems.map(({icon, content}) => {
+          return (
+            <Contact key={shortid.generate()}>
+              <ContactIcon src={icon.url} />
+              <ContactInfo>{RichText.asText(content)}</ContactInfo>
+            </Contact>
+          );
+        })}
+      </MobileContact>
+    </Root>
+  );
+};
+
 export default LetsTalk;

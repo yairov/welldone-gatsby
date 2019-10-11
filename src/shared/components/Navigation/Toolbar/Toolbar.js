@@ -1,10 +1,9 @@
+import {Link} from 'react-scroll';
+import React, {useEffect, useCallback, useState} from 'react';
+import styled from 'styled-components';
 import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
-import {Link} from 'react-scroll';
-
-import React, {useEffect, useRef} from 'react';
-import styled from 'styled-components';
 import {media} from '../../../theme/media';
 import Button from '../../UI/Button/Button';
 
@@ -30,16 +29,16 @@ const Toolbar = styled.div`
     z-index: 1000;
   }
   ${media.minSmallDesktop`
-height: 7rem;
-&.scrolled {
-  margin-top:0;
-  padding:0;
-  height: 2.5rem;
-  font-size: 0.9rem;
-  align-items: baseline;
-  background:white;
-  z-index:1000;
-}
+    height: 7rem;
+    &.scrolled {
+      margin-top:0;
+      padding:0;
+      height: 2.5rem;
+      font-size: 0.9rem;
+      align-items: baseline;
+      background:white;
+      z-index:1000;
+    }
 `}
 `;
 
@@ -79,50 +78,59 @@ const ButtonSize = styled.div`
   font-size: small;
 `;
 
-const Header = props => {
-  const ref = useRef();
+const Header = ({
+  buttonType,
+  buttonTypeSuccessHandler,
+  buttonTypeDangerHandler,
+  drawerToggleClicked,
+  closed,
+}) => {
+  const isOverTop = useCallback((topPx = 5) => {
+    return document.body.scrollTop > topPx || document.documentElement.scrollTop > topPx;
+  }, []);
+
+  const [toolbarClassName, setToolbarClassname] = useState(null);
+
   useEffect(() => {
     const onScroll = () => {
-      let fn = null;
-      if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
-        fn = 'add';
-        props.btnTypeSuccessHandler();
-      } else {
-        fn = 'remove';
-        props.btnTypeDangerHandler();
+      if (isOverTop()) {
+        if (!toolbarClassName) {
+          setToolbarClassname('scrolled');
+          buttonTypeSuccessHandler();
+        }
+      } else if (toolbarClassName) {
+        setToolbarClassname(null);
+        buttonTypeDangerHandler();
       }
-
-      ref.current.classList[fn]('scrolled');
     };
-
     document.addEventListener('scroll', onScroll);
     return () => {
       document.removeEventListener('scroll', onScroll);
     };
-  }, []);
-  // console.log(props);
+  }, [buttonType, buttonTypeDangerHandler, buttonTypeSuccessHandler, isOverTop, toolbarClassName]);
+
   return (
-    <Toolbar ref={ref}>
+    <Toolbar className={toolbarClassName}>
       <Items>
-        <LogoSize ref={ref}>
+        <LogoSize className={toolbarClassName}>
           <Logo />
         </LogoSize>
         <DrawerToggleSize>
-          <DrawerToggle clicked={props.drawerToggleClicked} />
+          <DrawerToggle clicked={drawerToggleClicked} />
         </DrawerToggleSize>
         <DesktopOnly>
           <NavigationItems />
           <ButtonSize>
             <Link
-              onClick={props.closed}
+              onClick={closed}
               activeClass="NavigationItem-module--active--3NifW"
-              to={'LetsTalk'}
-              spy={true}
-              smooth={true}
+              to="LetsTalk"
+              spy
+              smooth
               offset={-70}
               duration={500}
             >
-              <Button btnType={props.btnType}> Let's Talk</Button>
+              <Button buttonType={buttonType}>Let&apos;s Talk</Button>
             </Link>
           </ButtonSize>
         </DesktopOnly>

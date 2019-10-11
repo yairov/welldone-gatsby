@@ -119,7 +119,8 @@ const Header = styled(BaseHeader)`
   color: #1fabf3;
   font-weight: 400;
 `;
-const MainHeader = styled(BaseHeader)`
+
+/* const MainHeader = styled(BaseHeader)`
   color: #4b4b4b;
   margin-bottom: 1rem;
   display: flex;
@@ -145,14 +146,14 @@ const Thumbnail = styled.img`
   width: 7.5rem;
   height: 7.5rem;
   margin-bottom: 4rem;
-`;
+`; */
 
 const inversed = [false, true, true, false, false, true];
 
-const CoreValues = props => (
+const CoreValues = ({coreValues}) => (
   <MainDiv id="CoreValues">
     {/* <TitleWrapper>
-      <Thumbnail src={props.projects.primary.img.url} />
+      <Thumbnail src={projects.primary.img.url} />
       <HeaderContent>
         <MainHeader>WE'RE DIFFERENT!</MainHeader>
       </HeaderContent>
@@ -161,23 +162,24 @@ const CoreValues = props => (
     <Root>
       <LeftContainer>
         <HeaderRoot>
-          <HeaderIcon src={props.coreValues.primary.topimage.url} />
-          <Header>{RichText.asText(props.coreValues.primary.firstheader)}</Header>
+          <HeaderIcon src={coreValues.primary.topimage.url} />
+          <Header>{RichText.asText(coreValues.primary.firstheader)}</Header>
           <HeaderWrapper>
-            <SubText>{RichText.render(props.coreValues.primary.firstheadercontent)}</SubText>
+            <SubText>{RichText.render(coreValues.primary.firstheadercontent)}</SubText>
           </HeaderWrapper>
         </HeaderRoot>
         <Wrapper>
-          <MediumTitle>{RichText.asText(props.coreValues.primary.secondheader)}</MediumTitle>
-          <SubText>{RichText.asText(props.coreValues.primary.secondheadercontent)}</SubText>
-          <MediumTitle>{RichText.asText(props.coreValues.primary.thirdheader)}</MediumTitle>
-          <SubText>{RichText.asText(props.coreValues.primary.thirdheadercontent)}</SubText>
+          <MediumTitle>{RichText.asText(coreValues.primary.secondheader)}</MediumTitle>
+          <SubText>{RichText.asText(coreValues.primary.secondheadercontent)}</SubText>
+          <MediumTitle>{RichText.asText(coreValues.primary.thirdheader)}</MediumTitle>
+          <SubText>{RichText.asText(coreValues.primary.thirdheadercontent)}</SubText>
         </Wrapper>
       </LeftContainer>
 
       <CompanyValues>
-        {props.coreValues.items.map(({corevalueicon, corevaluecontent}, idx) => (
+        {coreValues.items.map(({corevalueicon, corevaluecontent}, idx) => (
           <CompanyValue
+            // eslint-disable-next-line react/no-array-index-key
             key={idx}
             inverse={inversed[idx]}
             turquoise={idx === 3}

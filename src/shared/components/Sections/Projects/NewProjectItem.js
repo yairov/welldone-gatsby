@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 // import ReactPlayer from 'react-player';
 import {RichText} from 'prismic-reactjs';
 import styled from 'styled-components';
@@ -52,7 +52,7 @@ const VideoImage = styled(_VideoImage)`
   border: solid 1px #ddd;
 `;
 
-function Layers({layers, layersMeta}) {
+const Layers = ({layers, layersMeta}) => {
   return (
     <Icons>
       {layers
@@ -63,13 +63,13 @@ function Layers({layers, layersMeta}) {
         ))}
     </Icons>
   );
-}
+};
 
-export default function ProjectItem({
+const ProjectItem = ({
   layers: layersMeta,
-  project: {title, description, thumbnail, video, customer, technologies, layers},
+  project: {title, description, thumbnail, video /* , customer, technologies */, layers},
   onVideoPlay,
-}) {
+}) => {
   return (
     <Root>
       <VideoImage
@@ -80,8 +80,10 @@ export default function ProjectItem({
         }}
       />
       <Title>{RichText.asText(title)}</Title>
-      <Layers {...{layers, layersMeta}} />
+      <Layers layers={layers} layersMeta={layersMeta} />
       <SubTitle>{RichText.render(description)}</SubTitle>
     </Root>
   );
-}
+};
+
+export default ProjectItem;

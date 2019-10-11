@@ -20,39 +20,39 @@ const SideDrawer = styled.div`
   background-color: white;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
-  transform: ${props => (props.open ? 'translateX(0)' : 'translateX(-100%)')};
+  transform: ${({open}) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   ${media.minSmallDesktop`
     display: none;
 }
 `}
 `;
+
 const LogoSize = styled.div`
   height: 11%;
 `;
 
-const sideDrawer = props => {
+const sideDrawer = ({open, closed}) => {
   return (
     <Aux>
-      <Backdrop show={props.open} clicked={props.closed} />
+      <Backdrop show={open} clicked={closed} />
 
-      <SideDrawer open={props.open} onClick={props.closed}>
+      <SideDrawer open={open} onClick={closed}>
         <LogoSize>
           <Logo />
         </LogoSize>
         <nav>
-          <NavigationItems closed={props.closed} />
-
+          <NavigationItems closed={closed} />
           <Link
-            onClick={props.closed}
+            onClick={closed}
             activeClass="NavigationItem-module--active--3NifW"
-            to={'LetsTalk'}
-            spy={true}
-            smooth={true}
+            to="LetsTalk"
+            spy
+            smooth
             offset={-70}
             duration={500}
           >
             <div style={{width: '40%', margin: 'auto 30%'}}>
-              <Button btnType="Success">Let's Talk</Button>
+              <Button buttonType="Success">Let&#39;s Talk</Button>
             </div>
           </Link>
         </nav>

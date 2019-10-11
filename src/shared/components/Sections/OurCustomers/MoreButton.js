@@ -1,6 +1,6 @@
 import React from 'react';
-import { media } from '../../../theme';
-import styled, { keyframes } from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import {media} from '../../../theme';
 import moreSVG from '../../../assets/icons/more-icon.svg';
 
 const upDownAnim = keyframes`
@@ -13,8 +13,8 @@ const MoreButtonWrapper = styled.div`
   position: relative;
   align-self: center;
   top: 3.6rem;
-  
-  &&{
+
+  && {
     padding: 0;
   }
 
@@ -25,7 +25,7 @@ const MoreButtonWrapper = styled.div`
     top: 3rem;
   `}
 
-  :hover{
+  :hover {
     animation-play-state: running;
   }
 `;
@@ -33,15 +33,12 @@ const MoreButtonWrapper = styled.div`
 const MoreButtonIcon = styled.img`
   width: 7rem;
   height: auto;
-  transform: rotate(${({ showMore }) => showMore ? '180deg' : 0 });
+  transform: rotate(${({showMore}) => (showMore ? '180deg' : 0)});
 `;
 
-const MoreButton = props => (
-  <MoreButtonWrapper {...props}>
-    <MoreButtonIcon
-      src={moreSVG}
-      showMore={props.showMore}
-      />
+const MoreButton = ({showMore, onClick}) => (
+  <MoreButtonWrapper showMore={showMore} onClick={onClick}>
+    <MoreButtonIcon src={moreSVG} showMore={showMore} />
   </MoreButtonWrapper>
 );
 

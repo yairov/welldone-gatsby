@@ -1,12 +1,12 @@
 // @flow
-import { transform, camelCase } from "lodash";
-import { css } from "styled-components";
+import {transform, camelCase} from 'lodash';
+import {css} from 'styled-components';
 
 const breakPoints = {
   mobile: 480,
   tablet: 768,
   desktop: 1199,
-  desktopLarge: 1440
+  desktopLarge: 1440,
 };
 
 export const otherBreakPoints = {
@@ -15,7 +15,7 @@ export const otherBreakPoints = {
   smallTablet: 580,
   mediumTablet: 860,
   bigTablet: 1000,
-  smallDesktop: 1024
+  smallDesktop: 1024,
 };
 
 const createMediaQuery = (minMax, breakPoint) => (...args) => css`
@@ -25,13 +25,11 @@ const createMediaQuery = (minMax, breakPoint) => (...args) => css`
   `;
 
 export const media = transform(
-  { ...breakPoints, ...otherBreakPoints },
+  {...breakPoints, ...otherBreakPoints},
   (result, breakPoint, breakPointName) => {
-    ["min", "max"].forEach(minMax => {
-      result[camelCase(`${minMax} ${breakPointName}`)] = createMediaQuery(
-        minMax,
-        breakPoint
-      ); // minMobile, minTablet...
+    ['min', 'max'].forEach(minMax => {
+      // eslint-disable-next-line no-param-reassign
+      result[camelCase(`${minMax} ${breakPointName}`)] = createMediaQuery(minMax, breakPoint); // minMobile, minTablet...
     });
   }
 );
@@ -42,7 +40,7 @@ media.initial = (...args) => css`
   }
 `;
 
-media.custom = (px, minOrMax = "min") => (...args) => css`
+media.custom = (px, minOrMax = 'min') => (...args) => css`
   @media (${minOrMax}-width: ${px}px) {
     ${css(...args)}
   }

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {media} from '../../../theme/media';
-import InfoBox from './InfoBox/InfoBox';
 import {Element} from 'react-scroll';
 import {RichText} from 'prismic-reactjs';
+import {media} from '../../../theme/media';
+import InfoBox from './InfoBox/InfoBox';
 import {Header2 as BaseHeader, SubHeader as BaseSubHeader} from '../../UI/Typography';
+
 const Root = styled(Element)`
   padding: 4rem 1rem;
   margin-top: 0;
@@ -15,6 +16,7 @@ const Root = styled(Element)`
     text-align: left;
   `}
 `;
+
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
@@ -67,6 +69,7 @@ const TitleWrapper = styled.div`
 const HeaderContent = styled.div`
   margin: auto 1rem;
 `;
+
 const Thumbnail = styled.img`
   width: 7.5rem;
   height: 7.5rem;
@@ -77,18 +80,19 @@ const Thumbnail = styled.img`
   `}
 `;
 
-const ConsultingAndMentoring = props => {
+const ConsultingAndMentoring = ({ingredients}) => {
   return (
     <Root id="WhatWeDo">
       <TitleWrapper>
-        <Thumbnail src={props.ingredients.primary.topimage.url} />
+        <Thumbnail src={ingredients.primary.topimage.url} />
         <HeaderContent>
-          <Header>{RichText.asText(props.ingredients.primary.header)}</Header>
+          <Header>{RichText.asText(ingredients.primary.header)}</Header>
         </HeaderContent>
       </TitleWrapper>
       <Wrapper>
-        {props.ingredients.items.map((item, idx) => (
+        {ingredients.items.map((item, idx) => (
           <InfoBox
+            // eslint-disable-next-line react/no-array-index-key
             key={idx}
             header={RichText.asText(item.header)}
             background={item.background.url}
@@ -101,4 +105,5 @@ const ConsultingAndMentoring = props => {
     </Root>
   );
 };
+
 export default ConsultingAndMentoring;

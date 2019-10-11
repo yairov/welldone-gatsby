@@ -1,13 +1,16 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import classes from './Button.module.css';
 
-const button = props => (
+const button = ({disabled, buttonType, clicked, children}) => (
   <button
-    disabled={props.disabled}
-    className={[classes.Button, classes[props.btnType]].join(' ')}
-    onClick={props.clicked}
+    disabled={disabled}
+    className={[classes.Button, classes[buttonType]].join(' ')}
+    onClick={clicked}
   >
-    {props.children}
+    {children}
   </button>
 );
+
 export default button;

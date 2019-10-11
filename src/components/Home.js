@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import {Helmet} from 'react-helmet';
 import styled from 'styled-components';
 import {media} from '../shared/theme';
@@ -30,64 +30,55 @@ const SeoRenderers = {
   tag: ({name, value}) => React.createElement(name, null, value),
   meta: ({name, value}) => <meta name={name} content={value} />,
 };
-export default class BlogIndexPage extends Component {
-  state = {
-    video: undefined,
-  };
 
-  playVideo = video => {
-    this.setState({
-      video,
-    });
-  };
+const BlogIndexPage = ({
+  allContent: {project, customer, technology, homepage, customerfeedbacks, layer, seo},
+}) => {
+  const [video, setVideo] = useState(undefined);
 
-  closeVideoModal = () => {
-    this.setState({video: undefined});
-  };
-
-  render() {
-    const {
-      allContent,
-      allContent: {project, customer, technology, homepage, customerfeedbacks, layer, seo},
-    } = this.props;
-
-    const {video} = this.state;
-
-    const homepageBody = homepage[0].data.body.reduce((result, slice) => {
+  const homepageBody = useMemo(() => {
+    return homepage[0].data.body.reduce((result, slice) => {
       // eslint-disable-next-line no-param-reassign
       result[slice.slice_type] = slice;
       return result;
     }, {});
+  }, [homepage]);
 
-    const seoFields = seo[0].data.field;
+  const [seoFields] = useState(seo[0].data.field);
 
-    return (
-      <>
-        <Helmet>{seoFields.map(({type, name, value}) => SeoRenderers[type]({name, value}))}</Helmet>
-        <Content>
-          <MainSlider
-            welldoneVideo={homepageBody.rope_modal.primary.video}
-            onVideoPlay={this.playVideo}
-          />
-          <Technologies items={technology} text={homepageBody.technology} />
-          <OurCustomers customers={customer} text={homepageBody.top_customers} />
-          <Projects
-            projectsBlock={homepageBody.projects.primary}
-            projects={project}
-            layers={layer}
-            onVideoPlay={this.playVideo}
-          />
-          <CustomersSays customerSays={customerfeedbacks} title={homepageBody.what_customer_say} />
-          <ConsultingAndMentoring ingredients={homepageBody.consulting_and_mentoring} />
-          <CoreValues coreValues={homepageBody.core_values} />
-          <JoinUs joinUs={homepageBody.joinus} />
-          <LetsTalk
-            letsTalk={homepageBody.let_s_talk}
-            contactItems={homepageBody.let_s_talk.items}
-          />
-          <VideoModal open={!!video} onClose={this.closeVideoModal} video={video} />
-        </Content>
-      </>
-    );
-  }
-}
+  const playVideo = useCallback(
+    videoUrl => {
+      setVideo(videoUrl);
+    },
+    [setVideo]
+  );
+
+  const closeVideoModal = useCallback(() => {
+    setVideo(undefined);
+  }, [setVideo]);
+
+  return (
+    <>
+      <Helmet>{seoFields.map(({type, name, value}) => SeoRenderers[type]({name, value}))}</Helmet>
+      <Content>
+        <MainSlider welldoneVideo={homepageBody.rope_modal.primary.video} onVideoPlay={playVideo} />
+        <Technologies items={technology} text={homepageBody.technology} />
+        <OurCustomers customers={customer} text={homepageBody.top_customers} />
+        <Projects
+          projectsBlock={homepageBody.projects.primary}
+          projects={project}
+          layers={layer}
+          onVideoPlay={playVideo}
+        />
+        <CustomersSays customerSays={customerfeedbacks} title={homepageBody.what_customer_say} />
+        <ConsultingAndMentoring ingredients={homepageBody.consulting_and_mentoring} />
+        <CoreValues coreValues={homepageBody.core_values} />
+        <JoinUs joinUs={homepageBody.joinus} />
+        <LetsTalk letsTalk={homepageBody.let_s_talk} contactItems={homepageBody.let_s_talk.items} />
+        <VideoModal open={!!video} onClose={closeVideoModal} video={video} />
+      </Content>
+    </>
+  );
+};
+
+export default BlogIndexPage;
