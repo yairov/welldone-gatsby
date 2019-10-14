@@ -5,25 +5,6 @@
 const path = require('path');
 const Prismic = require('prismic-javascript');
 
-// const handleExceptions = pages => ); // eslint-disable-line
-
-// export const fetchDocuments = async ctx => {
-//   const api = Prismic.api(apiEndpoint, { accessToken });
-//   const cookies = getCookies(ctx);
-//   const ref = cookies["io.prismic.preview"];
-//   const documents = [];
-//   let page = 1;
-//   let total_pages = 1;
-//   do {
-//     // eslint-disable-next-line
-//     const res = await api.query("", { pageSize: 100, page: "*", ref });
-//     documents.push(...res.results.map(p => ({ ...p, type: p.type }));
-//     ({ total_pages } = res);
-//   } while (++page <= total_pages); // eslint-disable-line
-
-//   return documents;
-// };
-
 const config = {
   apiEndpoint: process.env.API_END_POINT || 'https://welldone.cdn.prismic.io/api/v2',
   previewTokenMaxAge: process.env.PREVIEW_EXPIRES || 1800000,
@@ -41,34 +22,47 @@ async function loadContent() {
   let totalPages;
   do {
     // eslint-disable-next-line no-await-in-loop
-    const res = await api.query('', {pageSize: 100, page});
+    const res = await api.query('', {
+      pageSize: 100,
+      page,
+      lang: '*',
+    });
     allDocs.push(...res.results);
     // eslint-disable-next-line prefer-destructuring
     totalPages = res.totalPages;
     page += 1;
   } while (page < totalPages);
 
+  /* eslint-disable no-param-reassign */
   const content = allDocs.reduce((result, doc) => {
-    if (!result[doc.type]) {
-      // eslint-disable-next-line no-param-reassign
-      result[doc.type] = [];
-    }
-    result[doc.type].push(doc);
+    result[doc.lang] = result[doc.lang] || {};
+    result[doc.lang][doc.type] = result[doc.lang][doc.type] || [];
+    result[doc.lang][doc.type].push(doc);
     return result;
   }, {});
+  /* eslint-enable no-param-reassign */
 
   return content;
-  // console.log(content)
 }
 
 exports.createPages = async ({actions: {createPage}}) => {
   const allContent = await loadContent();
-  // console.log(Object.keys(allContent), JSON.stringify(allContent.project, null, 2));
+
   createPage({
     path: '/',
     component: path.resolve('./src/templates/index.js'),
     context: {
-      allContent,
+      allContent: allContent['en-us'],
+      lang: 'en-us',
+    },
+  });
+
+  createPage({
+    path: '/he/',
+    component: path.resolve('./src/templates/index.js'),
+    context: {
+      allContent: allContent.he,
+      lang: 'he',
     },
   });
 };
