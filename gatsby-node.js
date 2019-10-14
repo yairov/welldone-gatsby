@@ -29,9 +29,9 @@ async function loadContent() {
     });
     allDocs.push(...res.results);
     // eslint-disable-next-line prefer-destructuring
-    totalPages = res.totalPages;
+    totalPages = res.total_pages;
     page += 1;
-  } while (page < totalPages);
+  } while (page <= totalPages);
 
   /* eslint-disable no-param-reassign */
   const content = allDocs.reduce((result, doc) => {
