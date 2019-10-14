@@ -5,11 +5,11 @@ import GlobalStyle from 'shared/theme/globalStyle';
 
 Modal.setAppElement('body');
 
-const IndexPage = ({pageContext: {allContent}}) => {
+const IndexPage = ({pageContext: {allContent, lang}}) => {
   return (
     <>
       <GlobalStyle />
-      <Home allContent={allContent} />
+      <Home allContent={allContent} lang={lang} />
     </>
   );
 };

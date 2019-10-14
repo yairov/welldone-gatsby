@@ -29,6 +29,7 @@ const Content = styled.div`
 
 const Home = ({
   allContent: {project, customer, technology, homepage, customerfeedbacks, layer, seo, footer},
+  lang,
 }) => {
   const [video, setVideo] = useState(undefined);
   const playVideo = useCallback(videoUrl => setVideo(videoUrl), [setVideo]);
@@ -44,7 +45,7 @@ const Home = ({
 
   return (
     <>
-      <Header fields={seo[0].data.field} />
+      <Header fields={seo[0].data.field} lang={lang} />
       <Menu />
       <Content>
         <MainSlider welldoneVideo={homepageBody.rope_modal.primary.video} onVideoPlay={playVideo} />

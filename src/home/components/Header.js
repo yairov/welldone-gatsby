@@ -7,8 +7,18 @@ const SeoRenderers = {
   meta: ({name, value}) => <meta name={name} content={value} key={`meta-${name}`} />,
 };
 
-const Header = React.memo(({fields}) => (
-  <Helmet>{fields.map(({type, name, value}) => SeoRenderers[type]({name, value}))}</Helmet>
+const urls = {
+  he: 'https://welldone.software/he/',
+  en: 'https://welldone.software/',
+};
+
+const Header = React.memo(({fields, lang}) => (
+  <Helmet>
+    {fields.map(({type, name, value}) => SeoRenderers[type]({name, value}))}
+    <link rel="canonical" href={lang === 'en-us' ? urls.en : urls.he} />
+    <link rel="alternate" href={urls.en} hrefLang="en" />
+    <link rel="alternate" href={urls.he} hrefLang="he" />
+  </Helmet>
 ));
 
 export default Header;
