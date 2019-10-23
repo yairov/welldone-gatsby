@@ -11,10 +11,10 @@
     "lint": "eslint --ignore-path .gitignore --max-warnings 0 --cache --cache-location=\".cache/eslint\" \"./**/*.js\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "pre-push-hook": "yarn lint",
+    "x-pre-push-hook": "yarn lint",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
-  "husky": {
+  "x-husky": {
     "hooks": {
       "pre-push": "yarn pre-push-hook"
     }
