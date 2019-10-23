@@ -198,7 +198,7 @@ const CustomersSays = ({title, customerSays}) => {
                   <Content>
                     <LinesEllipsisLoose
                       text={item.data.feedback[0].text}
-                      maxLine={6}
+                      maxLine={10}
                       trimRight
                       basedOn="letters"
                     />
