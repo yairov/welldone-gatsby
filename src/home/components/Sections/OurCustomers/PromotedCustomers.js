@@ -1,7 +1,7 @@
 import React from 'react';
 import posed from 'react-pose';
 import styled from 'styled-components';
-import {media} from 'shared/theme';
+import {media} from '../../../../shared/theme';
 import A from './A';
 import {PromotedIcon} from './Icon';
 
@@ -9,12 +9,12 @@ const LineAnim = posed.div({
   hide: {
     scale: 0.01,
     delay: ({i}) => i * 30,
-    transition: ({animDuration}) => ({duration: animDuration}),
+    transition: {duration: 250},
   },
   show: {
     scale: 1,
-    delay: ({i, delay}) => i * delay,
-    transition: ({animDuration}) => ({duration: animDuration}),
+    delay: ({i}) => i * 100,
+    transition: {duration: 250},
   },
 });
 
@@ -39,20 +39,14 @@ const PromotedCustomerAnim = posed.div({
   show: {
     x: 0,
     opacity: 1,
-    delay: ({i, delay, switchDuration}) => (0.2 * switchDuration) + (i * delay), // prettier-ignore
-    transition: ({switchDuration}) => ({
-      duration: switchDuration * 0.5,
-      ease: 'easeOut',
-    }),
+    delay: ({i}) => 200 + i * 100,
+    transition: {duration: 500, ease: 'easeOut'},
   },
   hide: {
     x: 50,
     opacity: 0.01,
-    delay: ({switchDuration}) => switchDuration * 0.3,
-    transition: ({switchDuration}) => ({
-      duration: switchDuration * 0.5,
-      ease: 'easeIn',
-    }),
+    delay: 300,
+    transition: {duration: 500, ease: 'easeIn'},
   },
 });
 
@@ -68,13 +62,13 @@ const PromotedWrapperAnim = posed.div({
   show: {
     scaleX: 1,
     scaleY: 1,
-    transition: {duration: 1000},
+    transition: { duration: 1000 }
   },
   hide: {
     scaleX: 0,
     scaleY: 0,
-    transition: {duration: 1000},
-  },
+    transition: { duration: 1000 }
+  }
 });
 
 const PromotedWrapper = styled(PromotedWrapperAnim)`
@@ -100,39 +94,27 @@ const PromotedWrapper = styled(PromotedWrapperAnim)`
   `}
 `;
 
-const PromotedCustomers = ({customers, customerPose, switchDuration, delay}) => (
-  <PromotedWrapper
-    customers={customers}
-    customerPose={customerPose}
-    switchDuration={switchDuration}
-    delay={delay}
-  >
-    {customers.map((itemProps, i) =>
-      itemProps.line ? (
-        <Line
-          // eslint-disable-next-line react/no-array-index-key
-          key={`line${i}`}
-          i={i}
-          pose={customerPose}
-          animDuration={switchDuration * 0.25}
-          delay={delay}
-        />
-      ) : (
-        <PromotedCustomer
-          // eslint-disable-next-line react/no-array-index-key
-          key={`cust${i}`}
-          i={i}
-          pose={customerPose}
-          switchDuration={switchDuration}
-          delay={delay}
-          style={{justifyContent: 'center', alignItems: 'center'}}
-        >
-          <A title={itemProps.title}>
-            <PromotedIcon src={itemProps.white_logo.url} />
-          </A>
-        </PromotedCustomer>
-      )
-    )}
-  </PromotedWrapper>
-);
+const PromotedCustomers = props => 
+	<PromotedWrapper {...props}>
+		{props.customers.map((itemProps, i, all) =>
+			itemProps.line ? (
+				<Line key={'line' + i} i={i} pose={props.customerPose} />
+			) : (
+				<PromotedCustomer
+					i={i}
+					key={'cust' + i}
+					pose={props.customerPose}
+					style={{justifyContent: 'center', alignItems: 'center'}}
+				>
+					<A
+						title={itemProps.title}
+					>
+						<PromotedIcon src={itemProps.white_logo?.url} />
+					</A>
+				</PromotedCustomer>
+			)
+		)}
+	</PromotedWrapper>
+;
+
 export default PromotedCustomers;
