@@ -144,7 +144,6 @@ const TestCustomers2 = ({customers, text}) => {
           promotedToLoad[(index * 2) + 1] = {line: true}; // prettier-ignore
         }
       }
-      // console.log(promotedToLoad);
 
       stateActions.setVisibleCustomers(promotedToLoad);
     },
@@ -182,7 +181,7 @@ const TestCustomers2 = ({customers, text}) => {
     stateActions.setShowMore(!state.showMore);
   }, [state.flashTimeOuts, state.showMore, stateActions]);
 
-  const sortCustomers = useCallback(() => {
+  const getSortedCustomers = useCallback(() => {
     const allCustomers = customers.map(({data}) => data);
     const promoted = allCustomers
       .filter(c => c.promoted === 'yes')
@@ -192,8 +191,11 @@ const TestCustomers2 = ({customers, text}) => {
       .sort((l, r) => ((l.order || Number.MAX_VALUE) > (r.order || Number.MAX_VALUE) ? 1 : -1));
     const sortedCustomers = [...promoted, ...unPromoted];
 
-    stateActions.setSortedCustomers(sortedCustomers);
-  }, [customers, stateActions]);
+    return sortedCustomers;
+  }, [customers]);
+
+  const ref = React.useRef();
+  const ExpandedCustomers = ref.current;
 
   useEffect(() => {
     const promoted = customers
@@ -204,7 +206,9 @@ const TestCustomers2 = ({customers, text}) => {
 
     loadCustomers(promoted, customerIndex);
     showCustomers();
-    sortCustomers();
+
+    ref.current = () => <AllCustomers customers={getSortedCustomers()} pose="show" />;
+
     setInterval(() => {
       hideCustomers();
       setTimeout(() => {
@@ -215,6 +219,8 @@ const TestCustomers2 = ({customers, text}) => {
     }, switchPromotedLogosEvery);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(ref.current);
 
   return (
     <Root id="C" pose={state.showMore ? 'all' : 'promoted'}>
@@ -240,7 +246,7 @@ const TestCustomers2 = ({customers, text}) => {
         delay={state.showMore ? 1000 : 0}
         duration={state.sortedCustomers.length * (state.showMore ? 80 : 55)}
       >
-        <AllCustomers customers={state.sortedCustomers} pose={state.showMore ? 'show' : 'hide'} />
+        {ref.current && <ExpandedCustomers />}
       </AnimatedHeightNoPadding>
       <MoreButton showMore={state.showMore} onClick={toggleShowMore} />
     </Root>
