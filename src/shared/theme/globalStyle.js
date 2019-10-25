@@ -19,8 +19,6 @@ const fontCss = css`
 
 const globalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700&display=optional');
-  /*@import url('https://fonts.googleapis.com/css?family=Nunito:300,600,800&display=swap');*/
-
 
   html {
    ${fontCss};
@@ -33,6 +31,7 @@ const globalStyle = createGlobalStyle`
     position: relative;
     overflow: auto;
     margin: 0;
+    direction: ltr;
   }
 
   h1 ,h2, h3, h4, h5, h6, p{
