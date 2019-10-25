@@ -130,7 +130,7 @@ const Text = ({header}) => {
         productivity, expertise and happiness.
       </SubTextWrapper>
       <MyLink to="LetsTalk" spy smooth offset={-70} duration={500}>
-        <Button buttonType="Success">Start Today!</Button>
+        <Button>Start Today!</Button>
       </MyLink>
     </Wrapper>
   );

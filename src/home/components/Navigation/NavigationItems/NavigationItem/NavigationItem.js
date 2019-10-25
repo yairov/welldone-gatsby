@@ -5,13 +5,10 @@ import styled from 'styled-components';
 import {media} from 'shared/theme/media';
 import useBooleanState from 'shared/hooks/useBooleanState';
 
-const NavigationItemWrapper = styled.div`
-  margin: 2rem;
-  display: block;
-  height: 100%;
+const NavigationItemWrapper = styled.li`
+  display: flex;
   align-items: center;
-  width: auto;
-  font-size: 150%;
+  font-size: 1.5em;
   cursor: pointer;
   color: ${({isActive}) => (isActive ? '#40A4C8' : '#51718C')};
 
@@ -21,11 +18,6 @@ const NavigationItemWrapper = styled.div`
   }
 
   ${media.minSmallDesktop`
-    margin: 0;
-    display: block;
-    height: 100%;
-    align-items: center;
-    width: auto;
     margin-right: 3rem;
     font-size: 100%;
 
@@ -75,9 +67,11 @@ const NavigationItem = ({simple, children, link, onClick = noop}) => {
         onSetActive={setActive}
         onSetInactive={setInactive}
       >
-        {children}
+        <span>
+          {children}
+          <Line name={link} isActive={isActive} />
+        </span>
       </Link>
-      <Line name={link} isActive={isActive} />
     </NavigationItemWrapper>
   );
 };

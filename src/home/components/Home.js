@@ -28,7 +28,17 @@ const Content = styled.div`
 `;
 
 const Home = ({
-  allContent: {project, customer, technology, homepage, customerfeedbacks, layer, seo, footer},
+  allContent: {
+    navbar,
+    project,
+    customer,
+    technology,
+    homepage,
+    customerfeedbacks,
+    layer,
+    seo,
+    footer,
+  },
   lang,
 }) => {
   const [video, setVideo] = useState(undefined);
@@ -46,7 +56,7 @@ const Home = ({
   return (
     <>
       <Header fields={seo[0].data.field} lang={lang} />
-      <Menu />
+      <Menu navItems={navbar[0].data.navitems} lang={lang} />
       <Content>
         <MainSlider welldoneVideo={homepageBody.rope_modal.primary.video} onVideoPlay={playVideo} />
         <Technologies items={technology} text={homepageBody.technology} />

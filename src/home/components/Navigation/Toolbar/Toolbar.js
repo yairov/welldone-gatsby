@@ -1,8 +1,9 @@
 import {Link} from 'react-scroll';
-import React, {useEffect, useCallback, useState} from 'react';
-import styled from 'styled-components';
+import React, {useEffect, useState} from 'react';
+import styled, {css} from 'styled-components';
 import {media} from 'shared/theme/media';
 import Button from 'shared/components/UI/Button/Button';
+import A from 'shared/components/A';
 
 import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
@@ -16,35 +17,36 @@ const ToolbarContainer = styled.div`
   top: 0;
   right: 0;
   left: 0;
-  background-color: #1fabf3;
-  display: flex;
   justify-content: space-between;
-  padding: 0, 20px;
   box-sizing: border-box;
   z-index: 90;
   background: none;
   font-size: 1.2rem;
   color: #51718c;
-  &.scrolled {
-    background: white;
-    z-index: 1000;
-  }
   ${media.minSmallDesktop`
     height: 7rem;
-    &.scrolled {
-      margin-top:0;
-      padding:0;
-      height: 2.5rem;
-      font-size: 0.9rem;
-      align-items: baseline;
-      background:white;
-      z-index:1000;
-    }
-`}
+  `}
+  ${({bodyScrolled}) => {
+    // prettier-ignore
+    return bodyScrolled && css`
+      background: white;
+      z-index: 1000;
+      ${media.minSmallDesktop`
+        margin-top: 0;
+        padding: 0;
+        height: 2.5rem;
+        font-size: 0.9rem;
+        align-items: baseline;
+        background: white;
+        z-index: 1000;
+      `}
+    `;
+  }}
 `;
 
 const Items = styled.div`
-  float: left;
+  display: flex;
+  flex-direction: row;
   position: relative;
   width: 100%;
   height: 100%;
@@ -54,79 +56,80 @@ const Items = styled.div`
 
 const LogoSize = styled.div`
   height: 100%;
-  float: left;
 `;
+
 const DrawerToggleSize = styled.div`
-  float: right;
   margin-top: 0%;
   margin-right: 20px;
   display: flex;
 `;
+
 const DesktopOnly = styled.div`
-  float: right;
-  margin-top: 0%;
+  flex: 1;
   display: flex;
-  margin-right: 20px;
-  height: 100%;
   ${media.maxSmallDesktop`
     display: none;
-`}
+  `}
 `;
 
-const ButtonSize = styled.div`
-  margin: auto;
-  width: 8rem;
-  font-size: small;
+const LetsTalkButton = styled(Button)`
+  height: auto;
 `;
 
-const Toolbar = ({
-  buttonType,
-  buttonTypeSuccessHandler,
-  buttonTypeDangerHandler,
-  drawerToggleClicked,
-  onClick,
-}) => {
-  const isOverTop = useCallback((topPx = 5) => {
-    return document.body.scrollTop > topPx || document.documentElement.scrollTop > topPx;
-  }, []);
+const LinkContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 1.4em;
+  padding: 0 15px;
+`;
 
-  const [toolbarClassName, setToolbarClassname] = useState(null);
+const LanguageChangeLinkA = styled(A)`
+  color: #51718;
+  font-weight: bold;
+`;
+
+const LanguageChangeLink = ({lang}) => (
+  <LinkContainer>
+    <LanguageChangeLinkA href={lang === 'he' ? '/' : '/he/'}>
+      {lang === 'he' ? 'English' : 'עברית'}
+    </LanguageChangeLinkA>
+  </LinkContainer>
+);
+
+const Toolbar = ({drawerToggleClicked, onClick, navItems, lang}) => {
+  const [bodyScrolled, setBodyScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      if (isOverTop()) {
-        if (!toolbarClassName) {
-          setToolbarClassname('scrolled');
-          buttonTypeSuccessHandler();
-        }
-      } else if (toolbarClassName) {
-        setToolbarClassname(null);
-        buttonTypeDangerHandler();
+      const newBodyScrolled = document.documentElement.scrollTop > 5;
+      if (newBodyScrolled !== bodyScrolled) {
+        setBodyScrolled(newBodyScrolled);
       }
     };
     document.addEventListener('scroll', onScroll);
     return () => {
       document.removeEventListener('scroll', onScroll);
     };
-  }, [buttonType, buttonTypeDangerHandler, buttonTypeSuccessHandler, isOverTop, toolbarClassName]);
+  }, [bodyScrolled, setBodyScrolled]);
 
   return (
-    <ToolbarContainer className={toolbarClassName}>
+    <ToolbarContainer bodyScrolled={bodyScrolled}>
       <Items>
-        <LogoSize className={toolbarClassName}>
+        <LogoSize>
           <Logo />
         </LogoSize>
         <DrawerToggleSize>
           <DrawerToggle onClick={drawerToggleClicked} />
         </DrawerToggleSize>
         <DesktopOnly>
-          <NavigationItems onClick={onClick} />
-          <ButtonSize>
+          <NavigationItems navItems={navItems} onClick={onClick} />
+          <LinkContainer>
             <Link onClick={onClick} to="LetsTalk" spy smooth offset={-70} duration={500}>
-              <Button buttonType={buttonType}>Let&apos;s Talk</Button>
+              <LetsTalkButton>Let&apos;s Talk</LetsTalkButton>
             </Link>
-          </ButtonSize>
+          </LinkContainer>
         </DesktopOnly>
+        <LanguageChangeLink lang={lang} />
       </Items>
     </ToolbarContainer>
   );

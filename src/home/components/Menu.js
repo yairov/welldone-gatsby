@@ -1,30 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Toolbar from './Navigation/Toolbar/Toolbar';
 import SideDrawer from './Navigation/SideDrawer/SideDrawer';
 import useBooleanState from '../../shared/hooks/useBooleanState';
 
-const ButtonTypes = {
-  Danger: 0,
-  Success: 1,
-};
-
-const Menu = () => {
+const Menu = ({navItems, lang}) => {
   const [isSideDrawerOpen, toggleSideDrawer, , closeSideDrawer] = useBooleanState(false);
-  const [buttonType, setButtonType] = useState(ButtonTypes.Success);
-
-  const buttonTypeSuccessHandler = () => setButtonType(ButtonTypes.Danger);
-  const buttonTypeDangerHandler = () => setButtonType(ButtonTypes.Success);
-
   return (
     <>
       <Toolbar
         drawerToggleClicked={toggleSideDrawer}
-        buttonType={buttonType}
-        buttonTypeSuccessHandler={buttonTypeSuccessHandler}
-        buttonTypeDangerHandler={buttonTypeDangerHandler}
         onClick={closeSideDrawer}
+        navItems={navItems}
+        lang={lang}
       />
-      <SideDrawer isOpen={isSideDrawerOpen} onClick={closeSideDrawer} />
+      <SideDrawer isOpen={isSideDrawerOpen} onClick={closeSideDrawer} navItems={navItems} />
     </>
   );
 };

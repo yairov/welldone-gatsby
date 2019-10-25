@@ -1,15 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import classes from './Button.module.css';
 
-const button = ({disabled, buttonType, clicked, children}) => (
-  <button
-    disabled={disabled}
-    className={[classes.Button, classes[buttonType]].join(' ')}
-    onClick={clicked}
-    type="button"
-  >
+const Button = ({children, className, ...rest}) => (
+  <button className={`${classes.Button} ${className}`} type="button" {...rest}>
     {children}
   </button>
 );
 
-export default button;
+export default Button;

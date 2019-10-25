@@ -30,7 +30,7 @@ const LogoSize = styled.div`
   height: 11%;
 `;
 
-const SideDrawer = ({isOpen, onClick}) => {
+const SideDrawer = ({isOpen, onClick, navItems}) => {
   return (
     <Aux>
       <Backdrop show={isOpen} clicked={onClick} />
@@ -39,10 +39,10 @@ const SideDrawer = ({isOpen, onClick}) => {
           <Logo />
         </LogoSize>
         <nav>
-          <NavigationItems onClick={onClick} />
+          <NavigationItems onClick={onClick} navItems={navItems} />
           <Link onClick={onClick} to="LetsTalk" spy smooth offset={-70} duration={500}>
             <div style={{width: '40%', margin: 'auto 30%'}}>
-              <Button buttonType="Success">Let&#39;s Talk</Button>
+              <Button>Let&#39;s Talk</Button>
             </div>
           </Link>
         </nav>

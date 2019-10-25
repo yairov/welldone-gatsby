@@ -8,7 +8,12 @@ import GlobalStyle from 'shared/theme/globalStyle';
 
 Modal.setAppElement('body');
 
-const IndexPage = ({pageContext: {allContent, lang}}) => {
+// we use https://github.com/cssjanus/cssjanus to flip all styled-components on hebrew.
+// styled-components flip on can be prevented by using: /* @noflip */
+
+const IndexPage = ({pageContext: {lang, allContent}}) => {
+  console.log({lang, allContent});
+
   // prettier-ignore
   const stylisPlugins = [
     lang === 'he' && stylisRTLPlugin,
