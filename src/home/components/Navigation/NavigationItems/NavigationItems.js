@@ -40,7 +40,7 @@ const NavigationItems = ({onClick}) => {
           Latest Projects
         </NavigationItem>
         <NavigationItem onClick={onClick} link="CustomersSays">
-          What Customers Says
+          What Customers Say
         </NavigationItem>
         <NavigationItem onClick={onClick} link="WhatWeDo">
           What We Do

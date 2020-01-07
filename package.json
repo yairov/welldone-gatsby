@@ -4,6 +4,7 @@
   "proxy": "http://localhost:3001",
   "version": "0.1.0",
   "scripts": {
+    "deploy": "cd deployment; sh deploy.sh; cd ..;",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "dev": "npm run develop",

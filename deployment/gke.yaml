@@ -50,3 +50,22 @@ spec:
             backend:
               serviceName: welldone-gatsby-service
               servicePort: 9000
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: welldone-gatsby-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - "*.welldone-software.com"
+  rules:
+    - host: welldone.software
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: welldone-gatsby-service
+              servicePort: 9000
