@@ -5,6 +5,7 @@ module.exports = {
       'Your fullstack secret sauce. Get your team to build amazing front-ends and rock-solid backends.',
   },
   plugins: [
+    'gatsby-plugin-netlify',
     {
       resolve: 'gatsby-plugin-resolve-src',
       options: {
