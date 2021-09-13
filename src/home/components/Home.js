@@ -34,6 +34,7 @@ const Home = ({
   const [video, setVideo] = useState(undefined);
   const playVideo = useCallback(videoUrl => setVideo(videoUrl), [setVideo]);
   const closeVideoModal = useCallback(() => setVideo(undefined), [setVideo]);
+  const isBrowser = typeof window !== "undefined"
 
   const homepageBody = useMemo(() => {
     return homepage[0].data.body.reduce((result, slice) => {
@@ -65,7 +66,7 @@ const Home = ({
         <VideoModal open={!!video} onClose={closeVideoModal} video={video} />
       </Content>
       <Footer footer={footer[0].data} follow={footer[0].data.body[0].items} />
-      <script defer src="https://widget.equally.ai/equally-widget.min.js"></script><script>window.EQUALLY_AI_API_KEY="h9vAw6E6KSBrnHvbSnKq";var intervalId=setInterval(function(){window.EquallyAi&&(clearInterval(intervalId),window.EquallyAi=new EquallyAi)},500);</script>
+      {isBrowser && <><script defer src="https://widget.equally.ai/equally-widget.min.js"></script><script>window.EQUALLY_AI_API_KEY="h9vAw6E6KSBrnHvbSnKq";var intervalId=setInterval(function(){window.EquallyAi&&(clearInterval(intervalId),window.EquallyAi=new EquallyAi)},500);</script></> }
     </>
   );
 };
